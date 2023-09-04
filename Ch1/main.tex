@@ -149,7 +149,14 @@ Using this equation, we can use the Lorentz transformation to find
     .\end{aligned}
 \end{eqnarray}
 
-Plugging the expressions for $\lambda_{i,f}^{\gamma}$ and $\cos{\theta_0}$
+Plugging the expressions for $\lambda_{i,f}^{\gamma}$ and $\cos{\theta_0}$ into \eref{1a-result} and allowing a CAS do the algebra we find
+\begin{eqnarray}
+    \begin{aligned}
+        &\gamma \Big[ \lambda_{f}^{\gamma} \Big( 1 + \beta \frac{\cos{\theta} - \beta}{1 - \beta \cos{\theta}} \Big) - \lambda_{i}^{\gamma} (1 + \beta) \Big] = \frac{h}{mc} \Big( 1 - \frac{\cos{\theta} - \beta}{1 - \beta \cos{\theta}} \Big) \\
+        &\eqbox{ \Delta \lambda = \frac{p_{i}^{\gamma} + p_{i}}{E_{i}/c - p_{i}} \lambda_{i}^{\gamma} (1 - \cos{\theta}) }
+    \end{aligned}
+,\end{eqnarray}
+as shown in part (b).
 
 }
 
@@ -174,6 +181,126 @@ Show that this distance is of the order $3Z \times 10^{-14}~\SI{}{\centi\metre}$
 
 }
 
+\sol{
+
+
+
+}
+
+
+\prob{3}{
+
+Consider the Rutherford model of the atom: an electron of electric charge $-e$ orbiting a point-like nucleus (much heavier, and hence at rest) of electric charge $Ze$ in a circular orbit of radius $R$.
+Knowing that the electron radiates energy away at the rate $\dd{E}/\dd{t}$ given by 
+\begin{eqnarray}
+    \dv{E}{t} = -\frac{2}{3} \frac{e^2 |\va*{a}(t)|^2}{c^3}
+,\end{eqnarray}
+where $\va*{a}(t)$ is the acceleration and $c$ is the speed of light, show that it will take a time
+\begin{eqnarray}
+   \tau = \frac{m^2 c^3}{Z e^{4}} \frac{R^3}{4}
+\end{eqnarray}
+for the electron to spiral into the nucleus.
+Assume that $\tau$ is much larger than the revolution period.
+By taking $Z=1$ and $R \approx \SI{1e-8}{\centi\metre}$ appropriate for the hydrogen atom, justify this assumption \textit{a posteriori} by comparing $\tau$ with the revolution period.
+
+
+}
+
+\sol{}
+
+
+\prob{4}{
+
+In order to solve the stability problem raised in the previous problem, Niels Bohr proposed in 1913 that the atom can exist only in certain states having energies $E_1 < E_2 < \ldots$, that is, atomic energies are quantized.
+To obtain these energies, Bohr assumed that the angular momentum of an electron of mass $m$ and electric charge $-e$ in a \textit{stable circuilar orbit} of radius $r$ around a nucleus of eletric charge $Ze$ is an integer multiple $n$ of the PLanck constant $\hbar = h/(2 \pi)$.
+Following Bohr, calculate the energies $E_{n}$.
+
+}
+
+\sol{}
+
+
+\prob{5}{
+
+In the old quantum theory, one assumes that the particles follow the laws of classical mechanics, but postulates further that, of all the solutions of the equations of motion, one must only retain those which satisfy certain \textit{ad hoc} quantization rules.
+One therefore selects a discontinuous family of motions; these are, by hypothesis, the only motions which are realized in nature.
+The discontinuous sequence of energy values thus obtained constitutes the spectrum of quantized energy levels. \\[3pt]
+
+For a one dimensional periodic motion, the quantization rule -- known as the Bohr-Sommerfield quantization rule -- is
+\begin{eqnarray}
+    \oint_{E} \dd{q} p = n h \quad n = 1,2,\ldots
+,\end{eqnarray}
+where $h$ is Planck's constant and the symbol $\oint_{E}$ means that one must integrate over a complete period of the motion corresponding to the energy $E$.
+Here $q$ and $p$ are the position and momentum variables, respectively.
+The integral is known as the action integral.
+Apply this rule to the case of the one-dimensional harmonic oscillator for which
+\begin{eqnarray}
+   E = \frac{p^2}{2m} + \frac{m \omega^2}{2} q^2 
+.\end{eqnarray}
+Calculate the energy, period, and amplitude of the quantized trajectories.
+
+}
+
+\sol{}
+
+
+\prob{6}{
+
+Quantize the \textit{circular} electronic orbits of the hydrogen atom by applying the Bohr-Sommerfield rule introduced in the previous problem.
+Determine the energy, period, and radius of the quantized orbits.
+Calculate specifically the numerical values of the energy, period, and radius of the lowest orbit.
+Use $mc^2 \approx \SI{0.51e6}{\eV}$ and $\hbar c / e^2 \approx 137$.
+
+}
+
+\sol{}
+
+
+\prob{7}{
+
+In addition to its failures in explaining the blackbody radiation spectrum, the photo-electric effect, and the stability of atoms and spectral lines, classical physics could also not explain the heat capacity of a solid. \\[3pt]
+
+(a) Assume a solid of volume $V$ with $N$ atoms (or molecules) can be modeled as a set of $3N$ independent one-dimensional harmonic oscillators of frequency $\nu_0$ (that is, all oscillators have the same frequency $\nu_0$).
+Making use of the equipartition theorem, calculate the total average energy $E$ of the solid at temperature $T$ and derive the Dulong-Petit law for the heat capacity (at constant volume)
+\begin{eqnarray}
+    c_{V} = \Big( \pdv{E}{T} \Big)_{V} = 3 N k_{B}
+,\end{eqnarray}
+where $k_{B}$ is the Boltzmann's constant. \\[3pt]
+
+(b) The observed heat capacity of a solid is not a constant independent of $T$, but rather vanishes as $T^3$ at low temperature and approaches the classical prediction (the Dulong-Petit law) at high temperature.
+Einstein (1907) proposed that the energy of each harmonic oscillator is quantized and that its average energy at temperature $T$ is given by
+\begin{eqnarray}
+    \expval{E} = \frac{h \nu_0}{\exp{h \nu_0/k_{B}T} - 1}
+,\end{eqnarray}
+see class notes.
+Show that the heat capacity is now found to be
+\begin{eqnarray}
+    c_{V} = 3 N k_{B} \frac{x_0^2 e^{x_0}}{(e^{x_0}-1)^2}, \quad x_0 = \frac{h \nu_0}{k_{B} T}
+.\end{eqnarray}
+Does $c_{V}$ vanish as $T \rightarrow 0$?
+What happens at high temperature? \\[3pt]
+
+(c) Einstein's theory predicts that $c_{V}$ vanishes exponentially at low temperature, a result that is at variance with experimental observations.
+A more realistic model of a solid is that it consists of $3N$ independent harmonic oscillators (modes) with a distribution in frequency $g(\nu)$ given by
+\begin{eqnarray}
+    g(\nu) = 4\pi \frac{V}{v_{S}^3} \nu^2
+,\end{eqnarray}
+where $v_{S}$ is the sound velocity in the solid, such that 
+\begin{eqnarray}
+    {\rm number~of~modes} = \int_{0}^{\nu_{\rm max}} \dd{\nu} g(\nu) = 3N
+.\end{eqnarray}
+This condition fixes $\nu_{\rm max}$ as a function of the density $N/V$.
+Introduce the parameter $T_{D}$ (the Debye temperature) defined as $T_{D} = h \nu_{\rm max}/k_{B}$ and show that the total average energy at temperature $T$ is given by
+\begin{eqnarray}
+    E = 9 N h \nu_{\rm max} \Big( \frac{T}{T_{D}} \Big)^{4} \int_{0}^{T_{D}/T} \dd{x} \frac{x^3}{e^{x} - 1}
+,\end{eqnarray}
+and that the constant-volume heat capacity is proportional to $T^3$ for low $T$, in agreement with experiment.
+Show that ti also satisfies the Dulong-Petit law at high temperatures.
+
+
+
+
+}
 
 
 
