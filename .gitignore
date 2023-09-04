@@ -1,0 +1,19 @@
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# JupyterLab
+.ipynb_checkpoints
+
+# Mac
+.DS_Store
+
+# Lecture Notes
+qm_book.pdf
+
+
+
