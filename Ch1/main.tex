@@ -183,6 +183,42 @@ Show that this distance is of the order $3Z \times 10^{-14}~\SI{}{\centi\metre}$
 
 \sol{
 
+(a) This is a simple elastic collision, implying conservation of momentum and kinetic energy.
+Momentum conservation give
+\begin{eqnarray}
+\label{eq:mom-cons}
+    Mv = Mv' + mv_{m}
+,\end{eqnarray}
+and energy conservation gives
+\begin{eqnarray} 
+\label{eq:kin-cons}
+    Mv^2 = Mv'^2 + mv_{m}^2
+.\end{eqnarray}
+Since we only care about $v'$, we use \eref{mom-cons} to eliminate $v_{m}$ from \eref{kin-cons}
+\begin{align}
+    v_{m} &= \frac{M}{m} (v - v') \\
+    \frac{M^2}{m}(v - v')^2 &= M(v^2 - v'^2)
+,\end{align}
+and solving the previous equation for $v'$ we find
+\begin{eqnarray}
+\eqbox{
+   v' = 
+   \begin{cases}
+       v \\
+       \frac{M-m}{M+m} v
+   .\end{cases}
+}
+\end{eqnarray}
+
+The first solution implies that no collision occurs, which is in contradiction to our assumption that a collision in fact occurs.
+Focusing on the second solution, we see $v' < 0$ (and hence a change of direction for particle $M$) if $m > M$, and furthermore, if $m \gg M$, $v' \approx -v$, which is almost like a "brick wall" scenario.
+
+(b) This problem is one of energy conservation.
+The $\alpha$ particles have some initial kinetic energy $T_{i} = m_{\alpha}v^2/2$, and at closest approach $T_{f} = 0$, where
+\begin{eqnarray}
+    -\frac{1}{2} m_{\alpha} v^2 = -\frac{(2e)(Ze)}{4 \pi \epsilon_0} \frac{1}{r} \Rightarrow \eqbox{ r = \frac{Z e^2}{\pi \epsilon_0 m_{\alpha} v^2} \approx 3Z \times 10^{-14}~\SI{}{\centi\metre}}
+,\end{eqnarray}
+which is about an order of magnitude (or more) smaller than the typical atomic radii.
 
 
 }
@@ -206,18 +242,79 @@ By taking $Z=1$ and $R \approx \SI{1e-8}{\centi\metre}$ appropriate for the hydr
 
 }
 
-\sol{}
+\sol{
+
+The energy of this system is
+\begin{eqnarray}
+   E = \frac{1}{2} m v^2 - \frac{Z e^2}{r}
+,\end{eqnarray}
+when the electron is at a distance $r$ from the nucleus.
+Since the acceleration is centripetal\footnote{This is approximately true if we assume that the energy lost per revolution is much smaller than the energy of the system, and thus, that the electron's tangential component of acceleration is very small.} we can write
+\begin{eqnarray}
+    ma = m\frac{v^2}{r} = \frac{Ze^2}{r^2} \Rightarrow T = \frac{1}{2} V
+.\end{eqnarray}
+Actually, this is a version of the Virial Theorem for inverse square power laws.
+Using this, we find
+\begin{eqnarray}
+   E = -\frac{1}{2} \frac{Z e^2}{r}
+.\end{eqnarray}
+From here, we can differentiate this expression of $E$ giving
+\begin{eqnarray}
+    \dv{E}{t} = \frac{1}{2} \frac{Ze^2}{r^2} \dv{r}{t} = -\frac{2 e^2}{3 c^3} \frac{1}{m^2} \Big( \frac{Ze^2}{r^2} \Big)^2
+.\end{eqnarray}
+Solving for $\dd{r}/\dd{t}$ gives
+\begin{eqnarray}
+    \dv{r}{t} = -\frac{4 e^2}{3c^3} \frac{1}{m^2} \frac{Z e ^2}{r^2}
+.\end{eqnarray}
+We can solve this differential equation as follows
+\begin{eqnarray}
+    \int_{0}^{\tau} r^{2} \dd{r} = -R^{3} = -\frac{4 Z e^{4}}{m^2 c^3} \tau
+.\end{eqnarray}
+And finally we rearrange to find 
+\begin{eqnarray}
+    \eqbox{ \tau = \frac{m^2 c^3}{Z e^{4}} \frac{R^3}{4} \approx Z \times 10^{-10}~{\rm s}}
+,\end{eqnarray}
+for the conditions stated above.
+
+Note that a distance $R$ from the center one orbital period is
+\begin{eqnarray}
+    T = 2 \pi \sqrt{ \frac{R^3 m}{Z e ^2}} \approx \frac{1}{\sqrt{Z}} (4 \times 10^{-16}~{\rm s})
+,\end{eqnarray}
+and hence, the proportion of one period to the time of the electron's orbital decay is given as
+\begin{eqnarray}
+    \frac{T}{\tau} \approx 4\sqrt{Z} \times 10^{-6}
+,\end{eqnarray}
+which is quite tiny for any relevant $Z$ and at least tells us that our results are consistent with our assumptions.
+
+
+}
 
 
 \prob{4}{
 
 In order to solve the stability problem raised in the previous problem, Niels Bohr proposed in 1913 that the atom can exist only in certain states having energies $E_1 < E_2 < \ldots$, that is, atomic energies are quantized.
-To obtain these energies, Bohr assumed that the angular momentum of an electron of mass $m$ and electric charge $-e$ in a \textit{stable circuilar orbit} of radius $r$ around a nucleus of eletric charge $Ze$ is an integer multiple $n$ of the PLanck constant $\hbar = h/(2 \pi)$.
+To obtain these energies, Bohr assumed that the angular momentum of an electron of mass $m$ and electric charge $-e$ in a \textit{stable circuilar orbit} of radius $r$ around a nucleus of eletric charge $Ze$ is an integer multiple $n$ of the Planck constant $\hbar = h/(2 \pi)$.
 Following Bohr, calculate the energies $E_{n}$.
 
 }
 
-\sol{}
+\sol{
+
+In the previous problem, we saw that for an electron in circular orbit about the nucleus that
+\begin{eqnarray}
+   E = -\frac{1}{2} \frac{Z e^2}{r}
+.\end{eqnarray}
+Since the angular momentum is postulated to be
+\begin{eqnarray}
+   L = m r v = \sqrt{(Z e^2)mr} = n \hbar \Rightarrow r = \frac{n^2 \hbar^2}{(Z e^2) m}
+.\end{eqnarray}
+Substituting into our expression for the energy of the system, we have the ``quantized energy levels'' to be
+\begin{eqnarray}
+    E_{n} = -\frac{(Z e^2)^2 m}{2 n^2 \hbar^2} \approx -13.6~{\rm eV} \times \frac{Z^2}{n^2}
+.\end{eqnarray}
+
+
+}
 
 
 \prob{5}{
@@ -241,7 +338,23 @@ Calculate the energy, period, and amplitude of the quantized trajectories.
 
 }
 
-\sol{}
+\sol{
+
+For this problem, the quantization condition reads
+\begin{eqnarray}
+    2 \int_{-\sqrt{2E/m\omega^2}}^{\sqrt{2E/m\omega^2}} \dd{q} \sqrt{2 m E - m^2 \omega^2 q^2} = \frac{2 \pi E}{\omega} = nh \Rightarrow \eqbox{ E_{n} = n \hbar \omega}
+.\end{eqnarray}
+The period of the motion is simply $2 \pi / \omega$ and the amplitude of the motion is found as follows
+\begin{eqnarray}
+    E_{n} = \frac{1}{2} m \dot{q}^2 + \frac{1}{2} m \omega^2 q^2
+.\end{eqnarray}
+Since the classical solution for the harmonic oscillator is $q = A \cos{(\omega t - \varphi)}$, we have
+\begin{eqnarray}
+    \eqbox{ A_{n} = \sqrt{ \frac{ 2 n \hbar \omega }{m \omega^2} } = \sqrt{ \frac{2 \hbar}{m \omega} n } }
+.\end{eqnarray}
+
+
+}
 
 
 \prob{6}{
@@ -253,7 +366,37 @@ Use $mc^2 \approx \SI{0.51e6}{\eV}$ and $\hbar c / e^2 \approx 137$.
 
 }
 
-\sol{}
+\sol{
+
+From problem 4, we can write the energy of the hydrogen atom as 
+\begin{eqnarray}
+   E = -\frac{p^2}{2m} \Rightarrow p = \sqrt{-2mE}
+.\end{eqnarray}
+Since the momentum is constant for a given orbit, the Bohr-Sommerfield quantization rule gives
+\begin{eqnarray}
+ 2 \pi r p = n h \Rightarrow L = n \hbar
+.\end{eqnarray}
+This is exactly the postulated angular momentum for the Bohr model of the atom, meaning
+\begin{eqnarray}
+    \eqbox{ E_{n} = -\frac{m (Z e^2)^2}{2 \hbar^2} \frac{1}{n^2} = -\frac{E_0 \alpha^2}{2} \frac{Z^2}{n^2} \approx -13.6~{\rm eV} \times \frac{Z^2}{n^2}}
+,\end{eqnarray}
+and furthermore, 
+\begin{eqnarray}
+    r_{n} = -\frac{Z e^2}{2 E_{n}} = \frac{e^2}{m c^2 \alpha^2} \frac{n^2}{Z} \approx (0.53 \times 10^{-8}~{\rm cm}) \frac{n^2}{Z}
+.\end{eqnarray}
+Note that the factor in front of the $n^2/Z$ is the Bohr radius, which is the most probable distance for the electron from the nucleus.
+Finally, the period of motion is
+\begin{eqnarray}
+    \begin{aligned}
+        T_{n} &= 2 \pi \frac{r_{n}}{v_{n}} = 2 \pi r_{n} \frac{m r_{n}}{L_{n}} = \frac{2 \pi m}{n \hbar} \Big( \frac{a_0 n^2}{Z} \Big)^2 = \frac{2 \pi m a_0^2}{\hbar} \frac{n^3}{Z^2} \\
+              &= \eqbox{\frac{2 \pi a_0}{\alpha c} \frac{n^3}{Z^2} \approx (1.5 \times 10^{-16}~{\rm s}) \frac{n^3}{Z^2} }
+    \end{aligned}
+.\end{eqnarray}
+
+
+
+
+}
 
 
 \prob{7}{
@@ -270,7 +413,7 @@ where $k_{B}$ is the Boltzmann's constant. \\[3pt]
 (b) The observed heat capacity of a solid is not a constant independent of $T$, but rather vanishes as $T^3$ at low temperature and approaches the classical prediction (the Dulong-Petit law) at high temperature.
 Einstein (1907) proposed that the energy of each harmonic oscillator is quantized and that its average energy at temperature $T$ is given by
 \begin{eqnarray}
-    \expval{E} = \frac{h \nu_0}{\exp{h \nu_0/k_{B}T} - 1}
+    \expval{E} = \frac{h \nu_0}{\exp(h \nu_0/k_{B}T) - 1}
 ,\end{eqnarray}
 see class notes.
 Show that the heat capacity is now found to be
