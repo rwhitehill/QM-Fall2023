@@ -307,22 +307,42 @@ Identifying this velocity as the velocity $\hbar \va*{k}/m$ of the particle, whe
 
 If we assume that $|f(\va*{k}')|$ is strongly localized in a neighborhood of $\va*{k}' = \va*{k}$, we can linearize $\omega'$ as 
 \begin{eqnarray}
-   \omega' \approx \omega +  (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}}
+   \omega' \approx \omega +  (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}} \omega
 .\end{eqnarray}
 In this case, we can then write $\Psi$ as
 \begin{eqnarray}
-    \Psi(\va*{r},t) \approx \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \big( \va*{k}' \cdot \va*{r} - \big[ \omega + (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}} \big] t \big)}
+    \Psi(\va*{r},t) \approx \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \big( \va*{k}' \cdot \va*{r} - \big[ \omega + (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}} \omega \big] t \big)}
 .\end{eqnarray}
 We can then take out any exponential factor which are independent of $\va*{k}'$, which gives
 \begin{eqnarray}
+    \label{eq:psi-approx}
     \eqbox{
     \begin{aligned}
-        \Psi(\va*{r},t) &\approx e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}} \big) t} \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \va*{k}' ( \va*{r} - t \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}} )} \\
-                        &= e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}} \big) t} \Psi(\va*{r} - t \grad_{\va*{k}'} \omega'|_{\va*{k}'} = \va*{k}, 0)
+        \Psi(\va*{r},t) &\approx e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}} \omega \big) t} \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \va*{k}'  \cdot ( \va*{r} - t \grad_{\va*{k}} \omega )} \\
+                        &= e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}} \omega \big) t} \Psi(\va*{r} - t \grad_{\va*{k}} \omega, 0)
     \end{aligned}
 }
 .\end{eqnarray}
-Note that the factor $\grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}}$ is in fact independent of $\va*{k}'$ since we make the replacement $\va*{k}' = \va*{k}$ after taking the gradient with respect to $\va*{k}'$.
+Note that the factor $\grad_{\va*{k}} \omega = \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}}$ is in fact independent of $\va*{k}'$ since we make the replacement $\va*{k}' = \va*{k}$ after taking the gradient with respect to $\va*{k}'$.
+
+Let $\va*{r}_{0}$ be a position at time $t = 0$ where $\Psi = \Psi(\va*{r}_{0},0)$ then at time $t$, $\Psi(\va*{r}_{0} + t \grad_{\va*{k}} \omega,t) \approx \exp(-i [ \omega - \va*{k} \cdot \grad_{\va*{k}} \omega ]) \Psi(\va*{r}_{0},0)$.
+Essentially, the wavefunction changes in time by translating in space an amount $t \grad_{\va*{k}} \omega$ and by a phase, although this has a norm of unity and therefore does not have any impact on the physical interpretation.
+That is, $| \Psi(\va*{r}_{0} - t \grad_{\va*{k}} \omega,0) | \approx | \Psi(\va*{r}_{0},0) |$.
+
+(b) From part (a) we know that the wave packet travels at the group velocity
+\begin{eqnarray}
+    \va*{v}_{\rm gr} = \dv{t} ( \va*{r}_{0} + t \grad_{\va*{k}} \omega ) = \grad_{\va*{k}} \omega
+.\end{eqnarray}
+Intuitively, since $|\Psi|^2$ represents the spatial probability density of the particle, then it is reasonable to conclude that the group velocity, which is the velocity of the center of the wave packet, is equal to that of the particle.
+That is
+\begin{eqnarray}
+   \va*{v}_{\rm gr} = \frac{\hbar \va*{k}}{m} = \grad_{\va*{k}} \omega
+.\end{eqnarray}
+Solving this equation for $\omega$ we find
+\begin{eqnarray}
+    \eqbox{ \omega = \frac{\hbar k^2}{2m} + {\rm constant} }
+,\end{eqnarray}
+observing that $\grad (r^2 + {\rm constant}) = \grad ( \va*{r} \cdot \va*{r} ) =  2 \va*{r} \cdot \grad \va*{r} = 2 \va*{r}$.
 
 }
 
