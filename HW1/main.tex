@@ -49,7 +49,7 @@ Solving for $\dd{r}/\dd{t}$ gives
 .\end{eqnarray}
 We can solve this differential equation as follows
 \begin{eqnarray}
-    \int_{0}^{\tau} r^{2} \dd{r} = -R^{3} = -\frac{4 Z e^{4}}{m^2 c^3} \tau
+    \int_{r(0)}^{r(\tau)} r^{2} \dd{r} = -\frac{R^3}{3} = -\frac{4 Z e^{4}}{3 m^2 c^3} \tau
 .\end{eqnarray}
 And finally we rearrange to find 
 \begin{eqnarray}
@@ -283,7 +283,7 @@ Consider a wave packet in three dimensions
 \begin{eqnarray}
     \Psi(\va*{r},t) = \int \frac{\dd^3{\va*{k}'}}{(2 \pi)^{3/2}} f(\va*{k}') e^{i(\va*{k}' \cdot \va*{r} - \omega' t)}
 ,\end{eqnarray}
-and assume that the dependence of $omega'$ on $\va*{k}'$ is not specified; in other words, assume that $\omega' = \omega(\va*{k}')$. \\[3pt]
+and assume that the dependence of $\omega'$ on $\va*{k}'$ is not specified; in other words, assume that $\omega' = \omega'(\va*{k}')$. \\[3pt]
 
 (a) Suppose $f(\va*{k}') \ne 0$ only for $\va*{k}'$ in a small region around $\va*{k}$.
 By expanding $\omega'$ in Taylor series around $\va*{k}' = \va*{k}$ up to linear terms in $\va*{k}' - \va*{k}$, show that 
@@ -303,7 +303,28 @@ Identifying this velocity as the velocity $\hbar \va*{k}/m$ of the particle, whe
 
 }
 
-\sol{}
+\sol{
+
+If we assume that $|f(\va*{k}')|$ is strongly localized in a neighborhood of $\va*{k}' = \va*{k}$, we can linearize $\omega'$ as 
+\begin{eqnarray}
+   \omega' \approx \omega +  (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}}
+.\end{eqnarray}
+In this case, we can then write $\Psi$ as
+\begin{eqnarray}
+    \Psi(\va*{r},t) \approx \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \big( \va*{k}' \cdot \va*{r} - \big[ \omega + (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}} \big] t \big)}
+.\end{eqnarray}
+We can then take out any exponential factor which are independent of $\va*{k}'$, which gives
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \Psi(\va*{r},t) &\approx e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}} \big) t} \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \va*{k}' ( \va*{r} - t \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}} )} \\
+                        &= e^{-i \big( \omega - \va*{k} \cdot \grad_{\va*{k}'} \omega' |_{\va*{k}' = \va*{k}} \big) t} \Psi(\va*{r} - t \grad_{\va*{k}'} \omega'|_{\va*{k}'} = \va*{k}, 0)
+    \end{aligned}
+}
+.\end{eqnarray}
+Note that the factor $\grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}}$ is in fact independent of $\va*{k}'$ since we make the replacement $\va*{k}' = \va*{k}$ after taking the gradient with respect to $\va*{k}'$.
+
+}
 
 
 
