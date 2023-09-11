@@ -263,16 +263,34 @@ Take $R \approx 10^{-13}~{\rm cm}$.
 
 \sol{
 
-(a)
+(a) At very low energy, the wavelength of the nuetrons would be very large, and hence would be almost like classical particles, meaning that the intensity distribution for small $E$ would be quite flat.
+At higher energy scales, the neutrons wavelength would become comparable to the scale $d$ of the separation distance between the atomic nuclei.
+Hence at this energy scale, the wave-like nature of the neutrons becomes important, as the neutrons interfere with each other creating a more rich intensity distribution from scattering off the linear chain of atomic nuclei.
+Similar to Bragg reflection and the two slit experiment, these interference effects can be constructive and destructive (or some intermediate between the two).
+path length $R_1 - R_0 = n \lambda$, where $\lambda$ is the wavelength of the neutron and $n \in \mathbb{Z}$, then we expect the neutron waves to be in phase and to therefore interfere constructively, and if $R_1 - R_0 = (n + 1/2) \lambda$, then the waves destructively interfere.
+Since $\lambda \propto 1/\sqrt{E}$, these intensity maxima and nodes become more closely packed since $R_1 - R_2 \approx \frac{n}{\sqrt{E}}$ for the maxima (and similarly for the nodes)\footnote{Actually, this rationale gives us the more ``classical'' expectation for small $E$ since if $E \rightarrow 0$, then $R_1 - R_0 \rightarrow \infty$, implying that the intensity changes slowly as a function of $\theta$.}.
 
-(b)
+(b) Let's make the previous discussion more quantitative.
+If we assume that the path along $R_1$ is approximately parallel to $R_0$\footnote{This is approximately correct since $d \ll R_0,R_1$} then we can write $R_1 - R_0 \approx d \sin{\theta} = n \lambda = n h/\sqrt{2ME}$.
+Thus, (taking n = 1) at $\theta = 30^{\circ}$ and $E_1 = 1.3 \times 10^{-13}~{\rm erg}$, we find
+\begin{eqnarray}
+    \eqbox{ d = \frac{2 h}{\sqrt{2 (1.67 \times 10^{-24}~{\rm g})(1.3 \times 10^{-13}~{\rm erg})}} \approx 2 \times 10^{-8}~{\rm cm} }
+.\end{eqnarray}
 
-(c) The ``rule of thumb'' for when the size of the target particle must be taken into acccount is when the wavelength of the incoming particles is on the same scale as the size of the target particles, which in this case is about $1~{\rm fm}$ or $10^{-13}~{\rm cm}$.
+
+(c) The general guidance for when the target size must be considered is when the wavelength of the incoming particles is on the same scale as the size of the target particles, which in this case is about $1~{\rm fm}$ or $10^{-13}~{\rm cm}$.
 Doing the quick estimations, we find
 \begin{eqnarray}
-   \lambda_{N} = \frac{h}{p(E)} = \frac{h}{?}
+    \lambda = \frac{h}{\sqrt{2ME}} \approx R \Rightarrow E \approx \frac{h}{2MR^2} \approx 1.2 \times 10^{-3}~{\rm erg}~{\rm or}~0.7 \times 10^{9}~{\rm eV}
 .\end{eqnarray}
-{\color{red} Are the neutrons relativistic at this scale?}
+
+Actually, this estimation may not be quite correct.
+Observe that the classical speed of such a particle is $v = \sqrt{2E/m} \approx 1.25 c$, which is a clear violation of a fundamental postulate of relativity.
+More rigorously, we should write $E = \gamma Mc^2 = \sqrt{1 + (p/Mc)^2} Mc^2$, which means that the relation between a relativistic particle and its energy is given by
+\begin{eqnarray}
+    E = \sqrt{1 + \frac{1}{\lambda^2} \Big( \frac{h}{Mc} \Big)^2} Mc^2
+.\end{eqnarray}
+Taking $\lambda \approx R$, we have the energy at which the nuclear size becomes relevant to be $\eqbox{ E \approx 2.4 \times 10^{-3}~{\rm erg}~{\rm or}~1.5 \times 10^{9}~{\rm eV} }$, which is about double the prediction using the classical formulae.
 
 }
 
