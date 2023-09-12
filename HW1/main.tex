@@ -32,7 +32,7 @@ The energy of this system is
 when the electron is at a distance $r$ from the nucleus.
 Since the acceleration is instantaneously centripetal\footnote{This is approximately true if we assume that $\tau$ is much larger than the revolution period. Under this assumption, the energy lost per revolution is much smaller than the energy of the system, and thus, that the electron's tangential component of acceleration is very small.} we can write
 \begin{eqnarray}
-    ma = m\frac{v^2}{r} = \frac{Ze^2}{r^2} \Rightarrow T = \frac{1}{2} V
+    ma = m\frac{v^2}{r} = \frac{Ze^2}{r^2} \Rightarrow T = -\frac{1}{2} V
 .\end{eqnarray}
 Using this, we find
 \begin{eqnarray}
@@ -42,7 +42,7 @@ From here, we can differentiate this expression of $E$ giving
 \begin{eqnarray}
     \dv{E}{t} = \frac{1}{2} \frac{Ze^2}{r^2} \dv{r}{t} = -\frac{2 e^2}{3 c^3} \frac{1}{m^2} \Big( \frac{Ze^2}{r^2} \Big)^2
 .\end{eqnarray}
-olving for $\dd{r}/\dd{t}$ gives a differential equation for $r$ as
+solving for $\dd{r}/\dd{t}$ gives a differential equation for $r$ as
 \begin{eqnarray}
     \dv{r}{t} = -\frac{4 e^2}{3c^3} \frac{1}{m^2} \frac{Z e ^2}{r^2}
 .\end{eqnarray}
@@ -53,8 +53,7 @@ We can solve this as follows
 And finally we rearrange to find 
 \begin{eqnarray}
     \eqbox{ \tau = \frac{m^2 c^3}{Z e^{4}} \frac{R^3}{4} \approx Z \times 10^{-10}~{\rm s}}
-,\end{eqnarray}
-for the conditions stated above.
+.\end{eqnarray}
 
 Note that a distance $R$ from the center one orbital period is
 \begin{eqnarray}
@@ -168,7 +167,7 @@ If we rewrite our result in terms of the dimensionless variable $x_0 = \beta h \
 \begin{eqnarray}
     \eqbox{ c_{V} = 3 N k_{B} \frac{x_0^2 e^{x_0}}{(e^{x_0} - 1)^2} }
 .\end{eqnarray}
-From this expression, we can evaluate the extreme behavior of this function.
+From this expression, we can evaluate the extreme behavior of the heat capacity.
 First, as $T \rightarrow 0$, $x_0 \rightarrow \infty$ and $c_{V} \rightarrow 0$ since the term $e^{2x_0}$ in the denominator dominates the expression at large $x_0$, meaning that $c_{V}$ vanishes exponentially fast at small temperatures.
 Additionally, for large temperatures $T$ (and thus $x_0 \approx 0$), we find
 \begin{eqnarray}
@@ -181,7 +180,7 @@ We can solve for $\nu_{\rm max}$ as follows:
 \begin{eqnarray}
     4 \pi \frac{V}{v_{S}^3} \int_{0}^{\nu_{\rm max}} \dd{\nu} \nu^2 = \frac{4 \pi}{3} \frac{V}{v_{S}^3} \nu_{\rm max}^3 = 3 N \Rightarrow \nu_{\rm max} = \Big[ \frac{9}{4 \pi} \Big( \frac{N}{V} \Big) \Big]^{1/3} v_{S}
 .\end{eqnarray}
-At this point, the average energy of the solid is given simply as 
+The average energy of the solid is given simply as 
 \begin{eqnarray}
     E = \int_{0}^{\nu_{\rm max}} g(\nu) \frac{h \nu}{e^{\beta h \nu} - 1} \dd{\nu}
 .\end{eqnarray}
@@ -195,14 +194,11 @@ Switching to a dimensionless integration variable $x = \beta h \nu$ we find
     \end{aligned}
 ,\end{eqnarray}
 where we have expressed $\nu_{\rm max}$ in terms of $T_{D}$ and $g(\nu) = 9 N \nu^2 / \nu_{\rm max}^3$.
-
-Let us now evaluate the behavior of $c_{V}$ for extreme temperatures.
-
-Now, the heat capacity of the solid is given as
+The heat capacity of a solid is then given by
 \begin{eqnarray}
     c_{V} = 9 N h \nu_{\rm max} \pdv{T} \Bigg[ \Big( \frac{T}{T_{D}} \Big)^{4} \int_{0}^{T_{D}/T}\frac{x^3}{e^{x} - 1} \dd{x} \Bigg]
 .\end{eqnarray}
-Note that the physics is contained in the derivative of the factor in brackets, so for our analysis we only consider this term, which we denote $\tilde{c}_{V}$.
+Note that the temperature dependence is contained in the derivative of the factor in brackets, so for our analysis we only consider this term, which we denote $\tilde{c}_{V}$.
 Carrying out the arithmetic, we have 
 \begin{eqnarray}
    \begin{aligned}
@@ -228,7 +224,7 @@ and therefore
     \eqbox{ c_{V} = 3 N k_{B} }
 .\end{eqnarray}
 
-\textit{ In retrospect, it is likely simpler to define $\tilde{E} = E/(9 N h \nu_{\rm max})$, consider the limiting behavior of $\tilde{E}(T)$ at leading order in $T$ (or $1/T$), and let $\tilde{c}_{V} = (\partial_{T} \tilde{E})_{V}$.
+\textit{ In retrospect, since we were only concerned here with the behavior of $c_{V}$ as $T \rightarrow 0,\infty$, it is likely simpler to define $\tilde{E} = E/(9 N h \nu_{\rm max})$, consider the limiting behavior of $\tilde{E}(T)$ at leading order in $T$ (or $1/T$), and let $\tilde{c}_{V} = (\partial_{T} \tilde{E})_{V}$.
 From this approach, we only have to keep track of one term instead of two, which is certainly cleaner. }
 
 
@@ -267,18 +263,18 @@ Take $R \approx 10^{-13}~{\rm cm}$.
 At higher energy scales, the neutrons wavelength would become comparable to the scale $d$ of the separation distance between the atomic nuclei.
 Hence at this energy scale, the wave-like nature of the neutrons becomes important, as the neutrons interfere with each other creating a more rich intensity distribution from scattering off the linear chain of atomic nuclei.
 Similar to Bragg reflection and the two slit experiment, these interference effects can be constructive or destructive (or some intermediate between the two).
-path length $R_1 - R_0 = n \lambda$, where $\lambda$ is the wavelength of the neutron and $n \in \mathbb{Z}$, then we expect the neutron waves to be in phase and to therefore interfere constructively, and if $R_1 - R_0 = (n + 1/2) \lambda$, then the waves destructively interfere.
-Since $\lambda \propto 1/\sqrt{E}$, these intensity maxima and nodes become more closely packed since $R_1 - R_2 \approx \frac{n}{\sqrt{E}}$ for the maxima (and similarly for the nodes)\footnote{Actually, this rationale gives us the more ``classical'' expectation for small $E$ since if $E \rightarrow 0$, then $R_1 - R_0 \rightarrow \infty$, implying that the intensity changes slowly as a function of $\theta$.}.
+If the path length $|R_1 - R_0| = n \lambda$, where $\lambda$ is the wavelength of the neutron and $n \in \mathbb{Z}$, then we expect the neutron waves to be in phase and to therefore interfere constructively, and if $|R_1 - R_0| = (n + 1/2) \lambda$, then the waves destructively interfere.
+Since $\lambda \propto 1/\sqrt{E}$, these intensity maxima and nodes become more closely packed since $|R_1 - R_0| \approx \frac{n}{\sqrt{E}}$ for the maxima (and similarly for the nodes)\footnote{Actually, this rationale gives us the more ``classical'' expectation for small $E$ since if $E \rightarrow 0$, then $|R_1 - R_0| \rightarrow \infty$, implying that the intensity changes slowly as a function of $\theta$.}.
 
 (b) Let's make the previous discussion more quantitative.
-If we assume that the path along $R_1$ is approximately parallel to $R_0$\footnote{This is approximately correct since $d \ll R_0,R_1$} then we can write $R_1 - R_0 \approx d \sin{\theta} = n \lambda = n h/\sqrt{2ME}$.
+If we assume that the path along $R_1$ is approximately parallel to $R_0$\footnote{This is valid since we assume $d \ll R_0,R_1$} then we can write $|R_1 - R_0| \approx d \sin{\theta} = n \lambda = n h/\sqrt{2ME}$.
 Thus, (taking n = 1) at $\theta = 30^{\circ}$ and $E_1 = 1.3 \times 10^{-13}~{\rm erg}$, we find
 \begin{eqnarray}
     \eqbox{ d = \frac{2 h}{\sqrt{2 (1.67 \times 10^{-24}~{\rm g})(1.3 \times 10^{-13}~{\rm erg})}} \approx 2 \times 10^{-8}~{\rm cm} }
 .\end{eqnarray}
 
 
-(c) The general guidance for when the target size must be considered is when the wavelength of the incoming particles is on the same scale as the size of the target particles, which in this case is about $1~{\rm fm}$ or $10^{-13}~{\rm cm}$.
+(c) The ``rule of thumb'' for when the target size must be considered is that the wavelength of the incoming particles is on the same scale as the size of the target particles, which in this case is about $1~{\rm fm}$ or $10^{-13}~{\rm cm}$.
 Doing the quick estimations, we find
 \begin{eqnarray}
     \lambda = \frac{h}{\sqrt{2ME}} \approx R \Rightarrow E \approx \frac{h}{2MR^2} \approx 1.2 \times 10^{-3}~{\rm erg}~{\rm or}~0.7 \times 10^{9}~{\rm eV}
@@ -286,7 +282,7 @@ Doing the quick estimations, we find
 
 This estimation may not be quite correct, though.
 Observe that the classical speed of such a particle is $v = \sqrt{2E/m} \approx 1.25 c$, which is a clear violation of a fundamental postulate of relativity.
-In this high energy regime, we should write $E = \gamma Mc^2 = \sqrt{1 + (p/Mc)^2} Mc^2$, which means that the relation between a relativistic particle and its energy is given by
+In this high energy regime, we should write $E = c \sqrt{(Mc)^2 + p^2}$, which means that the relation between a relativistic particle and its energy is given by
 \begin{eqnarray}
     E = \sqrt{1 + \frac{1}{\lambda^2} \Big( \frac{h}{Mc} \Big)^2} Mc^2
 .\end{eqnarray}
