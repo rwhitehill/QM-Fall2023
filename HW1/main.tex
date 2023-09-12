@@ -18,7 +18,7 @@ where $\va*{a}(t)$ is the acceleration and $c$ is the speed of light, show that 
 \end{eqnarray}
 for the electron to spiral into the nucleus.
 Assume that $\tau$ is much larger than the revolution period.
-By taking $Z=1$ and $R \approx \SI{1e-8}{\centi\metre}$ appropriate for the hydrogen atom, justify this assumption \textit{a posteriori} by comparing $\tau$ with the revolution period.
+By taking $Z=1$ and $R \approx \SI{e-8}{\centi\metre}$ appropriate for the hydrogen atom, justify this assumption \textit{a posteriori} by comparing $\tau$ with the revolution period.
 
 
 }
@@ -30,11 +30,10 @@ The energy of this system is
    E = \frac{1}{2} m v^2 - \frac{Z e^2}{r}
 ,\end{eqnarray}
 when the electron is at a distance $r$ from the nucleus.
-Since the acceleration is instantaneously centripetal\footnote{This is approximately true if we assume that the energy lost per revolution is much smaller than the energy of the system, and thus, that the electron's tangential component of acceleration is very small.} we can write
+Since the acceleration is instantaneously centripetal\footnote{This is approximately true if we assume that $\tau$ is much larger than the revolution period. Under this assumption, the energy lost per revolution is much smaller than the energy of the system, and thus, that the electron's tangential component of acceleration is very small.} we can write
 \begin{eqnarray}
     ma = m\frac{v^2}{r} = \frac{Ze^2}{r^2} \Rightarrow T = \frac{1}{2} V
 .\end{eqnarray}
-Actually, this is a version of the Virial Theorem for inverse square power laws.
 Using this, we find
 \begin{eqnarray}
    E = -\frac{1}{2} \frac{Z e^2}{r}
@@ -43,13 +42,13 @@ From here, we can differentiate this expression of $E$ giving
 \begin{eqnarray}
     \dv{E}{t} = \frac{1}{2} \frac{Ze^2}{r^2} \dv{r}{t} = -\frac{2 e^2}{3 c^3} \frac{1}{m^2} \Big( \frac{Ze^2}{r^2} \Big)^2
 .\end{eqnarray}
-Solving for $\dd{r}/\dd{t}$ gives
+olving for $\dd{r}/\dd{t}$ gives a differential equation for $r$ as
 \begin{eqnarray}
     \dv{r}{t} = -\frac{4 e^2}{3c^3} \frac{1}{m^2} \frac{Z e ^2}{r^2}
 .\end{eqnarray}
-We can solve this differential equation as follows
+We can solve this as follows
 \begin{eqnarray}
-    \int_{r(0)}^{r(\tau)} r^{2} \dd{r} = -\frac{R^3}{3} = -\frac{4 Z e^{4}}{3 m^2 c^3} \tau
+    \int_{R}^{0} r^{2} \dd{r} = -\frac{R^3}{3} = -\frac{4 Z e^{4}}{3 m^2 c^3} \tau
 .\end{eqnarray}
 And finally we rearrange to find 
 \begin{eqnarray}
@@ -65,7 +64,7 @@ and hence, the proportion of one period to the time of the electron's orbital de
 \begin{eqnarray}
     \frac{T}{\tau} \approx 4\sqrt{Z} \times 10^{-6}
 ,\end{eqnarray}
-which is quite tiny for any relevant $Z$ and at least tells us that our results are consistent with our assumptions.
+which is quite tiny for any relevant $Z$ (including $Z = 1$ for the hydrogen atom) and at least tells us that our results are consistent with our assumptions.
 
 
 }
@@ -122,11 +121,11 @@ Show that it also satisfies the Dulong-Petit law at high temperatures.
    H = \frac{p^2}{2m} + \frac{m \omega_0^2}{2} q^2 
 ,\end{eqnarray}
 where $p$ and $q$ are the generalized momentum and spatial variables of the oscillator and $\omega_0 = 2 \pi \nu_{0}$ is the angular frequency of the oscillator.
-The equipartition theorem states that for a system
+The equipartition theorem states that for a system of $N$ particles with 2 quadratic degrees of freedom per particle
 \begin{eqnarray}
    E = \sum_{\rm particles} \sum_{\rm d.o.f.} \frac{1}{2} k_{B} T = 3 N k_{B} T
 .\end{eqnarray}
-From this, the heat capacity of a solid modeled in this way is
+From this, we find
 \begin{eqnarray}
     \eqbox{ c_{V} = \Big( \pdv{E}{T} \Big)_{V} = 3 N k_{B} }
 ,\end{eqnarray}
@@ -135,14 +134,14 @@ which is constant with temperature.
 (b) We can derive the average energy for an oscillator at temperature $T$ using some basic results from statistical mechanics.
 Namely, the energy of an ensemble is given by
 \begin{eqnarray}
-    \expval{E} = -\frac{1}{\cal Z} \pdv{Z}{\beta} = -\pdv{\ln{\cal Z}}{\beta}
+    \expval{E} = -\frac{1}{\cal Z} \pdv{\cal Z}{\beta} = -\pdv{\ln{\cal Z}}{\beta}
 ,\end{eqnarray}
 where $\cal Z$ is the partition function of our ensemble and defined as
 \begin{eqnarray}
     {\cal Z} = \sum_{i} e^{-\beta E_{i}}
 ,\end{eqnarray}
 where $\beta^{-1} = k_{B}T$.
-In our case, the energy of an oscillator with frequency $\nu_0$ is quantized (per Einstein's postulate) as $E_{n} = n h \nu_0$.
+In our case, the energy of an oscillator with frequency $\nu_0$ is quantized (per Einstein's postulate) as $E_{n} = n h \nu_0$ (for $n = 0,1,\ldots$).
 Putting this into the partition function definition, we find
 \begin{eqnarray}
     {\cal Z} = \sum_{n} (e^{- \beta h \nu_0})^{n} = \frac{1}{1 - e^{-\beta h \nu_0}}
@@ -150,31 +149,32 @@ Putting this into the partition function definition, we find
 Hence, the average energy of an oscillator is 
 \begin{eqnarray}
     \begin{aligned}
-        \expval{E} &= - (1 - e^{-\beta h \nu_0}) \pdv{\beta} \Big[ \frac{1}{1 - e^{-\beta h \nu_0}} \Big] \\
+        \expval{E_{o}} &= - (1 - e^{-\beta h \nu_0}) \pdv{\beta} \Big[ \frac{1}{1 - e^{-\beta h \nu_0}} \Big] \\
                    &= -(1 - e^{-\beta h \nu_0}) [-(1 - e^{-\beta h \nu_0})^{-2} (h \nu_0) e^{-\beta h \nu_0}] \\
                    &= \frac{h \nu_0}{e^{\beta h \nu_0} - 1}
     \end{aligned}
 ,\end{eqnarray}
 which is the result quoted above.
 
-Now, we can derive the heat capacity of a solid by setting the energy of the solid to be $E = 3 N \expval{E_{\rm o}}$.
+Now, we can derive the heat capacity of a solid by setting the energy of the solid to be $E = 3 N \expval{E_o}$.
 Then
 \begin{eqnarray}
     \begin{aligned}
-        c_{V} &= 3N \Big( \pdv{\expval{E}}{T} \Big)_{V} = 3N \Big( -\frac{\beta^2}{k_{B}} \Big) \pdv{\expval{E}}{\beta} \\
-              &= \frac{3 N \beta^2}{k_{B}} \frac{(h \nu_0)^2 e^{\beta h \nu_0}}{(e^{\beta h \nu_0} - 1)^2}
+        c_{V} &= 3N \Big( \pdv{\expval{E}}{T} \Big)_{V} = 3N \Big( -k_{B} \beta^2 \Big) \pdv{\expval{E}}{\beta} \\
+              &= 3 N k_{B} \frac{(\beta h \nu_0)^2 e^{\beta h \nu_0}}{(e^{\beta h \nu_0} - 1)^2}
     .\end{aligned}
 \end{eqnarray}
 If we rewrite our result in terms of the dimensionless variable $x_0 = \beta h \nu_0$, we have
 \begin{eqnarray}
-    \eqbox{ c_{V} = \frac{3N}{k_{B}} \frac{x_0^2 e^{x_0}}{(e^{x_0} - 1)^2} }
+    \eqbox{ c_{V} = 3 N k_{B} \frac{x_0^2 e^{x_0}}{(e^{x_0} - 1)^2} }
 .\end{eqnarray}
 From this expression, we can evaluate the extreme behavior of this function.
 First, as $T \rightarrow 0$, $x_0 \rightarrow \infty$ and $c_{V} \rightarrow 0$ since the term $e^{2x_0}$ in the denominator dominates the expression at large $x_0$, meaning that $c_{V}$ vanishes exponentially fast at small temperatures.
 Additionally, for large temperatures $T$ (and thus $x_0 \approx 0$), we find
 \begin{eqnarray}
-    c_{V} = 1 - \frac{x_0^2}{12} + {\cal O}(x_0^{4}) \rightarrow 1 ~{\rm as}~ T \rightarrow \infty
-.\end{eqnarray}
+    c_{V} = 3Nk_{B} \Big[ 1 - \frac{x_0^2}{12}_o + {\cal O}(x_0^{4}) \Big] \rightarrow 3 N k_{B} ~{\rm as}~ T \rightarrow \infty
+,\end{eqnarray}
+recovering the Dulong-Petit law.
 
 (c) To correct Einstein's prediction, we allow the modes to oscillate at independent frequencies $\nu \in [0,\nu_{\rm max}]$ with a distribution $g(\nu) = 4 \pi (V/v_{S}^3) \nu^2$.
 We can solve for $\nu_{\rm max}$ as follows:
@@ -196,7 +196,7 @@ Switching to a dimensionless integration variable $x = \beta h \nu$ we find
 ,\end{eqnarray}
 where we have expressed $\nu_{\rm max}$ in terms of $T_{D}$ and $g(\nu) = 9 N \nu^2 / \nu_{\rm max}^3$.
 
-Let us now evaluate the behavior of $c_{V}$ for extreme temperatures
+Let us now evaluate the behavior of $c_{V}$ for extreme temperatures.
 
 Now, the heat capacity of the solid is given as
 \begin{eqnarray}
@@ -228,7 +228,7 @@ and therefore
     \eqbox{ c_{V} = 3 N k_{B} }
 .\end{eqnarray}
 
-\textit{ In retrospect, it is likely simpler to define $\tilde{E} = E/(9 N h \nu_{\rm max})$, consider the limiting behavior of $\tilde{E}(T)$, and let $\tilde{c}_{V} = (\partial_{T} \tilde{E})_{V}$.
+\textit{ In retrospect, it is likely simpler to define $\tilde{E} = E/(9 N h \nu_{\rm max})$, consider the limiting behavior of $\tilde{E}(T)$ at leading order in $T$ (or $1/T$), and let $\tilde{c}_{V} = (\partial_{T} \tilde{E})_{V}$.
 From this approach, we only have to keep track of one term instead of two, which is certainly cleaner. }
 
 
@@ -266,7 +266,7 @@ Take $R \approx 10^{-13}~{\rm cm}$.
 (a) At very low energy, the wavelength of the nuetrons would be very large, and hence would be almost like classical particles, meaning that the intensity distribution for small $E$ would be quite flat.
 At higher energy scales, the neutrons wavelength would become comparable to the scale $d$ of the separation distance between the atomic nuclei.
 Hence at this energy scale, the wave-like nature of the neutrons becomes important, as the neutrons interfere with each other creating a more rich intensity distribution from scattering off the linear chain of atomic nuclei.
-Similar to Bragg reflection and the two slit experiment, these interference effects can be constructive and destructive (or some intermediate between the two).
+Similar to Bragg reflection and the two slit experiment, these interference effects can be constructive or destructive (or some intermediate between the two).
 path length $R_1 - R_0 = n \lambda$, where $\lambda$ is the wavelength of the neutron and $n \in \mathbb{Z}$, then we expect the neutron waves to be in phase and to therefore interfere constructively, and if $R_1 - R_0 = (n + 1/2) \lambda$, then the waves destructively interfere.
 Since $\lambda \propto 1/\sqrt{E}$, these intensity maxima and nodes become more closely packed since $R_1 - R_2 \approx \frac{n}{\sqrt{E}}$ for the maxima (and similarly for the nodes)\footnote{Actually, this rationale gives us the more ``classical'' expectation for small $E$ since if $E \rightarrow 0$, then $R_1 - R_0 \rightarrow \infty$, implying that the intensity changes slowly as a function of $\theta$.}.
 
@@ -284,9 +284,9 @@ Doing the quick estimations, we find
     \lambda = \frac{h}{\sqrt{2ME}} \approx R \Rightarrow E \approx \frac{h}{2MR^2} \approx 1.2 \times 10^{-3}~{\rm erg}~{\rm or}~0.7 \times 10^{9}~{\rm eV}
 .\end{eqnarray}
 
-Actually, this estimation may not be quite correct.
+This estimation may not be quite correct, though.
 Observe that the classical speed of such a particle is $v = \sqrt{2E/m} \approx 1.25 c$, which is a clear violation of a fundamental postulate of relativity.
-More rigorously, we should write $E = \gamma Mc^2 = \sqrt{1 + (p/Mc)^2} Mc^2$, which means that the relation between a relativistic particle and its energy is given by
+In this high energy regime, we should write $E = \gamma Mc^2 = \sqrt{1 + (p/Mc)^2} Mc^2$, which means that the relation between a relativistic particle and its energy is given by
 \begin{eqnarray}
     E = \sqrt{1 + \frac{1}{\lambda^2} \Big( \frac{h}{Mc} \Big)^2} Mc^2
 .\end{eqnarray}
@@ -331,7 +331,7 @@ In this case, we can then write $\Psi$ as
 \begin{eqnarray}
     \Psi(\va*{r},t) \approx \int \frac{\dd[3]{\va*{k}'}}{(2\pi)^{3/2}} f(\va*{k}') e^{i \big( \va*{k}' \cdot \va*{r} - \big[ \omega + (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}} \omega \big] t \big)}
 .\end{eqnarray}
-We can then take out any exponential factor which are independent of $\va*{k}'$, which gives
+We can then take out any exponential factors which are independent of $\va*{k}'$, which gives
 \begin{eqnarray}
     \label{eq:psi-approx}
     \eqbox{
@@ -343,9 +343,9 @@ We can then take out any exponential factor which are independent of $\va*{k}'$,
 .\end{eqnarray}
 Note that the factor $\grad_{\va*{k}} \omega = \grad_{\va*{k}'} \omega'|_{\va*{k}' = \va*{k}}$ is in fact independent of $\va*{k}'$ since we make the replacement $\va*{k}' = \va*{k}$ after taking the gradient with respect to $\va*{k}'$.
 
-Let $\va*{r}_{0}$ be a position at time $t = 0$ where $\Psi = \Psi(\va*{r}_{0},0)$ then at time $t$, $\Psi(\va*{r}_{0} + t \grad_{\va*{k}} \omega,t) \approx \exp(-i [ \omega - \va*{k} \cdot \grad_{\va*{k}} \omega ]) \Psi(\va*{r}_{0},0)$.
-Essentially, the wavefunction changes in time by translating in space an amount $t \grad_{\va*{k}} \omega$ and by a phase, although this has a norm of unity and therefore does not have any impact on the physical interpretation.
-That is, $| \Psi(\va*{r}_{0} - t \grad_{\va*{k}} \omega,0) | \approx | \Psi(\va*{r}_{0},0) |$.
+Consider $\va*{r} = \va*{r}_{0} + t \grad_{\va*{k}} \omega$ then at time $t$, $\Psi(\va*{r}, t) \approx \exp(-i [ \omega - \va*{k} \cdot \grad_{\va*{k}} \omega ]) \Psi(\va*{r}_{0},0)$.
+Essentially, the wavefunction changes in time by translating in space an amount $t \grad_{\va*{k}} \omega$ and by a global phase, although this has a norm of unity and therefore does not manifest itself in a physically meaningful way.
+That is, $| \Psi(\va*{r},t) | = | \Psi(\va*{r}- t \grad_{\va*{k}} \omega,0) | \approx | \Psi(\va*{r}_{0},0) |$.
 
 (b) From part (a) we know that the wave packet travels at the group velocity
 \begin{eqnarray}
@@ -354,7 +354,7 @@ That is, $| \Psi(\va*{r}_{0} - t \grad_{\va*{k}} \omega,0) | \approx | \Psi(\va*
 Intuitively, since $|\Psi|^2$ represents the spatial probability density of the particle, then it is reasonable to conclude that the group velocity, which is the velocity of the center of the wave packet, is equal to that of the particle.
 That is
 \begin{eqnarray}
-   \va*{v}_{\rm gr} = \frac{\hbar \va*{k}}{m} = \grad_{\va*{k}} \omega
+   \va*{v}_{\rm gr} = \frac{\va*{p}}{m} = \frac{\hbar \va*{k}}{m} = \grad_{\va*{k}} \omega
 .\end{eqnarray}
 Solving this equation for $\omega$ we find
 \begin{eqnarray}
