@@ -1,5 +1,5 @@
 \def\duedate{\today}
-\def\HWnum{\#}
+\def\HWnum{2}
 \input{../preamble.tex}
 
 \begin{document}
@@ -24,11 +24,43 @@ where $\Psi(\va*{r},t_{0})$ is the wave function at the initial time $t_0$ and t
 \begin{eqnarray}
    \int_{-\infty}^{\infty} e^{-\alpha^2(x - \beta)^2} = \frac{\sqrt{\pi}}{\alpha}
 ,\end{eqnarray}
-where $\alpha$ and $\beta$ are generally complex numbers with $-\pi/4 < {\rm arg} \alpha < \pi/4$ for convergence.
+where $\alpha$ and $\beta$ are generally complex numbers with $-\pi/4 < {\rm arg} ~ \alpha < \pi/4$ for convergence.
 
 }
 
-\sol{}
+\sol{
+
+(a) Plugging in the expressions for $G(\va*{r} - \va*{r}_{0}, t - t_0)$ and $\Psi(\va*{r}_{0},t_0)$, we have
+\begin{eqnarray}
+   \begin{aligned}
+       \int \dd[3]{\va*{r}_{0}} ~ &G(\va*{r} - \va*{r}_{0},t - t_0) \Psi(\va*{r}_{0},t_0) \\
+       &= \int \dd[3]{\va*{r}_{0}} \Bigg[ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3}} e^{i[ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p} (t - t_0) ] / \hbar} \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{q}}}{(2 \pi \hbar)^{3/2}} f(\va*{q}) e^{i( \va*{q} \cdot \va*{r}_{0} - E_{q} t_0) / \hbar } \Bigg] \\
+                       &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \dd[3]{\va*{q}} \frac{\dd[3]{\va*{r}_{0}}}{(2 \pi \hbar)^3} e^{i (\va*{q} - \va*{p}) \cdot \va*{r}_{0} / \hbar} f(\va*{q}) e^{i( \va*{p} \cdot \va*{r} - E_{p} t)/\hbar} e^{i( E_{p} - E_{q} )t_0/\hbar} \\
+                       &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \dd[3]{\va*{q}} \delta^{(3)}(\va*{q} - \va*{p}) f(\va*{q}) e^{i( \va*{p} \cdot \va*{r} - E_{p} t)/\hbar} e^{i( E_{p} - E_{q} )t_0/\hbar} \\
+                       &= \eqbox{ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} f(\va*{p}) e^{i ( \va*{p} \cdot \va*{r} - E_{p} t ) / \hbar} = \Psi(\va*{r},t) }
+   .\end{aligned} 
+\end{eqnarray}
+
+(b) Notice that we can write
+\begin{eqnarray}
+    \begin{aligned}
+    G(\va*{r} - \va*{r}_0, t - t_0) &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3}} e^{i[ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - ( \va*{p}^2/2m ) (t - t_0) ] / \hbar} \\
+                                    &= G(x - x_0, t - t_0) G(y - y_0, t - t_0) G(z - z_0, t - t_0)
+    ,\end{aligned}
+\end{eqnarray}
+where
+\begin{eqnarray}
+    G(x - x_0, t - t_0) = \int \frac{\dd{p_{x}}}{2 \pi \hbar} e^{i[ p_{x} (x - x_0) - (p_{x}^2/2m)(t - t_0) ] / \hbar}
+\end{eqnarray}
+Thus, we can solve our three-dimensional problem by splicing together three copies of the solution to a one-dimensional problem.
+Before moving forward, let us denote $\Delta x = x - x_0$ and $\Delta t = t - t_0$ to make the writing slightly less cumbersome (it is also slightly more illustrative).
+Doing the integrations, we find
+\begin{eqnarray}
+    G(x - x_0, t - t_0) = \frac{1}{2 \pi \hbar} \int \dd{p_{x}} e^{-i \Delta t( p_{x}^2 - 2m \frac{\Delta x}{\Delta t} p_{x} ) / 2m}
+.\end{eqnarray}
+
+
+}
 
 
 \prob{2}{
