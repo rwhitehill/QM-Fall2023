@@ -1,0 +1,48 @@
+\def\duedate{\today}
+\def\HWnum{\#}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1}{
+
+(a) Show that the wave function at time $t$ for a free particle of mass $m$ can be written as
+\begin{eqnarray}
+\Psi(\va*{r},t) = \int \dd[3]{\va*{r}_{0}} G(\va*{r}-\va*{r}_{0},t-t_0) \Psi(\va*{r}_{0},t_{0})
+,\end{eqnarray}
+where $\Psi(\va*{r},t_{0})$ is the wave function at the initial time $t_0$ and the function $G(\va*{r}-\va*{r}_{0},t-t_0)$, known as the free-particle Green's function, reads
+\begin{eqnarray}
+    G(\va*{r} - \va*{r}_{0}, t - t_0) = \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i[\va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p} (t - t_0)]/\hbar}, \quad E_{p} = \frac{p^2}{2m}
+.\end{eqnarray}
+\textbf{Hint}: The free-particle wave funcction can be generally written as the superposition (wave packet)
+\begin{eqnarray}
+    \Psi(\va*{r},t) = \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} f(\va*{p}) e^{i(\va*{p} \cdot \va*{r} - E_{p}t)/\hbar}
+.\end{eqnarray}
+
+(b) Obtain the explicit expression for the Green's function.
+\textbf{Hint}: Use the following integral
+\begin{eqnarray}
+   \int_{-\infty}^{\infty} e^{-\alpha^2(x - \beta)^2} = \frac{\sqrt{\pi}}{\alpha}
+,\end{eqnarray}
+where $\alpha$ and $\beta$ are generally complex numbers with $-\pi/4 < {\rm arg} \alpha < \pi/4$ for convergence.
+
+}
+
+\sol{}
+
+
+\prob{2}{
+
+Show that the probability density and probability current density at position $\va*{r}_{0}$ can be expressed as expectation values of the operators $\rho(\va*{r}_{0})$ and $\va*{j}(\va*{r}_{0})$, defined as
+\begin{eqnarray}
+    \rho(\va*{r}_{0}) = \delta(\va*{r} - \va*{r}_{0}), \quad \va*{j}(\va*{r}_{0}) = \frac{1}{2m} [\va*{p} \delta(\va*{r} - \va*{r}_{0}) + \delta(\va*{r} - \va*{r}_{0})\va*{p}]
+,\end{eqnarray}
+where $\va*{r}$ and $\va*{p}$ are the position and momentum operators.
+Derive the expressions for these densities in both coordinate and momentum space.
+
+}
+
+
+
+
+\end{document}
