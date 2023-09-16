@@ -56,9 +56,16 @@ Thus, we can solve our three-dimensional problem by splicing together three copi
 Before moving forward, let us denote $\Delta x = x - x_0$ and $\Delta t = t - t_0$ to make the writing slightly less cumbersome (it is also slightly more illustrative).
 Doing the integrations, we find
 \begin{eqnarray}
-    G(x - x_0, t - t_0) = \frac{1}{2 \pi \hbar} \int \dd{p_{x}} e^{-i \Delta t( p_{x}^2 - 2m \frac{\Delta x}{\Delta t} p_{x} ) / 2m}
+    \begin{aligned}
+        G(x - x_0, t - t_0) &= \frac{1}{2 \pi \hbar} \int \dd{p_{x}} e^{-i \Delta t( p_{x}^2 - 2m \frac{\Delta x}{\Delta t} p_{x} ) / 2m \hbar} \\
+        &= \frac{1}{2 \pi \hbar} e^{-i \Delta t [- ( m \Delta x / \Delta t )^2] /2m \hbar} \int \dd{p_{x}} e^{-i \Delta t ( p_{x} - m \Delta x / \Delta t )^2 / 2m \hbar } \\
+        &= \frac{1}{2 \pi \hbar} e^{i m \Delta x^2 / 2 \hbar \Delta t} \sqrt{ \frac{2 \pi \hbar m}{i \Delta t} } = \sqrt{ \frac{m}{2 i \pi \hbar \Delta t} } e^{i m \Delta x^2/2 \hbar \Delta t}
+    \end{aligned}
 .\end{eqnarray}
-
+Splicing the results in each coordinate direction, we have
+\begin{eqnarray}
+    \eqbox{ G(\va*{r} - \va*{r}_{0},t-t_0) = \Bigg( \frac{m}{2 i \pi \hbar (t - t_0)} \Bigg)^{3/2} \exp[ \frac{i m}{2 \hbar (t - t_0)} (\va*{r} - \va*{r}_{0})^2 ] }
+.\end{eqnarray}
 
 }
 
@@ -74,7 +81,7 @@ Derive the expressions for these densities in both coordinate and momentum space
 
 }
 
-
+\sol{}
 
 
 \end{document}
