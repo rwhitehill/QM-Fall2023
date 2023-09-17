@@ -8,6 +8,7 @@
 
 (a) Show that the wave function at time $t$ for a free particle of mass $m$ can be written as
 \begin{eqnarray}
+    \label{eq:prob1-prop}
 \Psi(\va*{r},t) = \int \dd[3]{\va*{r}_{0}} G(\va*{r}-\va*{r}_{0},t-t_0) \Psi(\va*{r}_{0},t_{0})
 ,\end{eqnarray}
 where $\Psi(\va*{r},t_{0})$ is the wave function at the initial time $t_0$ and the function $G(\va*{r}-\va*{r}_{0},t-t_0)$, known as the free-particle Green's function, reads
@@ -40,6 +41,33 @@ where $\alpha$ and $\beta$ are generally complex numbers with $-\pi/4 < {\rm arg
                        &= \eqbox{ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} f(\va*{p}) e^{i ( \va*{p} \cdot \va*{r} - E_{p} t ) / \hbar} = \Psi(\va*{r},t) }
    .\end{aligned} 
 \end{eqnarray}
+
+Alternatively, we can derive this expression instead of simply verifying its validity.
+The interpretation of the expression \eref{prob1-prop} is that the function $G$ tells us how to evolve the initial state $\Psi(\va*{r}_{0},t_0)$ to a state $\Psi(\va*{r},t)$ via an integral transform, where $G$ is the kernel of such transform.
+Indeed, another name for $G$ is simply \textit{the propagator}.
+We can solve the time-dependent Schr\"{o}dinger equation, treating $H$ almost as a constant, giving
+\begin{eqnarray}
+    \pdv{\ket{\Psi}}{t} = -\frac{i}{\hbar}H \ket{\Psi} \Rightarrow \ket{\Psi(t)} = \underbrace{ e^{-\frac{i}{\hbar} H (t - t_0)}}_{{\cal U}(t,t_0)} \ket{\Psi(t_0)}
+.\end{eqnarray}
+Hence, $\cal U$ is the unitary time evolution operator for the wave function\footnote{which actually has some pretty deep consequences that are out of the scope of the discussion here.}.
+We can take this a step further by going into the position basis.
+\begin{eqnarray}
+    \Psi(\va*{r},t) = \int \dd[3]{\va*{r}_0} \bra{\va*{r}} \mathcal{U}(t - t_0) \ket{\va*{r}_{0}} \Psi(\va*{r}_{0},t)
+.\end{eqnarray}
+Thus, $G$ is simply a position matrix element of the time evolution operator.
+
+For a free particle,
+\begin{eqnarray}
+    \mathcal{U}(t - t_0) = e^{-i (\va*{p}^2/2 m \hbar) (t - t_0) }
+,\end{eqnarray}
+and therefore, inserting two more sets of complete momentum states, we have
+\begin{eqnarray}
+    \begin{aligned}
+        G(\va*{r},\va*{r}_{0};t-t_0) &= \bra{\va*{r}} \mathcal{U} \ket{\va*{r}_{0}} = \int \dd[3]{\va*{p}_{1}} \dd[3]{\va*{p}_{2}} \frac{e^{i \va*{p}_{1} \cdot \va*{r} / \hbar}}{(2 \pi \hbar)^{3/2}} \delta(\va*{p}_{1} - \va*{p}_{2}) e^{-\frac{i}{\hbar} \frac{\va*{p}_{2}^2}{2m} (t - t_0)} \frac{e^{-i \va*{p}_{2} \cdot \va*{r}_{0} / \hbar}}{(2 \pi \hbar)^{3/2}} \\
+                                     &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i [ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p}(t - t_0) ]/\hbar} = G(\va*{r} - \va*{r}_{0},t-t_0)
+    .\end{aligned}
+\end{eqnarray}
+Note that we have used $\bra{\va*{r}}\ket{\va*{p}} = \exp{i \va*{p} \cdot \va*{r} / \hbar}/(2 \pi \hbar)^{3/2}$, which is the coordinate space momentum eigenfunction defined by $- \frac{i}{\hbar} \grad f_{\va*{p}}(\va*{r}) = \va*{p} f_{\va*{p}}(\va*{r})$, and $\bra{\va*{p}}\ket{\va*{p}_{0}} = \delta(\va*{p} - \va*{p}_{0})$.
 
 (b) Notice that we can write
 \begin{eqnarray}
@@ -81,7 +109,167 @@ Derive the expressions for these densities in both coordinate and momentum space
 
 }
 
-\sol{}
+\sol{
+
+We can simply take the expectation values of the operators above:
+\begin{eqnarray}
+    \eqbox{ \int \dd[3]{\va*{r}_{0}} \psi^{*}(\va*{r}_{0},t) \delta(\va*{r} - \va*{r}_{0}) \psi(\va*{r}_{0},t) = \psi^{*}(\va*{r},t)\psi(\va*{r},t) = | \psi(\va*{r},t) |^2 = \rho(\va*{r},t) }
+\end{eqnarray}
+and
+\begin{eqnarray}
+   \begin{aligned}
+       \int &\dd[3]{\va*{r}_{0}} \psi^{*}(\va*{r}_{0},t) \frac{1}{2m}[ \va*{p} \delta(\va*{r} - \va*{r}_{0}) + \delta(\va*{r} - \va*{r}_{0}) \va*{p}] \psi(\va*{r}_{0},t) \\
+            &= \frac{1}{2m} \Bigg[ \int \dd[3]{\va*{r}_0} \psi^{*}(\va*{r}_0,t) \va*{p} \delta(\va*{r} - \va*{r}_{0}) \psi(\va*{r}_{0},t) + \psi^{*}(\va*{r},t)\va*{p}\psi(\va*{r},t) \Bigg]
+   .\end{aligned}
+\end{eqnarray}
+All that remains is to evaluate the first term in this expression.
+Recall that the momentum operator is proportional to the gradient differential operator and hence respects the product rule by fiat.
+That is,
+\begin{eqnarray}
+    \begin{aligned}
+        \int &\dd[3]{\va*{r}_{0}} \psi^{*}(\va*{r}_0,t) \va*{p} \delta(\va*{r} - \va*{r}_{0}) \psi(\va*{r}_{0},t) \\
+             &= \va*{p}[ \psi^{*}(\va*{r}_{0},t) \delta(\va*{r} - \va*{r}_0) \psi(\va*{r}_{0},t) ]_{r \rightarrow \infty} - \int \dd[3]{\va*{r}_{0}} \psi(\va*{r}_{0},t) \delta(\va*{r} - \va*{r}_{0}) \va*{p} \psi^{*}(\va*{r}_{0},t) \\
+        &= -\psi(\va*{r},t) \va*{p} \psi^{*}(\va*{r},t)
+    \end{aligned}
+\end{eqnarray}
+since the boundary term in the partial integration is identically zero given that $\psi \rightarrow 0$ as $r \rightarrow \infty$.
+Putting this back into the original expression, we find
+\begin{eqnarray}
+    \eqbox{
+   \begin{aligned}
+       \int &\dd[3]{\va*{r}_{0}} \psi^{*}(\va*{r}_{0},t) \frac{1}{2m}[ \va*{p} \delta(\va*{r} - \va*{r}_{0}) - \delta(\va*{r} - \va*{r}_{0}) \va*{p}] \psi(\va*{r}_{0},t) \\
+            &= \frac{1}{2m} \Big[ \psi^{*} \va*{p} \psi - \psi \va*{p} \psi^{*} \Big] = \frac{\hbar}{2 m i} \Big[ \psi^{*} \grad \psi - \psi \grad \psi^{*} \Big] = \va*{j}(\va*{r},t)
+   .\end{aligned}
+}
+\end{eqnarray}
+
+We also derive the expressions for the probability and probability current densities dependent on the momentum space variables.
+First, the probability density\footnote{Note: the explicit time dependence is dropped but it is still there implicitly. It is just a bit cumbersome to write it everytime since our manipulations are only in coordinate and position space not time.}
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \rho &= \psi^{*} \psi = \Bigg[ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{q}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{q} \cdot \va*{r} / \hbar} \tilde{\psi}(\va*{q}) \Bigg] \\
+             &= \int \frac{\dd[3]{\va*{p}} \dd[3]{\va*{q}}}{(2 \pi \hbar)^3} e^{-i (\va*{p} - \va*{q}) \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \tilde{\psi}(\va*{q})
+    \end{aligned}
+}
+.\end{eqnarray}
+
+Now, we address the current density.
+\begin{eqnarray}
+    \begin{aligned}
+        \psi^{*} \grad \psi &= \Bigg[ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \Bigg] \grad \Bigg[ \int \frac{\dd[3]{\va*{q}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{q} \cdot \va*{r} / \hbar} \tilde{\psi}(\va*{q}) \Bigg] \\
+                            &= \frac{i}{\hbar} \int \frac{\dd[3]{\va*{p} \dd[3]{\va*{q}}}}{(2 \pi \hbar)^3} e^{-i \va*{p} \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \, \va*{q} \, e^{i \va*{q} \cdot \va*{r} / \hbar} \tilde{\psi}(\va*{q}) \\
+                            &= \frac{i}{\hbar} \int \frac{\dd[3]{\va*{p}} \dd[3]{\va*{q}}}{(2 \pi \hbar)^3} \va*{q} e^{-i (\va*{p} - \va*{q}) \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \tilde{\psi}(\va*{q})
+    .\end{aligned}
+\end{eqnarray}
+
+Note that we only have to work out the first term in brackets since it is the complex conjugate of the first (and therefore \textit{vice versa}).
+This gives,
+\begin{eqnarray}
+   \eqbox{ 
+    \begin{aligned}
+        \va*{j} &= \frac{1}{2 m} \int \frac{\dd[3]{\va*{p}} \dd[3]{\va*{q}}}{(2 \pi \hbar)^3} \Big[ \va*{q} e^{-i (\va*{p} - \va*{q}) \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \tilde{\psi}(\va*{q}) + \va*{q} e^{i (\va*{p} - \va*{q}) \cdot \va*{r} / \hbar} \tilde{\psi}(\va*{p}) \tilde{\psi}^{*}(\va*{q}) \big] \\
+                &= \frac{1}{2 m} \int \frac{\dd[3]{\va*{p}} \dd[3]{\va*{q}}}{(2 \pi \hbar)^3} \big[ \va*{q} + \va*{p} \big] e^{-i (\va*{p} - \va*{q}) \cdot \va*{r} / \hbar} \tilde{\psi}^{*}(\va*{p}) \tilde{\psi}(\va*{q})
+    ,\end{aligned}
+}
+\end{eqnarray}
+where we have exchanged exchanged the dummy integration variables $\va*{p}$ and $\va*{q}$ in the second term.
+
+}
+
+\newpage
+
+\prob{3}{
+
+Suppose that a system, described by the normalized wave function $\psi(x)$, has average values of the position and momentum operators given by, respectively, $\expval{x}$ and $\expval{p}$.
+Now, consider the system being described by the wave function
+\begin{eqnarray}
+    \overline{\psi}(x) = e^{-i \expval{p} x / \hbar} \psi(x + \expval{x})
+.\end{eqnarray}
+Show that $\overline{\psi}(x)$ is normalized and calculate the expectation values of $x$ and $p$ in this case.
+
+}
+
+\sol{
+
+We first show that $\overline{\psi}$ is normalized as follows:
+\begin{eqnarray}
+    \eqbox{ \int_{-\infty}^{\infty} | \overline{\psi}(x) |^2 \dd{x} = \int_{-\infty}^{\infty} | \psi(x + \expval{x}) |^2 \dd{x} = \int_{-\infty}^{\infty} | \psi(\bar{x}) |^2 \dd{\overline{x}} = 1}
+,\end{eqnarray}
+where we have defined $\overline{x} = x + \expval{x}$.
+
+Next, we calculate $\expval{x}$ and $\expval{p}$, which are not much different from the calculation of the normalization above.
+In the calculation of $\expval{x}$, the phase factor cancels since $e^{-i \varphi} e^{i \varphi} = 1$, and when we shift variables to $\overline{x} = x + \expval{x}$, we find
+\begin{eqnarray}
+    \eqbox{
+   \begin{aligned}
+       \expval{x}_{\overline{\psi}} &= \int_{-\infty}^{\infty} x |\psi(x + \expval{x})|^2 \dd{x} = \int_{-\infty}^{\infty} (\overline{x} - \expval{x}) | \psi(\overline{x}) |^2 \dd{\overline{x}} \\
+                                    &= \int_{-\infty}^{\infty} \bar{x} \psi(\overline{x}) \dd{\overline{x}} - \expval{x} \int_{-\infty}^{\infty} | \psi(\overline{x}) |^2 \dd{\overline{x}} = 0
+   .\end{aligned} 
+}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \expval{p}_{\overline{\psi}} &= -i \hbar \int_{-\infty}^{\infty} e^{i \expval{p} x / \hbar} \psi(x + \expval{x}) \pdv{x} e^{-i \expval{p} x / \hbar} \psi(x + \expval{x}) \dd{x} \\
+                                     &= -i \hbar \int_{-\infty}^{\infty} e^{i \expval{p} x / \hbar} \psi(x + \expval{x}) \Big[ -\frac{i \expval{p}}{\hbar} \psi(x + \expval{x}) + \pdv{x} \psi(x + \expval{x}) \Big] e^{- i \expval{p} x / \hbar} \dd{x} \\
+                                     &= - \expval{p} + \int_{-\infty}^{\infty} \psi(\overline{x}) \Big( -i \hbar \pdv{\overline{x}} \Big) \psi(\overline{x}) \dd{\overline{x}} = 0
+    .\end{aligned}
+}
+\end{eqnarray}
+}
+
+
+\newpage
+
+\prob{4}{
+
+The time-dependent Schr\"{o}dinger equation in $r$-space for a particle under the influence of a potential $V(\va*{r})$ -- a real function of $\va*{r}$ -- given by
+\begin{eqnarray}
+    i \hbar \pdv{t}\Psi(\va*{r},t) = \Big[ -\frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \Psi(\va*{r},t)
+.\end{eqnarray}
+Verify that there exists a probability current given by 
+\begin{eqnarray}
+    \va*{j}(\va*{r},t) = \frac{\hbar}{2 m i} [ \Psi^{*}(\va*{r},t) \grad \Psi(\va*{r},t) - \Psi(\va*{r},t) \grad \Psi^{*}(\va*{r},t) ]
+,\end{eqnarray}
+such that
+\begin{eqnarray}
+    \pdv{t} \rho(\va*{r},t) + \div{\va*{j}(\va*{r},t)} = 0
+,\end{eqnarray}
+where $\rho(\va*{r},t) = | \Psi(\va*{r},t) |^2$.
+
+}
+
+\sol{
+
+The probability density for a particle with wave function $\Psi(\va*{r},t)$ is just $\rho(\va*{r},t) = | \Psi(\va*{r},t) |^2$.
+In the case of the free particle, we derived the probability current by differentiating this probability density with respect to time.
+It also followed from this derivation that the probability density and current satisfied a conserivation equation.
+We do the same here, adding in a potential term to the Schr\"{o}dinger equation as follows (and essentially show that the terms with the potential cancel):
+\begin{eqnarray}
+    \label{eq:rho-deriv}
+    \pdv{\rho}{t} = \Psi^{*} \pdv{\Psi}{t} + \Psi \pdv{\Psi^{*}}{t}
+.\end{eqnarray}
+The time derivative of the wave function (and its complex conjugate) is given by the Schr\"{o}dinger equation to be
+\begin{align}
+    \pdv{\Psi}{t} &= \phantom{-} \frac{1}{i \hbar} \Big[ - \frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \Psi(\va*{r},t) \\
+    \pdv{\Psi^{*}}{t} &= -\frac{1}{i \hbar} \Big[ - \frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \Psi^{*}(\va*{r},t)
+,\end{align}
+and \eref{rho-deriv} simplifies to
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \pdv{\rho}{t} &= \frac{1}{i \hbar} \Big[ \Psi^{*} \Big( -\frac{\hbar^2}{2m} \laplacian \Psi + V(\va*{r}) \Psi \Big) - \Psi \Big( -\frac{\hbar^2}{2m} \laplacian \Psi^{*} + V(\va*{r}) \Psi^{*} \Big) \Big] \\
+                      &= - \frac{\hbar}{2 m i} \Big[ \Psi^{*} \laplacian \Psi - \Psi \laplacian \Psi^{*} \Big] = - \div{ \underbrace {\frac{\hbar}{2 m i} \Big[ \Psi^{*} \grad \Psi - \Psi \grad \Psi^{*} \Big]}_{\va*{j}(\va*{r},t)} } \\
+                      &\Rightarrow \pdv{p(\va*{r},t)}{t} + \div{\va*{j}(\va*{r},t)} = 0
+    .\end{aligned}
+}
+\end{eqnarray}
+
+
+}
+
 
 
 \end{document}
