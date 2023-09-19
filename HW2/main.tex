@@ -13,6 +13,7 @@
 ,\end{eqnarray}
 where $\Psi(\va*{r},t_{0})$ is the wave function at the initial time $t_0$ and the function $G(\va*{r}-\va*{r}_{0},t-t_0)$, known as the free-particle Green's function, reads
 \begin{eqnarray}
+    \label{eq:free-greens}
     G(\va*{r} - \va*{r}_{0}, t - t_0) = \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i[\va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p} (t - t_0)]/\hbar}, \quad E_{p} = \frac{p^2}{2m}
 .\end{eqnarray}
 \textbf{Hint}: The free-particle wave funcction can be generally written as the superposition (wave packet)
@@ -39,18 +40,37 @@ where $\alpha$ and $\beta$ are generally complex numbers with $-\pi/4 < {\rm arg
                        &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \dd[3]{\va*{q}} \frac{\dd[3]{\va*{r}_{0}}}{(2 \pi \hbar)^3} e^{i (\va*{q} - \va*{p}) \cdot \va*{r}_{0} / \hbar} f(\va*{q}) e^{i( \va*{p} \cdot \va*{r} - E_{p} t)/\hbar} e^{i( E_{p} - E_{q} )t_0/\hbar} \\
                        &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \dd[3]{\va*{q}} \delta^{(3)}(\va*{q} - \va*{p}) f(\va*{q}) e^{i( \va*{p} \cdot \va*{r} - E_{p} t)/\hbar} e^{i( E_{p} - E_{q} )t_0/\hbar} \\
                        &= \eqbox{ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} f(\va*{p}) e^{i ( \va*{p} \cdot \va*{r} - E_{p} t ) / \hbar} = \Psi(\va*{r},t) }
-   .\end{aligned} 
+   ,\end{aligned} 
+\end{eqnarray}
+verifying the validity of \eref{free-greens}
+
+As a derivation of $G$ from the form of $\Psi(\va*{r},t)$, we first determine $f(\va*{p})$ as a function of $\Psi(\va*{r},t_0)$, where $t_0$ is some initial time:
+\begin{eqnarray}
+    \begin{aligned}
+        \tilde{\Psi}(\va*{q},t_{0}) &= \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{- i \va*{q} \cdot \va*{r} / \hbar} \Psi(\va*{r},t_{0}) = \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{q} \cdot \va*{r} / \hbar} \Bigg[ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} f(\va*{p}) e^{i(\va*{p} \cdot \va*{r} - E_{p} t_{0}) / \hbar} \Bigg] \\
+                                    &= f(\va*{q}) e^{-i E_{q} t_0 / \hbar} \Rightarrow f(\va*{q}) = e^{i E_{q} t_0 / \hbar} \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{q} \cdot \va*{r} / \hbar} \Psi(\va*{r},t_0)
+    \end{aligned}
+.\end{eqnarray}
+We can then substitute this into the wave-packet definition of $\Psi$ and arrive at
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \Psi(\va*{r},t) &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \Bigg[ e^{i E_{p} t_0 / \hbar} \int \frac{\dd[3]{\va*{r}_{0}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r}_{0} / \hbar} \Psi(\va*{r}_{0},t_0) \Bigg] e^{i(\va*{p} \cdot \va*{r} - E_{p} t) / \hbar} \\
+                        &= \int \dd[3]{\va*{r}_{0}} \underbrace{ \Bigg[ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i [ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p} (t - t_0) ] / \hbar} \Bigg] }_{G(\va*{r} - \va*{r}_{0}, t - t_0)} \Psi(\va*{r}_{0}, t_0) 
+    .\end{aligned}
+}
 \end{eqnarray}
 
-Alternatively, we can derive this expression instead of simply verifying its validity.
+
+We can perform a more general derivation than we previously undertook, which gives the Green's function for the free particle as a special case.
 The interpretation of the expression \eref{prob1-prop} is that the function $G$ tells us how to evolve the initial state $\Psi(\va*{r}_{0},t_0)$ to a state $\Psi(\va*{r},t)$ via an integral transform, where $G$ is the kernel of such transform.
 Indeed, another name for $G$ is simply \textit{the propagator}.
 We can solve the time-dependent Schr\"{o}dinger equation, treating $H$ almost as a constant, giving
 \begin{eqnarray}
     \pdv{\ket{\Psi}}{t} = -\frac{i}{\hbar}H \ket{\Psi} \Rightarrow \ket{\Psi(t)} = \underbrace{ e^{-\frac{i}{\hbar} H (t - t_0)}}_{{\cal U}(t,t_0)} \ket{\Psi(t_0)}
 .\end{eqnarray}
-Hence, $\cal U$ is the unitary time evolution operator for the wave function\footnote{which actually has some pretty deep consequences that are out of the scope of the discussion here.}.
-We can take this a step further by going into the position basis.
+Hence, $\cal U$ is the unitary time evolution operator for the wave function.
+We can take this a step further by expanding $\ket{\Psi}$ in the position basis (i.e. $\Psi(\va*{r},t) = \bra{\va*{r}}\ket{\Psi(t)}$).
 \begin{eqnarray}
     \Psi(\va*{r},t) = \int \dd[3]{\va*{r}_0} \bra{\va*{r}} \mathcal{U}(t - t_0) \ket{\va*{r}_{0}} \Psi(\va*{r}_{0},t)
 .\end{eqnarray}
@@ -60,11 +80,11 @@ For a free particle,
 \begin{eqnarray}
     \mathcal{U}(t - t_0) = e^{-i (\va*{p}^2/2 m \hbar) (t - t_0) }
 ,\end{eqnarray}
-and therefore, inserting two more sets of complete momentum states, we have
+and therefore, inserting two complete sets of momentum states, we have
 \begin{eqnarray}
     \begin{aligned}
         G(\va*{r},\va*{r}_{0};t-t_0) &= \bra{\va*{r}} \mathcal{U} \ket{\va*{r}_{0}} = \int \dd[3]{\va*{p}_{1}} \dd[3]{\va*{p}_{2}} \frac{e^{i \va*{p}_{1} \cdot \va*{r} / \hbar}}{(2 \pi \hbar)^{3/2}} \delta(\va*{p}_{1} - \va*{p}_{2}) e^{-\frac{i}{\hbar} \frac{\va*{p}_{2}^2}{2m} (t - t_0)} \frac{e^{-i \va*{p}_{2} \cdot \va*{r}_{0} / \hbar}}{(2 \pi \hbar)^{3/2}} \\
-                                     &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i [ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p}(t - t_0) ]/\hbar} = G(\va*{r} - \va*{r}_{0},t-t_0)
+                                     &= \eqbox{ \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^3} e^{i [ \va*{p} \cdot (\va*{r} - \va*{r}_{0}) - E_{p}(t - t_0) ]/\hbar} = G(\va*{r} - \va*{r}_{0},t-t_0) }
     .\end{aligned}
 \end{eqnarray}
 Note that we have used $\bra{\va*{r}}\ket{\va*{p}} = \exp{i \va*{p} \cdot \va*{r} / \hbar}/(2 \pi \hbar)^{3/2}$, which is the coordinate space momentum eigenfunction defined by $- \frac{i}{\hbar} \grad f_{\va*{p}}(\va*{r}) = \va*{p} f_{\va*{p}}(\va*{r})$, and $\bra{\va*{p}}\ket{\va*{p}_{0}} = \delta(\va*{p} - \va*{p}_{0})$.
@@ -81,16 +101,16 @@ where
     G(x - x_0, t - t_0) = \int \frac{\dd{p_{x}}}{2 \pi \hbar} e^{i[ p_{x} (x - x_0) - (p_{x}^2/2m)(t - t_0) ] / \hbar}
 \end{eqnarray}
 Thus, we can solve our three-dimensional problem by splicing together three copies of the solution to a one-dimensional problem.
-Before moving forward, let us denote $\Delta x = x - x_0$ and $\Delta t = t - t_0$ to make the writing slightly less cumbersome (it is also slightly more illustrative).
+Before moving forward, let us denote $\Delta x = x - x_0$ and $\Delta t = t - t_0$ to make the writing slightly less cumbersome.
 Doing the integrations, we find
 \begin{eqnarray}
     \begin{aligned}
         G(x - x_0, t - t_0) &= \frac{1}{2 \pi \hbar} \int \dd{p_{x}} e^{-i \Delta t( p_{x}^2 - 2m \frac{\Delta x}{\Delta t} p_{x} ) / 2m \hbar} \\
         &= \frac{1}{2 \pi \hbar} e^{-i \Delta t [- ( m \Delta x / \Delta t )^2] /2m \hbar} \int \dd{p_{x}} e^{-i \Delta t ( p_{x} - m \Delta x / \Delta t )^2 / 2m \hbar } \\
         &= \frac{1}{2 \pi \hbar} e^{i m \Delta x^2 / 2 \hbar \Delta t} \sqrt{ \frac{2 \pi \hbar m}{i \Delta t} } = \sqrt{ \frac{m}{2 i \pi \hbar \Delta t} } e^{i m \Delta x^2/2 \hbar \Delta t}
-    \end{aligned}
-.\end{eqnarray}
-Splicing the results in each coordinate direction, we have
+    .\end{aligned}
+\end{eqnarray}
+Splicing the results for each coordinate direction together, we have
 \begin{eqnarray}
     \eqbox{ G(\va*{r} - \va*{r}_{0},t-t_0) = \Bigg( \frac{m}{2 i \pi \hbar (t - t_0)} \Bigg)^{3/2} \exp[ \frac{i m}{2 \hbar (t - t_0)} (\va*{r} - \va*{r}_{0})^2 ] }
 .\end{eqnarray}
@@ -123,7 +143,7 @@ and
    .\end{aligned}
 \end{eqnarray}
 All that remains is to evaluate the first term in this expression.
-Recall that the momentum operator is proportional to the gradient differential operator and hence respects the product rule by fiat.
+Recall that the momentum operator is proportional to the gradient differential operator and hence respects the product rule.
 That is,
 \begin{eqnarray}
     \begin{aligned}
@@ -177,7 +197,6 @@ where we have exchanged exchanged the dummy integration variables $\va*{p}$ and 
 
 }
 
-\newpage
 
 \prob{3}{
 
@@ -220,8 +239,6 @@ and
 \end{eqnarray}
 }
 
-
-\newpage
 
 \prob{4}{
 
