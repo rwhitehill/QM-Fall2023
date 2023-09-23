@@ -1,0 +1,112 @@
+\def\duedate{\today}
+\def\HWnum{3}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 3 \# 4}{
+
+The time-dependent Schr\"{o}dinger equation of a charged particle in an electromagnetic field reads
+\begin{eqnarray}
+    i \hbar \pdv{t} \Psi(\va*{r},t) = \Bigg\{ \frac{1}{2m} \Big[ -i \hbar \grad - \frac{q}{c} \va*{A}(\va*{r},t) \Big]^2 + q U(\va*{r},t) \Bigg\} \Psi(\va*{r},t)
+\end{eqnarray}
+where $U(\va*{r},t)$ and $\va*{A}(\va*{r},t)$ are the (real) scalar and vector potential, respectively, c is the speed of light, and $q$ is the charge of the particle.
+Show that the probability density $\rho(\va*{r},t)$ and the probability current density $\va*{j}(\va*{r},t)$ are given in this case by
+\begin{align}
+    \rho(\va*{r},t) &= | \Psi(\va*{r},t) |^2 \\
+    \va*{j}(\va*{r},t) &= \frac{\hbar}{2 m i} \Big[ \Psi^{*}(\va*{r},t) \grad \Psi(\va*{r},t) - \Psi(\va*{r},t) \grad \Psi^{*}(\va*{r},t) \Big] - \frac{q}{mc} \va*{A}(\va*{r},t) | \Psi(\va*{r},t) |^2
+\end{align}
+with
+\begin{eqnarray}
+    \pdv{t} \rho(\va*{r},t) + \div{\va*{j}(\va*{r},t)} = 0
+.\end{eqnarray}
+
+
+}
+
+\sol{}
+
+
+\prob{2 -- Chapter 3 \# 8}{
+
+Consider a particle in a potential $V(\va*{r})$ with associated wave function satisfying the time-dependent Schr\"{o}dinger equation
+\begin{eqnarray}
+    i \hbar \pdv{t} \Psi(\va*{r},t) = \Big[ -\frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \Psi(\va*{r},t)
+.\end{eqnarray}
+
+(a) Show that 
+\begin{eqnarray}
+    \dv{t} \expval{\va*{r}(t)} = \int \dd[3]{\va*{r}} \, \va*{j}(\va*{r},t)
+,\end{eqnarray}
+where $\expval{\va*{r}(t)}$ is the average position of the particle (notation as in notes) and $\va*{j}(\va*{r},t)$ is the probability current density.
+Using the definition of $\va*{j}(\va*{r},t)$, show that the equation above can also be written as
+\begin{eqnarray}
+    m \dv{t} \expval{\va*{r}(t)} = \expval{\va*{p}(t)}
+.\end{eqnarray}
+
+(b) Show that 
+\begin{eqnarray}
+    \begin{aligned}
+        \dv{t} \expval{\va*{p}(t)} &= - \expval{\grad{V}} = - \int \dd[3]{\va*{r}} \Psi^{*}(\va*{r},t) [\grad{V(\va*{r})}] \Psi(\va*{r},t) \\
+                                   &= \int \dd[3]{\va*{r}} \Psi^{*}(\va*{r},t) \va*{F}(\va*{r}) \Psi(\va*{r},t)
+    \end{aligned}
+,\end{eqnarray}
+where we have introduced the force $\va*{F}(\va*{r})$.
+
+\textbf{Hint}: Consider, say, the $x$-component and, by using the Schr\"{o}dinger equation and its complex conjugate, obtain
+\begin{eqnarray}
+    \begin{aligned}
+        \dv{t} \expval{p_{x}(t)} &= -\frac{\hbar^2}{2m} \int \dd[3]{\va*{r}} \Bigg[ (\laplacian{\Psi^{*}}) \pdv{\Psi}{x} - \Psi^{*} \laplacian{\pdv{\Psi}{x}} \Bigg] \\
+                                 &+ \int \dd[3]{\va*{r}} \Bigg[ V \Psi^{*} \pdv{\Psi}{x} - \Psi^{*} \pdv{(V \Psi)}{x} \Bigg]
+    ,\end{aligned}
+\end{eqnarray}
+where the dependence on $\va*{r}$ and $t$ on the r.h.s. has been suppressed for brevity.
+Next examine these two terms.
+
+(c) The equation above looks like Newton's second law but for average values.
+As a matter of fact if $\expval{\va*{F}} = \va*{F}(\expval{\va*{r}})$, then $\expval{\va*{r}(t)}$ changes in time as the position of a classical particle under the action of the force $\va*{F}(\va*{r})$.
+Under what condition(s) can this happen?
+Obtain $\expval{\va*{r}(t)}$ and $\expval{\va*{p}(t)}$ for a particle in a harmonic potential
+\begin{eqnarray}
+   V(\va*{r}) = \frac{m \omega^2}{2} \va*{r}^2
+.\end{eqnarray}
+
+
+}
+
+\sol{}
+
+
+\prob{3 -- Chapter 4 \# 1}{
+
+Consider the problem of a particle in an attractive $\delta$-function potential given by
+\begin{eqnarray}
+   V(x) = -V_0 \delta(x) \quad V_0 > 0
+.\end{eqnarray}
+
+(a) Obtain the energy and wave-function of the bound state.
+Sketch the wave function and provide an estimate for $\Delta x$.
+
+(b) Calculate the probability $\dd{P}(p)$ that a measurement of the momentum in this bound state will give a result included between $p$ and $p + \dd{p}$.
+For what value of $p$ is this probability largest?
+Provide an estimate for $\Delta p$ and an order of magnitude for $\Delta x \Delta p$.
+
+}
+
+\sol{}
+
+
+\prob{4 -- Chapter 4 \# 5}{
+
+Consider a particle in the one-dimensional potential $V(x)$, such that $V(x) = \infty$ for $x < 0$ and
+\begin{eqnarray}
+   V(x) = - V_0 \, \delta(x-a) ~{\rm for}~ x > 0
+\end{eqnarray}
+where $V_0 > 0$.
+Determine whether this potential admits any bound states.
+
+}
+
+\sol{}
+
+\end{document}
