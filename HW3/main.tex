@@ -24,7 +24,36 @@ with
 
 }
 
-\sol{}
+\sol{
+
+    As in our previous derivations of $\rho$ and $\va*{j}$ we define $\eqbox{ \rho(\va*{r},t) = |\Psi|^2}$, and $\va*{j}$ such that $\pdv{\rho}{t} = - \div{\va*{j}}$.
+Taking the time derivative of $\rho$, we have
+\begin{eqnarray}
+    \label{eq:t-deriv-rho}
+    \pdv{\rho}{t} = \Psi^{*} \pdv{\Psi}{t} + \Psi \pdv{\Psi^{*}}{t}
+.\end{eqnarray}
+Again, we get the time-derivative of the wave function from S.E. (which requires a bit more massaging than in the previous cases):
+\begin{eqnarray}
+    \begin{aligned}
+        \pdv{\Psi}{t} &= \frac{1}{2 m i \hbar} \Bigg[ -\hbar^2 \laplacian + \frac{i \hbar q}{c} \div{\va*{A}} + \frac{i \hbar q}{c} \va*{A} \cdot \grad + \frac{q^2}{c^2} \va*{A}^2 \Bigg] \Psi + \frac{q}{i \hbar} U \Psi \\
+                      &= -\frac{\hbar}{2mi} \laplacian{\Psi} + \frac{q}{2mc} \underbrace{ \Big[ \Psi \div{\va*{A}} + \va*{A} \cdot \grad{\Psi} \Big] }_{\div{\va*{A} \Psi}} + \frac{q^2}{2 m i \hbar c} \va*{A}^2 \Psi + \frac{q}{i \hbar} U \Psi
+    \end{aligned}
+.\end{eqnarray}
+Observe that the last two terms are purely imaginary, and therefore cancel in \eref{t-deriv-rho}, leaving us with\footnote{We use the fact that $\div{\va*{A}|\Psi|^2} = |\Psi|^2 \div{\va*{A}} + \va*{A} \cdot \grad{|\Psi|^2} = |\Psi|^2 \div{\va*{A}} + \va*{A} \cdot ( \Psi^{*} \grad{\Psi} + \Psi \grad{\Psi^{*}} )$ and $\Psi^{*} \div{\va*{A} \Psi} = \div{\va*{A} |\Psi|^2} - \Psi \va*{A} \cdot \grad{\Psi^{*}}$.}
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \pdv{\rho}{t} &= - \Bigg\{ \grad \cdot \frac{\hbar}{2mi} \Big[ \Psi^{*} \grad{\Psi} - \Psi \grad{\Psi^{*}} \Big] + \frac{q}{2mc} \Big[ \Psi^{*} \div{\va*{A} \Psi} - \Psi \div{\va*{A} \Psi^{*}} \Big]  \Bigg\} \\
+                      &= - \grad \cdot \underbrace{ \Bigg\{ \Big[ \Psi^{*} \grad{\Psi} - \Psi \grad{\Psi^{*}} \Big] + \frac{q}{mc} \va*{A} |\Psi|^2 \Bigg\} }_{\va*{j}(\va*{r},t)}
+    \end{aligned}
+}
+.\end{eqnarray}
+It is then manifestly obvious that
+\begin{eqnarray}
+    \eqbox{ \pdv{\rho}{t} + \div{\va*{j}} = 0 } 
+.\end{eqnarray}
+
+}
 
 
 \prob{2 -- Chapter 3 \# 8}{
@@ -49,8 +78,8 @@ Using the definition of $\va*{j}(\va*{r},t)$, show that the equation above can a
     \begin{aligned}
         \dv{t} \expval{\va*{p}(t)} &= - \expval{\grad{V}} = - \int \dd[3]{\va*{r}} \Psi^{*}(\va*{r},t) [\grad{V(\va*{r})}] \Psi(\va*{r},t) \\
                                    &= \int \dd[3]{\va*{r}} \Psi^{*}(\va*{r},t) \va*{F}(\va*{r}) \Psi(\va*{r},t)
-    \end{aligned}
-,\end{eqnarray}
+    ,\end{aligned}
+\end{eqnarray}
 where we have introduced the force $\va*{F}(\va*{r})$.
 
 \textbf{Hint}: Consider, say, the $x$-component and, by using the Schr\"{o}dinger equation and its complex conjugate, obtain
@@ -74,7 +103,35 @@ Obtain $\expval{\va*{r}(t)}$ and $\expval{\va*{p}(t)}$ for a particle in a harmo
 
 }
 
-\sol{}
+\sol{
+
+(a) Observe that
+\begin{eqnarray}
+    \label{eq:prob2a-1}
+    \eqbox{ \dv{t} \expval{\va*{r}(t)} = \int \dd[3]{\va*{r}} \pdv{t} \rho(\va*{r},t) = - \int \dd[3]{\va*{r}} \va*{j}(\va*{r},t) }
+,\end{eqnarray}
+where we have used the continuity equation for the probability density and current density.
+
+Using $\va*{j} = (\hbar/2mi)[\Psi^{*} \grad{\Psi} - \Psi \grad{\Psi^{*}}]$, we can also rewrite \eref{prob2a-1} as
+\begin{eqnarray}
+    \label{eq:prob2a-2}
+    \eqbox{ m \dv{t} \expval{\va*{r}(t)} = \frac{1}{2} \int \dd[3]{\va*{r}} [ \Psi \va*{p} \Psi^{*} + \Psi^{*} \va*{p} \Psi ] = \int \dd[3]{\va*{r}} \Psi^{*} \va*{p} \Psi = \expval{\va*{p}(t)} }
+.\end{eqnarray}
+Note that we have used the fact that $\va*{p}$ is hermitian to rewrite $\Psi \va*{p} \Psi^{*} = \Psi^{*} \va*{p} \Psi$ under the integral sign.
+
+(b) We can do this as follows:
+\begin{eqnarray}
+    \begin{aligned}
+        \dv{t} \expval{\va*{p}(t)} &= -i \hbar \int \dd[3]{\va*{r}} \pdv{t} \Psi^{*} \grad \Psi \\
+                                   &= -i\hbar \int \dd[3]{\va*{r}} \Bigg[ \pdv{\Psi^{*}}{t} \grad \Psi + \Psi^{*} \grad \pdv{\Psi}{t} \Bigg] \\
+                                   &= -i \hbar \int \dd[3]{\va*{r}} \Bigg[ -\frac{1}{i \hbar} \Big( -\frac{\hbar^2}{2m} \laplacian \Psi^{*} + V \Psi^{*} \Big) \grad \Psi + \frac{1}{i \hbar} \Psi^{*} \grad \Big( \frac{-\hbar^2}{2m} \laplacian \Psi + V \Psi \Big) \Bigg] \\
+                                   &= \int \dd[3]{\va*{r}} \Bigg\{ -\frac{\hbar^2}{2m} \Big[ (\laplacian \Psi^{*})(\grad \Psi) - \Psi^{*} \grad (\laplacian \Psi) \Big] + \Big[ V \Psi^{*} \grad \Psi - \Psi^{*} \grad (V \Psi) \Big] \Bigg\} \\
+                                   &= \int \dd[3]{\va*{r}} ~ ? + \expval{- \grad V}
+    .\end{aligned}
+\end{eqnarray}
+
+
+}
 
 
 \prob{3 -- Chapter 4 \# 1}{
