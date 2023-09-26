@@ -48,7 +48,7 @@ Observe that the last two terms are purely imaginary, and therefore cancel in \e
     \end{aligned}
 }
 .\end{eqnarray}
-It is then manifestly obvious that
+It is manifest then that
 \begin{eqnarray}
     \eqbox{ \pdv{\rho}{t} + \div{\va*{j}} = 0 } 
 .\end{eqnarray}
@@ -126,7 +126,7 @@ Note that we have used the fact that $\va*{p}$ is hermitian to rewrite $\Psi \va
                                    &= -i\hbar \int \dd[3]{\va*{r}} \Bigg[ \pdv{\Psi^{*}}{t} \grad \Psi + \Psi^{*} \grad \pdv{\Psi}{t} \Bigg] \\
                                    &= -i \hbar \int \dd[3]{\va*{r}} \Bigg[ -\frac{1}{i \hbar} \Big( -\frac{\hbar^2}{2m} \laplacian \Psi^{*} + V \Psi^{*} \Big) \grad \Psi + \frac{1}{i \hbar} \Psi^{*} \grad \Big( \frac{-\hbar^2}{2m} \laplacian \Psi + V \Psi \Big) \Bigg] \\
                                    &= \int \dd[3]{\va*{r}} \Bigg\{ -\frac{\hbar^2}{2m} \Big[ (\laplacian \Psi^{*})(\grad \Psi) - \Psi^{*} \grad (\laplacian \Psi) \Big] + \Big[ V \Psi^{*} \grad \Psi - \Psi^{*} \grad (V \Psi) \Big] \Bigg\} \\
-                                   &= \expval{- \grad V}
+                                   &= \eqbox{ \expval{- \grad V} = \expval{\va*{F}} }
     .\end{aligned}
 \end{eqnarray}
 Notice that the integral
@@ -137,8 +137,42 @@ Let us focus on only the $x$-component since the result there applies also in th
 \begin{eqnarray}
     \begin{aligned}
         \int \dd[3]{\va*{r}} &\Big[ (\laplacian \Psi^{*}) \pdv{\Psi}{x} - \Psi^{*} \pdv{x} (\laplacian \Psi) \Big] = \int \dd[3]{\va*{r}} \Big[ (\laplacian \Psi^{*}) \pdv{\Psi}{x} - \Psi^{*} \laplacian \pdv{\Psi}{x} \Big] \\
-             &= 
-    \end{aligned}
+                             &= \int \dd[3]{\va*{r}} ~ \div{ \Big[ (\grad \Psi^{*}) \pdv{\Psi}{x} - \Psi^{*} \grad \pdv{\Psi}{x} \Big] } \\
+                             &= \int \dd{S_{\infty}} \Big[ (\grad \Psi^{*}) \pdv{\Psi}{x} - \Psi^{*} \grad \pdv{\Psi}{x} \Big] = 0
+    ,\end{aligned}
+\end{eqnarray}
+where we have used the divergence theorem to rewrite the volume integral as a surface integral.
+Note that $S_{\infty}$ denotes the surface at infinity.
+It should be clear that $\Psi|_{S_{\infty}} = \partial_{x} \Psi|_{S_\infty} = 0$.
+
+(c) The condition $\expval{\va*{F}} = \va*{F}(\expval{\va*{r}})$ when $\va*{F} = \va*{F}_{0} + F_{1} \va*{r}$, where $\va*{F}_{0}$ and $F_1$ are a constant vector and scalar, respectively.
+
+Now, we turn our attention to the harmonic potential $V(\va*{r}) = m \omega^2 r^2 / 2$.
+Observe that $F = - \grad V(\va*{r}) = - m \omega^2 \va*{r}$, which is linear in $\va*{r}$ and falls under the special case we outlined above.
+Thus,
+\begin{align}
+    \label{eq:de-r}
+    &\dv{t} \expval{\va*{r}} = \frac{1}{m} \expval{\va*{p}} \\
+    \label{eq:de-p}
+    &\dv{t} \expval{\va*{p}(t)} = \expval{F(\va*{r})} = - m \omega^2 \expval{\va*{r}}
+.\end{align}
+Notice that this is a set of coupled first-order differential equations.
+We can ``decouple'' these by differentiating \eref{de-r}, which gives
+\begin{eqnarray}
+    \dv[2]{t} \expval{\va*{r}} = \frac{1}{m} \dv{t} \expval{p} = - \omega^2 \expval{\va*{r}}
+,\end{eqnarray}
+which is as expected the equation for a particle undergoing harmonic motion and has solution
+\begin{eqnarray}
+    \eqbox{ \expval{\va*{r}} = \va*{A} \cos{\omega t} + \va*{B} \sin{\omega t} }
+,\end{eqnarray}
+We also have then
+\begin{eqnarray}
+    \eqbox{ \expval{\va*{p}} = m \dv{t} \expval{\va*{r}} = m \omega \Big( \va*{B} \cos{\omega t} - \va*{A} \sin{\omega t} \Big) }
+.\end{eqnarray}
+Note that $\va*{A}$ and $\va*{B}$ are constants of integration determined by initial or boundary conditions on $\expval{\va*{r}}$ and $\expval{\va*{p}}$.
+For example, if $\expval{\va*{r}(0)}$ and $\expval{\va*{p}(0)}$, which are the expectation values of $\va*{r}$ and $\va*{p}$ at $t = 0$ in the state $\Psi$, are given as initial conditions
+\begin{eqnarray}
+    \va*{A} = \expval{\va*{r}(0)} ~{\rm and}~ \va*{B} = \frac{\expval{\va*{p}(0)}}{m \omega}
 .\end{eqnarray}
 
 
@@ -197,8 +231,8 @@ From the form of the wavefunction, we can estimate $\Delta x \sim 1/\sqrt{\kappa
 
 \begin{figure}[h!]
    \centering
-   %\includegraphics[]{}
-   \caption{}
+   \includegraphics[width=0.5\textwidth]{prob3.jpeg}
+   \caption{Sketch of bound state wave function in the potential $V(x) = -V_0 \delta(x)$. Excuse the non-smooth behavior of the sketch, which demonstrates why I did not pursue any career requiring a steady hand!}
    \label{fig:prob3a}
 \end{figure}
 
@@ -214,6 +248,7 @@ The probability to find the particle with momentum in the interval $[p,p+\dd{p}]
 \begin{eqnarray}
     \tilde{\rho}(p) = |\tilde{\psi}(p)|^2 = \frac{2}{\pi \hbar} \frac{\kappa^3}{[\kappa^2 + (p/\hbar)^2]^2} = \frac{2}{\pi \hbar \kappa} \frac{1}{[1 + (p/\kappa \hbar)^2]^2}
 .\end{eqnarray}
+Observe that the maximum of this probability density is peaked at $p = 0$ with a value of $2/(\pi \hbar \kappa)$.
 
 From the form of the momentum-space wavefunction, we can also estimate that $\Delta p \sim \hbar \sqrt{\kappa}$\footnote{Again, this comes from the fact that $\Delta p = \sqrt{\expval{p^2}} = \sqrt{\hbar^2 \kappa [ (2/\pi)\int_{-\infty}^{\infty} u^2/(1 + u^2)^2 \dd{u} ]}$}.
 Hence, we have $\eqbox{ \Delta x \Delta p \sim \hbar }$.
@@ -260,21 +295,34 @@ Translating this into an statement in terms of $A,~B,~C,~{\rm and}~\kappa$, we h
     \label{eq:prob4-b}
     Ae^{\kappa a} + B e^{-\kappa a} &= Ce^{-\kappa a} \\
     \label{eq:prob4-c}
-    Ae^{\kappa a} - B e^{-\kappa a} + C e^{- \kappa a} &= - v_0 Ce^{-\kappa a}
+    - C e^{- \kappa a} - (Ae^{\kappa a} - B e^{-\kappa a}) &= - \frac{v_0}{\kappa} Ce^{-\kappa a}
 ,\end{align}
 where we have defined $v_0 = 2m V_0/\hbar^2$.
 Remember that we also have the normalization condition, which imposes an additional constraint on these constants.
-Thus, for a non-trivial solution $\{ A,B,C \} $, \erefs{prob4-a}{prob4-c} must be linearly dependent or
+Thus, for a non-trivial solution $\{ A,B,C \} $, \erefs{prob4-a}{prob4-c} must be linearly dependent.
 \begin{gather}
    \begin{vmatrix}
-       1 & 1 & 0 \\
-       e^{2 \kappa a} & 1 & -1 \\
-       e^{2 \kappa a} & -1 & (1 + v_0)
+       \sinh{\kappa a} & -e^{-\kappa a} \\
+       \cosh{\kappa a} & (1 - v_0/\kappa) e^{- \kappa a}
    \end{vmatrix}
-   = [(1 - v_0) - 1] - [e^{2 \kappa a}(1 + v_0) + e^{2 \kappa a}] = 0 \\
-   e^{2 \kappa a} = \frac{v_0}{2 + v_0} \Rightarrow \kappa = \frac{1}{2a} \ln( \frac{v_0}{2 + v_0} )
-.\end{gather}
-Thus, there is one bound state permitted under this potential.
+   = e^{-\kappa a} [ (1 + v_0/\kappa) \sinh{\kappa a} + \cosh{\kappa a} ] = 0 \\
+   \tanh{\kappa a} = - \frac{1}{1 - v_0/\kappa} = \frac{1}{v_0/\kappa - 1}
+,\end{gather}
+where we have used $B = -A$ to reduce the dimensionality (and therefore some complexity) of the problem.
+Also note that we have redefined $2A \rightarrow A$.
+
+This is a transcendental equation for $\kappa$, so we cannot solve it directly, but notice that $\kappa a > 0$.
+Thus, $\tanh{\kappa a} > 0$, meaning that this equation may only has a solution if $v_0/\kappa > 1$, and hence, a bound state only under this condition.
+Additionally, $\tanh{\kappa a} < 1$ for all $\kappa a$.
+We thus have a second condition on $v_0/\kappa$:
+\begin{eqnarray}
+    \frac{v_0}{\kappa} < 2
+,\end{eqnarray}
+and therefore, generally a bound state exists if and only if
+\begin{eqnarray}
+    \eqbox{ 1 < \frac{v_0}{\kappa} = \frac{V_0}{E} < 2 \Leftrightarrow \frac{V_0}{2} < E < V_0 }
+.\end{eqnarray}
+
 
 }
 
