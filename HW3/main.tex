@@ -323,6 +323,36 @@ and therefore, generally a bound state exists if and only if
     \eqbox{ 1 < \frac{v_0}{\kappa} = \frac{V_0}{E} < 2 \Leftrightarrow \frac{V_0}{2} < E < V_0 }
 .\end{eqnarray}
 
+{
+
+\color{red} The above analysis is not entirely correct.
+We can rewrite Eq. (43) to read
+\begin{eqnarray}
+    \tanh{z} = \frac{z}{z_0 - z}
+,\end{eqnarray}
+where $z = \kappa a$ and $z_0 = v_0 a$.
+In this case then, we have something like $f(z) = g(z)$.
+Clearly then, whether there is a solution depends on the value of $z_0$.
+
+Let us observe the following:
+\begin{enumerate}
+    \item $z > 0$ (since $\kappa,a > 0$)
+    \item $0 < \tanh{z} < 1$
+    \item $z/(z_0 - z) > 0$ for $z \in [0,z_0)$
+    \item for $z \in [0,z_0)$, the function $z/(z_0-z)$ is monotonically increasing
+    \item $\tanh{0} = 0$ and $0/(z_0-0) = 0$
+\end{enumerate}
+
+Clearly, these functions always intersect at $E = 0$, but this is not interesting for this problem since $\psi$ is not normalizable then and hence not a bound state.
+We can, however, state whether or not the transcendental equation has a solution (only one if any!).
+Since $z/(z_0-z)$ is monotonically increasing, for a bound state to exist, we must have
+\begin{eqnarray}
+    \dv{z} \tanh{z}|_{z = 0} > \dv{z} \frac{z}{z_0 - z} |_{z=0} \Rightarrow z_0 > 1
+.\end{eqnarray}
+If this condition is met, though, we must resort to some numerical scheme to determine the energy of the bound state.
+
+}
+
 
 }
 
