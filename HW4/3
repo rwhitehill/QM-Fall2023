@@ -1,0 +1,141 @@
+\def\duedate{\today}
+\def\HWnum{4}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 4 \# 7}{
+
+Consider the one-dimensional problem of mass $m$ under the influence of a potential
+\begin{eqnarray}
+   V(x) = \begin{cases}
+       -V_0 \delta(x) & |x| < a/2 \\
+       \infty & |x| > a/2
+   ,\end{cases}
+\end{eqnarray}
+where $V_0 > 0$. \\[1pt]
+
+(a) Assume the particle's energy $E < 0$.
+Show that there is a bound-state if a certain condition is satisfied.
+
+(b) Assume the particle's energy $E > 0$.
+Find the bound state energies in this case (a graphical solution of the relevant condition suffices).
+
+(c) Compare the bound-state energies found in (b) above with those obtained in the infinitely deep well with $V(x) = 0$ if $|x| < a/2$ and $V(x) = \infty$ otherwise.
+Comment the results.
+
+}
+
+\sol{
+
+(a) For $E < 0$, the S.E. reads
+\begin{eqnarray}
+    \psi''(x) = - [v_0 \delta(x) - |\epsilon|] \psi(x)
+,\end{eqnarray}
+where $v_0 = 2 m V_0 / \hbar^2$ and $\epsilon = 2mE/\hbar^2 < 0$.
+This has solution
+\begin{eqnarray}
+   \psi(x) = \begin{cases}
+       A e^{\kappa x} + B e^{-\kappa x} & x < 0 \\
+       C e^{\kappa x} + D e^{-\kappa x} & x > 0
+   .\end{cases}
+\end{eqnarray}
+Note that it is implicitly understood that the interval of consideration is $|x| < a/2$ since $\psi \equiv 0$ for $|x| > a/2$.
+The constants $A,~B,~C,~D,~\kappa$ are determined by normalization and the following boundary conditions (BCs):
+\begin{align}
+    \psi(-a/2) = 0 &\Rightarrow  A e^{-\kappa a/2} + B e^{\kappa a/2} = 0 \\
+    \psi(a/2) = 0 &\Rightarrow Ce^{\kappa a/2} + D e^{-\kappa a/2} = 0 \\
+    \psi'(0^{+}) - \psi'(0^{-}) = -v_0 \psi(0) &\Rightarrow \kappa [(A - B) - (C - D)] = -v_0(A + B)
+.\end{align}
+
+
+}
+
+
+\prob{1 -- Chapter 5 \# 3}{
+
+Calculate the transmission probability for a particle in a potential given by $V(x) = 0$ for $x < 0$ and $x > a$, and equal to a constant $V_0 > 0$ for $0 < x < a$.
+Consider the two cases $0 < E < V_0$ and $E > V_0$.
+Discuss the motion of a classical particle in the two cases. \\[1pt]
+
+By introducing wave packets, calculate the transit time -- the time needed to traverse the barrier -- or the transmitted wave for the two cases $0 < E < V_0$ and $E > V_0$ and compare it to that of the classical particle.
+
+}
+
+\sol{}
+
+
+\prob{1 -- Chapter 5 \# 6}{
+
+Consider the one-dimensional potential $V(x)$ given by
+\begin{eqnarray}
+   V(x < 0) = \infty, \quad V(0 < x < a) = -V_0, \quad V(x > a) = 0,
+,\end{eqnarray}
+with $V_0 > 0$. \\[1pt]
+
+(a) Discuss the energy spectrum: for what energies (if any) are there bound states?
+For what energies are there continuum states?
+What is the degeneracy of the energy eigenvalues?
+
+(b) Assume the energy $E$ of the particle is less than zero.
+Determine under what conditions there is at least a bound state.
+
+(c) Show that for $x > a$ the positive energy solution (up to an overall constant) can be written as
+\begin{eqnarray}
+    \psi(x) = e^{i[k(x - a) - 2 \delta]} + e^{-ik(x-a)}
+.\end{eqnarray}
+Determine $\delta$ and the solution $\psi(x)$ in $0 < x < a$ (up to the overall constant, of course).
+Calculate the reflection coefficient.
+
+(d) Denote with $\psi_{k}(x)$ the complete positive-energy solution obtained in part (c) above, and consider the wave packet
+\begin{eqnarray}
+    \Psi(x,t) = \int_{0}^{\infty} \dd{k} g(k) \psi_{k}(x) e^{-i \omega t} \quad {\rm with} \omega = \frac{E}{\hbar} = \frac{\hbar k^2}{2m}
+,\end{eqnarray}
+where the real function $g(k)$ is sharply peaked at $k_0$.
+Examine the incident and reflected wave packets in the region $x > a$, and show that the incident wave packet reaches the edge of the potential well at $x = a$ at time $t = 0$, while the reflected wave packet leaves this edge with a time delay $\tau$.
+Calculate $\tau$ and show that it is given by
+\begin{eqnarray}
+    \tau = \frac{2 a m}{\hbar \sqrt{\epsilon_0}} \frac{1}{\epsilon_0 + v_0 \cos^2{(K_0 a)}} \Big[ \epsilon_0 + v_0 \frac{\sin{(2 K_0 a)}}{2 K_0 a} \Big]
+,\end{eqnarray}
+where $\epsilon_0 = k_0^2$ and $K_0 = \sqrt{k_0^2 + v_0}$.
+Discuss the limit $\epsilon_0 \gg v_0$.
+Under what conditions will $\tau$ be very long?
+Explain.
+
+}
+
+\sol{}
+
+
+\prob{1 -- Chapter 5 \# 8}{
+
+Consider a particle of mass $m$ confined in the region $x \geq 0$ and subject to a repulsive $\delta$-function potential located at $x = a$,
+\begin{eqnarray}
+    v(x) = \frac{\hbar^2}{2m} v_0 \delta(x - a) \quad {\rm for} x \geq 0
+.\end{eqnarray}
+
+(a) Without doing any detailed calculations, explain why the relectrion coefficient is unity in this case for any $\epsilon > 0$.
+
+(b) Obtain the complete solution $\psi_{k}(x)$ with $k = \sqrt{\epsilon}$ in the whole allowed region $x \geq 0$, thus justifying the inference above.
+
+(c) Construct the wave packet
+\begin{eqnarray}
+    \Psi(x,t) = \int_{0}^{\infty} \frac{\dd{k}}{\sqrt{2 \pi}} g(k) \psi_{k}(x) e^{-i \omega t} \quad \omega = \frac{\hbar k^2}{2m}
+,\end{eqnarray}
+where the profile function $g(k)$ is assumed to be real and strongly peaked at $k^{*} > 0$.
+Show that the center of the incident wave packet reaches $a$ at time $t = 0$ and that the center of the reflected wave packet moves from a $a$ back to infinity with a time delay $2 \tau$.
+Determine $\tau$.
+
+(d) Show that the magnitude squared of the wave packet in the region $0 < x < a$ is suppressed by the factor $1/\rho_{k}^2$.
+Provide a plot of $1/\rho_{k}^2$ for $x_0 = v_0 a = 50$ as a function of $x = ka$ in the range $0 < x \leq 20$.
+Comment on the figure.
+
+(e) Compute the time delay $\tau$ and provide a plot of $\tau / \tau_0$, where $\tau_0 = ma^2/\hbar$, for the case $x_0 = 50$ and $x$ in the range 0-20, as above.
+Comment on the figure.
+
+}
+
+\sol
+
+
+\end{document}
