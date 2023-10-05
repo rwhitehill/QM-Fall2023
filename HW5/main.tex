@@ -1,0 +1,141 @@
+\def\duedate{\today}
+\def\HWnum{\#}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 3 \# 3}{
+
+In the $r$-representation, the Schr\"{o}dinger equation for a particle under the influence of a potential $V(\va*{r})$ is given by
+\begin{eqnarray}
+    i\hbar \pdv{t} \Psi(\va*{r},t) = \Bigg[ -\frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Bigg] \Psi(\va*{r},t)
+.\end{eqnarray}
+
+(a) By using the properties of the Fourier transform show that the Schrodinger equation in the $p$-representation can be wrriten as
+\begin{eqnarray}
+    \Big( i\hbar \pdv{t} - \frac{\va*{p}^2}{2m} \Big) \tilde{\Psi}(\va*{p},t) = \frac{1}{(2 \pi \hbar)^{3/2}} \int \dd[3]{\va*{p}'} \tilde{V}(\va*{p} - \va*{p}') \tilde{\Psi}(\va*{p}',t)
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \tilde{\Psi}(\va*{p},t) = \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \Psi(\va*{r},t), \quad \tilde{\va*{p}} = \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} V(\va*{r})
+.\end{eqnarray}
+Assume that $V(\va*{r})$ vanishes as $|\va*{r}| \rightarrow \infty$ fast enough for its Fourier transform to exist.
+Note that in the $p$-space Schr\"{o}dinger equation as given above, the term with the potential reduces to a convolution product involving the Fourier transforms $\tilde{V}(\va*{p})$ and $\tilde{\Psi}(\va*{p},t)$.
+
+(b) SHow that the $p$-space Schr\"{o}dinger equation can also be written as
+\begin{eqnarray}
+    i \hbar \pdv{t} \tilde{\Psi}(\va*{p},t) = \Big[ \frac{\va*{p}^2}{2m} + V(i\hbar \grad_{p}) \Big] \tilde{\Psi}(\va*{p},t)
+\end{eqnarray}
+as given in the notes.
+
+}
+
+\sol{
+
+
+
+}
+
+
+\prob{2 -- Chapter 4 \# 2}{
+
+This problem deals with the solution of the S.E. in momentum space.
+
+(a) Solve directly in momentum space for the bound-state energy and wave funciton in an attractive $\delta$-function potential, given in coordinate space by $V(x) = -V_0 \delta(x)$ with $V_0 > 0$.
+
+(b) From the momentum space wave function so obtained, calculate the average kinetic energy of the particle.
+Repeat the calculation of this average kinetic energy but in coordinate space, using the wave function you derived in the previous problem.
+Note that the first derivative of the coordinate-space bound-state wave function is discontinuous at $x = 0$.
+
+}
+
+\sol{}
+
+
+\prob{3 -- Chapter 5 \# 4}{
+
+Consider a particle in one-dimension under the influence of the even potential given by
+\begin{eqnarray}
+   V(x) = \begin{cases}
+       V_0 & |x| \leq a \\
+       0 & |x| > a
+   ,\end{cases}
+\end{eqnarray}
+where $V_0 > 0$.
+Assume that the particle's energy $E$ is in the range $0 < E < V_0$.
+Write the general solution as 
+\begin{eqnarray}
+   \psi(x) = \begin{cases}
+       Ae^{ikx} + Be^{-ikx} & x < -a \\
+       C e^{-\kappa x} + D e^{\kappa x} & |x| < a \\
+       Fe^{ikx} + Ge^{-ikx} & x > a
+   ,\end{cases}
+\end{eqnarray}
+where $k = \sqrt{\epsilon}$, $\kappa = \sqrt{v_0 - \epsilon}$, $\epsilon = 2mE/\hbar^2$, and $v_0 = 2mV_0/\hbar^2$.
+
+(a) By imposing the appropriate boundary conditions at $x = \pm a$, show that the coefficients $A$ and $B$ are related to the coefficients $F$ and $G$ in the following way
+\begin{eqnarray}
+    \begin{pmatrix}
+    A \\ B
+    \end{pmatrix}
+    = 
+    \begin{bmatrix}
+        (\cosh{2 \kappa a} + i(\alpha/2) \sinh{2 \kappa a})e^{2ika} & i(\beta/2) \sinh{2 \kappa a} \\
+
+        -i(\beta/2) \sinh{2 \kappa a} & (\cosh{2 \kappa a} - i(\alpha/2) \sinh{2 \kappa a})e^{-2ika} \\
+    \end{bmatrix}
+    \begin{pmatrix}
+    F \\ G
+    ,\end{pmatrix}
+\end{eqnarray}
+where
+\begin{eqnarray}
+   \alpha = \frac{\kappa}{k} - \frac{k}{\kappa},~ \beta = \frac{\kappa}{k} + \frac{k}{\kappa},~\beta^2 - \alpha^2 = 4
+.\end{eqnarray}
+
+(b) From the matrix relation obtained in part (a) above, show that the transmission coefficient $T$ for a high and wide barrier with $\kappa a \gg 1$ is approximately given by 
+\begin{eqnarray}
+    T \approx 16 e^{-4 \kappa a} \Big( \frac{\kappa k}{k^2 + \kappa^2} \Big)^2
+.\end{eqnarray}
+
+(c) Consider the case of a very narrow but very high barrier such that $a V_0$ is finite.
+Assume $V_0 \gg E$ $\kappa \gg k$, and $\kappa a \ll 1$, but $\kappa^2 a$ is finite.
+Show that the transmission coefficient under these conditions is the same as that obtained in the repulsive $\delta$-function potential $V(x) = 2aV_0\delta(x)$, namely
+\begin{eqnarray}
+    T = \frac{\epsilon}{\epsilon + (2mV_0a/\hbar^2)^2}
+.\end{eqnarray}
+
+
+}
+
+\sol{}
+
+
+\prob{4 -- Chapter 5 \# 5}{
+
+Consider a particle of mass $m$ under the action of a potential given by
+\begin{eqnarray}
+    V(x) = \frac{\hbar^2}{2m} [ v_0 \theta(-x) - w_0 \delta(x) ]
+,\end{eqnarray}
+where $\theta(z)$ is the Heaviside step function.
+
+(a) Show that the presence of the potential step of height $v_0$ does not alter the boundary conditions that the wave function and its first derivative must satisfy at $x = 0$.
+Is there a bound state?
+If there is, what is its energy?
+
+(b) Assume $\epsilon > v_0$.
+Calculate the reflection and transmission coefficients.
+What are these coefficients in the limit $\epsilon \gg v_0,w_0$?
+
+(c) Now, assume $0 < \epsilon < v_0$.
+Calculate the reflection and transmission coefficients in this case.
+Explain why you could have anticipated the result.
+Compute the time delay associated with the relected wave packet in this case.
+
+}
+
+\sol{}
+
+
+
+\end{document}
