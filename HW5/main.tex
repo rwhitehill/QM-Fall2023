@@ -1,5 +1,5 @@
 \def\duedate{\today}
-\def\HWnum{\#}
+\def\HWnum{5}
 \input{../preamble.tex}
 
 \begin{document}
@@ -22,7 +22,7 @@ where
 Assume that $V(\va*{r})$ vanishes as $|\va*{r}| \rightarrow \infty$ fast enough for its Fourier transform to exist.
 Note that in the $p$-space Schr\"{o}dinger equation as given above, the term with the potential reduces to a convolution product involving the Fourier transforms $\tilde{V}(\va*{p})$ and $\tilde{\Psi}(\va*{p},t)$.
 
-(b) SHow that the $p$-space Schr\"{o}dinger equation can also be written as
+(b) Show that the $p$-space Schr\"{o}dinger equation can also be written as
 \begin{eqnarray}
     i \hbar \pdv{t} \tilde{\Psi}(\va*{p},t) = \Big[ \frac{\va*{p}^2}{2m} + V(i\hbar \grad_{p}) \Big] \tilde{\Psi}(\va*{p},t)
 \end{eqnarray}
@@ -32,7 +32,35 @@ as given in the notes.
 
 \sol{
 
-
+(a) We take the Fourier transform of the S.E.:
+\begin{eqnarray}
+    \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \Bigg\{ i\hbar \pdv{\Psi(\va*{r},t)}{t} - \Bigg[ - \frac{\hbar^2}{2m} \laplacian \Psi(\va*{r},t) + V(\va*{r}) \Psi(\va*{r},t) \Bigg] \Bigg\} = 0
+.\end{eqnarray}
+The first two terms are quite simple to determine.
+For the first, notice that there is not time-dependence in the integration except for the wave function, allowing us to pull it out of the integral, and for the second term, we can integrate by parts twice, giving
+\begin{eqnarray}
+    \pdv{\tilde{\Psi}(\va*{p},t)}{t} - \Bigg[ - \frac{\va*{p}^2}{2m} \tilde{\Psi}(\va*{p},t) + \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} /\hbar} V(\va*{r}) \Psi(\va*{r},t) \Bigg] = 0
+.\end{eqnarray}
+All that remains now is to evaluate the last term, which is the Fourier transform of a product of functions.
+Note that we know that the fourier transform of a convolution of functions $f$ and $g$ is just the product of the individual fourier transforms of $f$ and $g$.
+Because of the symmetric nature of the Fourier transform, we may expect that a similar result for the Fourier transform of a product of functions.
+Namely, the fourier transform of this product is just a convolution in the conjugate space, which we now prove.
+Let $f,g \in L^2(\reals^3)$.
+Thus,
+\begin{eqnarray}
+    \begin{aligned}
+        \int &\frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} f(\va*{r}) g(\va*{r}) \\
+                                                         &= \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \Bigg[ \int \frac{\dd[3]{\va*{q}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{q} \cdot \va*{r} / \hbar} \tilde{f}(\va*{q}) \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{l}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{l} \cdot \va*{r} / \hbar} \tilde{g}(\va*{l}) \Bigg] \\
+                                                         &= \int \frac{\dd[3]{\va*{q}} \dd[3]{\va*{l}}}{(2 \pi \hbar)^{3/2}} \tilde{f}(\va*{q}) \tilde{g}(\va*{l}) \underbrace{\Bigg[ \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} \frac{e^{i(\va*{q} + \va*{l} - \va*{p}) \cdot \va*{r} / \hbar}}{(2 \pi \hbar)^{3}} \Bigg]}_{\delta^{(3)}(\va*{l} - [\va*{p} - \va*{q}])} \\
+                                                         &= \int \frac{\dd[3]{\va*{q}}}{(2 \pi \hbar)^{3/2}} \tilde{f}(\va*{q}) \tilde{g}(\va*{p} - \va*{q}) = \tilde{f} \star \tilde{g}
+    ,\end{aligned}
+\end{eqnarray}
+which is the result we anticipated.
+Note that the convolution is commutative in $f$ and $g$ (i.e. $\tilde{f} \star \tilde{g} = \tilde{g} \star \tilde{f}$).
+Hence, we have
+\begin{eqnarray}
+    \eqbox{ \pdv{\tilde{\Psi}(\va*{p},t)}{t} = -\frac{\va*{p}^2}{2m} \tilde{\Psi}(\va*{p},t) + \tilde{\Psi} \star \tilde{V} }
+.\end{eqnarray}
 
 }
 
@@ -41,7 +69,7 @@ as given in the notes.
 
 This problem deals with the solution of the S.E. in momentum space.
 
-(a) Solve directly in momentum space for the bound-state energy and wave funciton in an attractive $\delta$-function potential, given in coordinate space by $V(x) = -V_0 \delta(x)$ with $V_0 > 0$.
+(a) Solve directly in momentum space for the bound-state energy and wave function in an attractive $\delta$-function potential, given in coordinate space by $V(x) = -V_0 \delta(x)$ with $V_0 > 0$.
 
 (b) From the momentum space wave function so obtained, calculate the average kinetic energy of the particle.
 Repeat the calculation of this average kinetic energy but in coordinate space, using the wave function you derived in the previous problem.
@@ -49,7 +77,52 @@ Note that the first derivative of the coordinate-space bound-state wave function
 
 }
 
-\sol{}
+\sol{
+
+(a) If our potential $V(x) = -V_0 \delta(x)$, then
+\begin{eqnarray}
+    \tilde{V}(p) = \int \frac{\dd{x}}{\sqrt{2 \pi \hbar}} e^{-i p x /\hbar} \Big[ - V_0 \delta(x) \Big] = -\frac{V_0}{\sqrt{2 \pi \hbar}}
+.\end{eqnarray}
+Note that we could have repeated the process from part (a) on the time-independent S.E. to arrive at
+\begin{eqnarray}
+    \Big[ E - \frac{p^2}{2m} \Big] \tilde{\psi}(p) = - \frac{V_0}{\sqrt{ 2 \pi \hbar}} \int \frac{\dd{p}}{\sqrt{2 \pi \hbar}} \tilde{\psi}(p)
+.\end{eqnarray}
+Notice that the r.h.s is a constant with respect to $p$, meaning
+\begin{eqnarray}
+    \tilde{\psi}(p) = \frac{\mathcal{N}}{|E| + p^2/2m}
+,\end{eqnarray}
+where we have used the fact that $E < 0$ for a bound state.
+The energy $E$ is determined using 
+\begin{gather}
+    \frac{V_0}{2 \pi \hbar} \int_{-\infty}^{\infty} \frac{1}{|E| + p^2/2m} = 1 \Rightarrow \sqrt{\frac{2 m}{E}} = \frac{2 \hbar}{V_0} \\
+    E = -\frac{V_0^2}{4 \hbar^2} (2m) = -\frac{m V_0^2}{2 \hbar^2}
+.\end{gather}
+Thus,
+\begin{eqnarray}
+    \tilde{\psi}(p) = \frac{\mathcal{N}}{p_0^2 + p^2}
+,\end{eqnarray}
+where we have defined $p_0^2 = 2m E$.
+Normalizing gives
+\begin{eqnarray}
+    \eqbox{ \tilde{\psi}(p) = \sqrt{\frac{2 p_0^3}{\pi}} \frac{1}{p_0^2 + p^2} }
+,\end{eqnarray}
+which agrees with the result found in a previous homework where we explicitly took the Fourier transform of the coordinate space result.
+
+(b) The average kinetic energy of a particle is given by
+\begin{eqnarray}
+    \eqbox{ \expval{T} = \frac{1}{2m} \expval{p^2} = \frac{1}{2m} \frac{2 p_0^3}{\pi} \int_{-\infty}^{\infty} \frac{p^2}{(p_0^2 + p^2)^2} \dd{p} = \frac{p_0^3}{\pi m} \frac{\pi}{2 p_0} = \frac{p_0^2}{2m} = E }
+.\end{eqnarray}
+
+We can verify this result by repeating the calculation in coordinate space:
+\begin{eqnarray}
+    \begin{aligned}
+        \expval{T} &= \frac{p_0}{\hbar} \int_{-\infty}^{\infty} e^{-p_0 |x|/\hbar} \Big( -\frac{\hbar^2}{2m} \dv[2]{x} e^{- p_0 |x| /\hbar} \Big)  \dd{x} \\
+                   &= -\frac{p_0 \hbar}{2m} \Bigg[ \int_{-\infty}^{0} e^{p_0 x /\hbar} \dv[2]{x} e^{p_0 x /\hbar} \dd{x} + \int_{0}^{\infty} e^{-p_0 x /\hbar} \dv[2]{x} e^{-p_0 x /\hbar} \Bigg] \\
+                   &= -\frac{p_0 \hbar}{m} \Big( -\frac{p_0}{\hbar} \Big)^2 \int_{0}^{\infty} e^{-2p_0 x / \hbar} \dd{x} = \frac{p_0^3}{m \hbar} \frac{\hbar}{2 p_0} = \frac{p_0^2}{2m} = E
+    .\end{aligned}
+\end{eqnarray}
+
+}
 
 
 \prob{3 -- Chapter 5 \# 4}{
@@ -86,8 +159,8 @@ where $k = \sqrt{\epsilon}$, $\kappa = \sqrt{v_0 - \epsilon}$, $\epsilon = 2mE/\
     \end{bmatrix}
     \begin{pmatrix}
     F \\ G
-    ,\end{pmatrix}
-\end{eqnarray}
+    \end{pmatrix}
+,\end{eqnarray}
 where
 \begin{eqnarray}
    \alpha = \frac{\kappa}{k} - \frac{k}{\kappa},~ \beta = \frac{\kappa}{k} + \frac{k}{\kappa},~\beta^2 - \alpha^2 = 4
@@ -108,7 +181,87 @@ Show that the transmission coefficient under these conditions is the same as tha
 
 }
 
-\sol{}
+\sol{
+
+(a) The S.E. under this potential reads
+\begin{align}
+    \psi''(x) = \begin{cases}
+        [v_0 - \epsilon] \psi(x) & |x| < a \\
+        -\epsilon \psi(x) & |x| > a
+    ,\end{cases}
+\end{align}
+where $v_0 = 2mV_0/\hbar^2$ and $\epsilon = 2mE/\hbar^2$.
+This has solution
+\begin{eqnarray}
+    \psi(x) = \begin{cases}
+        A e^{ikx} + Be^{-ikx} & x < a \\
+        C e^{-\kappa x} + D e^{\kappa x} & |x| < a \\
+        F e^{ikx} + G e^{-ikx} & x > a
+    ,\end{cases}
+\end{eqnarray}
+where $k^2 = \epsilon$ and $\kappa^2 = v_0 - \epsilon$
+We have the following boundary conditions
+\begin{align}
+    \psi(-a^{-}) = \psi(-a^{+}) &\Rightarrow A e^{-ika} + B e^{ika} = C e^{\kappa a} + D e^{-\kappa a} \\
+    \psi'(-a^{-}) = \psi'(-a^{+}) &\Rightarrow ik(A e^{-ika} - B e^{ika}) = \kappa (-C e^{\kappa a} + De^{-\kappa a}) \\
+    \psi(a^{-}) = \psi(a^{+}) &\Rightarrow Ce^{-\kappa a} + D e^{\kappa a} = F e^{ika} + Ge^{-ika} \\
+    \psi'(a^{-}) = \psi'(a^{+}) &\Rightarrow \kappa ( -C e^{-\kappa a} + D e^{\kappa a} ) = ik ( F e^{ika} - G e^{-ika} )
+.\end{align}
+Let us solve for $C$ and $D$ in terms of $A$ and $B$:
+\begin{align}
+C e^{-\kappa a} &= \frac{e^{-ika} (\kappa - ik)}{2 \kappa e^{2\kappa a}} A + \frac{e^{ika} (\kappa + ik)}{2 \kappa e^{2 \kappa a}} B \\
+    De^{\kappa a} &= \frac{e^{-ika} (\kappa + ik)}{2 \kappa e^{-2\kappa a}} A + \frac{e^{ika} (\kappa - ik)}{2 \kappa e^{-2 \kappa a}} B
+.\end{align}
+The last two equations from the BCs are then
+\begin{align}
+    \frac{e^{-ika}}{2\kappa} \Bigg[ \frac{\kappa - ik}{e^{2 \kappa a}} + \frac{\kappa + ik}{e^{-2\kappa a}} \Bigg] A + \frac{e^{ika}}{2\kappa} \Bigg[ \frac{\kappa - ik}{e^{-2 \kappa a}} + \frac{\kappa + ik}{e^{2 \kappa a}} \Bigg] B &= F e^{ika} + G e^{-ika} \\
+    \frac{e^{-ika}}{2} \Bigg[ \frac{-\kappa + ik}{e^{2 \kappa a}} + \frac{\kappa + ik}{e^{-2\kappa a}} \Bigg] A + \frac{e^{ika}}{2} \Bigg[ \frac{\kappa - ik}{e^{-2 \kappa a}} - \frac{\kappa + ik}{e^{2 \kappa a}} \Bigg] B &= ik( F e^{ika} - G e^{-ika} )
+.\end{align}
+Observe that these equations reduce to
+\begin{align}
+    e^{-ika} \Big[ \cosh(2 \kappa a) + i \frac{k}{\kappa} \sinh(2 \kappa a) \Big] A + e^{ika} \Big[ \cosh(2 \kappa a) &- i \frac{k}{\kappa} \sinh(2 \kappa a) \Big] B \nonumber \\
+    &= Fe^{ika} + G e^{-ika} \\
+    e^{-ika} \Big[ \cosh(2 \kappa a) - i \frac{\kappa}{k} \sinh(2 \kappa a) \Big] A - e^{ika} \Big[ \cosh(2 \kappa a) &+ i \frac{\kappa}{k} \sinh(2 \kappa a) \Big] B \nonumber \\
+    &= Fe^{ika} - Ge^{-ika}
+.\end{align}
+Solving for $F$ and $G$ gives
+\begin{align}
+    F &= \Big[ \cosh(2 \kappa a) - i (\alpha/2) \sinh(2 \kappa a) \Big] e^{-2ika} A - i (\beta/2) \sinh(2 \kappa a) B \\
+    G &= i (\beta/2) \sinh(2 \kappa a) A + \Big[ \cosh(2 \kappa a) + i(\alpha/2) \sinh(2 \kappa a) \Big] e^{2ika} B
+,\end{align}
+and rewriting in matrix form
+\begin{eqnarray}
+    \begin{pmatrix}
+    F \\ G
+    \end{pmatrix}
+    = \begin{bmatrix}
+        \Big( \cosh(2 \kappa a) - i (\alpha/2) \sinh(2 \kappa a) \Big) e^{-2ika} & - i (\beta/2) \sinh(2 \kappa a) \\
+        i (\beta/2) \sinh(2 \kappa a) & \Big( \cosh(2 \kappa a) + i(\alpha/2) \sinh(2 \kappa a) \Big) e^{2ika}
+    \end{bmatrix}
+    \begin{pmatrix}
+    A \\ B
+    \end{pmatrix}
+.\end{eqnarray}
+Notice that the matrix on the r.h.s is unitary since $|F|^2 + |G|^2 = |A|^2 + |B|^2$\footnote{Why?}, meaning we can write
+\begin{eqnarray}
+    \eqbox{
+    \begin{pmatrix}
+    A \\ B
+    \end{pmatrix}
+    = \begin{bmatrix}
+        \Big( \cosh(2 \kappa a) + i (\alpha/2) \sinh(2 \kappa a) \Big) e^{2ika} & i (\beta/2) \sinh(2 \kappa a) \\
+        -i (\beta/2) \sinh(2 \kappa a) & \Big( \cosh(2 \kappa a) - i(\alpha/2) \sinh(2 \kappa a) \Big) e^{-2ika}
+    \end{bmatrix}
+    \begin{pmatrix}
+    F \\ G
+    \end{pmatrix}
+}
+.\end{eqnarray}
+
+(b)
+
+
+}
 
 
 \prob{4 -- Chapter 5 \# 5}{
