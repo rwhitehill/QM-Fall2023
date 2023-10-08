@@ -242,7 +242,9 @@ and rewriting in matrix form
     A \\ B
     \end{pmatrix}
 .\end{eqnarray}
-Notice that the matrix on the r.h.s is unitary since $|F|^2 + |G|^2 = |A|^2 + |B|^2$\footnote{Why?}, meaning we can write
+Notice that the matrix on the r.h.s is unitary\footnote{
+Justification: (1) Without resorting to wave packets, notice that taking $x \rightarrow -x$, we have $A^{*} = G$ and $B^{*} = F$, meaning $|F|^2 + |G|^2 = |B^{*}|^2 + |A^{*}|^2 = |A|^2 + |B|^2$. (2) Using wave packets, we would see that $j(-\infty) = j(\infty)$, where $j$ is the probability current denity. Thus, $|A|^2 + |B|^2 = |F|^2 + |G|^2$. (3) One could also just do the algebra, but noticing that the scattering matrix is indeed unitary without some other physical intuition/rationale would certainly be some divine inspiration.
+}, meaning we can write
 \begin{eqnarray}
     \eqbox{
     \begin{pmatrix}
@@ -258,8 +260,27 @@ Notice that the matrix on the r.h.s is unitary since $|F|^2 + |G|^2 = |A|^2 + |B
 }
 .\end{eqnarray}
 
-(b)
+(b) The transmission coefficient (in the limit $\kappa a \gg 1$ -- noting that $\cosh{x} \approx \sinh{x} \approx e^{x}/2$ when $x \gg 1$) is given by
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        T &= \Big| \frac{1}{\cosh(2\kappa a) + i(\alpha/2) \sinh(2 \kappa a)} e^{2 i k a} \Big|^2 \approx 16 e^{-4 \kappa a} \frac{1}{4 + \alpha^2} \\
+          &= 16 e^{-4 \kappa a} \Big[ 4 + \Big( \frac{\kappa - k}{k \kappa} \Big)^2 \Big]^{-1} = 16 e^{-4 \kappa a} \Big( \frac{\kappa k}{k+k} \Big)^{2}
+    .\end{aligned}
+}
+\end{eqnarray}
+Note that this implies that the probability of transmission for such a potential is exponentially suppressed.
 
+(c) If we now consider the case where our square barrier approaches a delta barrier ($a \rightarrow 0$, $v_0 \rightarrow \infty$, $2aV_0 = {\rm constant}$), the transmission coefficient becomes
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        T &= \frac{1}{\cosh^2(2 \kappa a ) + (\alpha/2)^2 \sinh^2(2 \kappa a)} = \frac{1}{\cosh^2(2 \sqrt{\kappa^2 a} \sqrt{a}) + \frac{\alpha^2}{4} \sinh^2(2 \sqrt{\kappa^2 a} \sqrt{a})} \\
+          &= \frac{1}{1 + \frac{\kappa^2}{4k^2} (4 \kappa^2 a^2) + \ldots} \approx \frac{\epsilon}{\epsilon + v_0^2 a^2} = \frac{\epsilon}{\epsilon + (2mV_0a/\hbar^2)^2}
+    ,\end{aligned}
+}
+\end{eqnarray}
+which is the result we expected.
 
 }
 
