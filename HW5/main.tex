@@ -62,6 +62,16 @@ Hence, we have
     \eqbox{ \pdv{\tilde{\Psi}(\va*{p},t)}{t} = -\frac{\va*{p}^2}{2m} \tilde{\Psi}(\va*{p},t) + \tilde{\Psi} \star \tilde{V} }
 .\end{eqnarray}
 
+(b) One way of arriving at this result is knowing that the S.E. transcends any particular basis.
+In general, for a state $\ket{\psi}$, we have
+\begin{eqnarray}
+    i \hbar \pdv{\ket{psi}}{t} = \Big[ \frac{p^2}{2m} + V(x) \Big] \ket{psi}
+.\end{eqnarray}
+If we project this onto the $p$-basis, then we immediately have
+\begin{eqnarray}
+    \eqbox{ i \hbar \pdv{\tilde{\psi}}{t} = \Big[ \frac{\va*{p}^2}{2m} + V(i \hbar \grad_{p}) \Big] \tilde{\psi} }
+.\end{eqnarray}
+
 }
 
 
@@ -291,7 +301,7 @@ Consider a particle of mass $m$ under the action of a potential given by
 \begin{eqnarray}
     V(x) = \frac{\hbar^2}{2m} [ v_0 \theta(-x) - w_0 \delta(x) ]
 ,\end{eqnarray}
-where $\theta(z)$ is the Heaviside step function.
+where $\theta(x)$ is the Heaviside step function.
 
 (a) Show that the presence of the potential step of height $v_0$ does not alter the boundary conditions that the wave function and its first derivative must satisfy at $x = 0$.
 Is there a bound state?
@@ -308,7 +318,45 @@ Compute the time delay associated with the relected wave packet in this case.
 
 }
 
-\sol{}
+\sol{
+
+(a) Observe the following
+\begin{eqnarray}
+    \eqbox{
+    \begin{aligned}
+        \psi'(0^{+}) - \psi'(0^{-}) &= v_0 \int_{-\epsilon}^{\epsilon} \psi(x) \theta(-x) \dd{x} - w_0 \psi(0) \\
+                                    &= v_0 \int_{-\epsilon}^{0} \psi(x) \dd{x} - w_0 \psi(0) = -w_0 \psi(0)
+    \end{aligned}
+}
+\end{eqnarray}
+as we take $\epsilon \rightarrow 0$.
+
+Now, we analyze the energy spectrum.
+Bound states may only exist for $E < 0$.
+In this regime, the wave function is given as
+\begin{eqnarray}
+    \psi(x) = \begin{cases}
+        A e^{\kappa_{-} x} & x < 0 \\
+        B e^{-\kappa_{+} x} & x > 0
+    ,\end{cases}
+\end{eqnarray}
+where $\kappa_{-} = \sqrt{|\epsilon|}$, $\kappa_{+} = \sqrt{v_0 + |\epsilon|}$.
+Note that we have already used the condition that $\psi \rightarrow 0$ as $|x| \rightarrow \infty$ in order to gurantee normalizability.
+Imposing the BCs at $x = 0$, we find
+\begin{gather}
+    A = B \\
+    -\kappa_{+}B - \kappa_{-}A = -w_0 A
+.\end{gather}
+Therefore,
+\begin{eqnarray}
+    \sqrt{v_0 + |\epsilon|} - \sqrt{|\epsilon|} = w_0 \Leftrightarrow \sqrt{1 + |\epsilon| / v_0} - \sqrt{|\epsilon| / v_0} = \frac{w_0}{\sqrt{v_0}}
+.\end{eqnarray}
+Notice that the l.h.s. is monotonically decreasing for $x = |\epsilon|/v_0 > 0$ but bounded between $0$ and $1$.
+Thus, we only have a bound state if $0 < w_0/\sqrt{v_0} < 1$
+
+{\color{red} WRONG!! Need to redefine $\kappa_{\pm}$}
+
+}
 
 
 
