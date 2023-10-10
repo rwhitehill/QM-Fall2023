@@ -1,0 +1,44 @@
+\chapter{The Failure of Classical Physics}
+
+The following is a quick summary of some of the phenomena which classical mechanics and electromagnetic theory could not properly model and explain.
+
+\section{Black-body radiation}
+
+The primary quantity of interest here is the energy density of some box which is kept at temperature $T$, denoted as $u(\nu,T)$.
+The total energy that strikes an area $A$ of the wall of the box in time $t$ is
+\begin{eqnarray}
+    \int_{0}^{2 \pi} \dd{\phi} \int_{0}^{\pi/2} \dd{\theta} \sin{\theta} \int_{0}^{ct} r^2 \frac{A \cos{\theta}}{4 \pi r^2} u(\nu,T) \dd{\nu} = \frac{c t A}{4} u(\nu,T) \dd{\nu}
+,\end{eqnarray}
+implying that we can write the total energy absorbed by the box as
+\begin{eqnarray}
+    E(\nu,T) = \frac{c}{4} f(\nu,T) u(\nu,T)
+.\end{eqnarray}
+A body is called ``black'' if $f \equiv 1$, meaning that all light is perfectly absorbed.
+
+\subsection{Classical treatment}
+
+We can model the electromagnetic radiation by an infinite set of uncoupled harmonic oscillators.
+Solving Maxwell's equations in the box and using the equipartition theorem (which states that $U = \frac{1}{2} k_{B} T$ is the energy contribution from each quadratic degree of freedom in the Hamiltonian -- of which there are two for a given harmonic oscillator), we recover the Rayleigh-Jeans law for the energy density of a blackbody:
+\begin{eqnarray}
+    \eqbox{ u(\nu,T) = 8 \pi \frac{k_{B} T}{c^3} \nu^2 }
+,\end{eqnarray}
+which clearly diverges to $\infty$ for more energetic light (which is where the term ``ultraviolet catastrophe'' originates).
+
+\subsection{Quantum treatment}
+
+The quantum nature comes from using Einstein's formula for the energy of a photon of light at frequency $\nu$: $E = n h \nu$ ($n = 0,1,2,\ldots$).
+We can use the partition function to derive the fact that the average energy of a harmonic oscillator is
+\begin{eqnarray}
+    \expval{E} = \frac{h \nu}{e^{\beta h \nu} - 1}
+,\end{eqnarray}
+where $\beta = 1/k_{B}T$.
+Using this fact instead of the equipartition theorem, we find
+\begin{eqnarray}
+    \eqbox{ u(\nu,T) = \frac{8 \pi h}{c^3} \frac{\nu^3}{e^{\beta h \nu} - 1} }
+.\end{eqnarray}
+Notice that this resolves the ultraviolet catastrophe since the energy density now is bounded at all frequencies of light, peaking at some $\nu_0$ (is there a well-known formula for this?).
+
+
+\section{Photo-electric effect}
+
+

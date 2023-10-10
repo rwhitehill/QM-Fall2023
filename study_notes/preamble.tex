@@ -1,0 +1,128 @@
+\documentclass[10pt,a4paper]{book}
+
+% custom section formatting
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\Large\filcenter\sffamily}
+{\titlerule[1pt]%
+\vspace{1pt}%
+\titlerule
+\vspace{1pc}%
+\LARGE\MakeUppercase{\chaptertitlename} \thechapter}
+{1pc}
+{\titlerule
+\vspace{1pc}%
+\Huge}
+    
+% encoding for file and font
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% math formatting/tools
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[arrowdel]{physics}
+
+% unit formatting
+\usepackage{siunitx}
+\AtBeginDocument{\RenewCommandCopy\qty\SI}
+
+% figure formatting/tools
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{currfile}
+
+\NewDocumentCommand\incfig{O{1} m}{
+    \def\svgwidth{#1\textwidth}
+    \import{./Figures/\currfiledir}{#2.pdf_tex}
+}
+
+\newcommand{\bef}{\begin{figure}[h!tb]\centering}
+\newcommand{\eef}{\end{figure}}
+
+\newcommand{\bet}{\begin{table}[h!tb]\centering}
+\newcommand{\eet}{\end{table}}
+
+% hyperlink references 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Physics 1 Notes},
+    pdfauthor={Richard Whitehill},
+    pdfpagemode=FullScreen
+}
+\urlstyle{same}
+
+\newcommand{\eref}[1]{Eq.~(\ref{eq:#1})}
+\newcommand{\erefs}[2]{Eqs.~(\ref{eq:#1})--(\ref{eq:#2})}
+
+\newcommand{\fref}[1]{Fig.~(\ref{fig:#1})}
+\newcommand{\frefs}[2]{Fig.~(\ref{fig:#1})--(\ref{fig:#2})}
+
+\newcommand{\aref}[1]{Appendix~(\ref{app:#1})}
+\newcommand{\sref}[1]{Section~(\ref{sec:#1})}
+\newcommand{\srefs}[2]{Sections~(\ref{sec:#1})-(\ref{sec:#2})}
+
+\newcommand{\tref}[1]{Table~(\ref{tab:#1})}
+\newcommand{\trefs}[2]{Table~(\ref{tab:#1})--(\ref{tab:#2})}
+
+% tcolorbox formatting/definitions
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{xifthen}
+\usepackage{parskip}
+
+\definecolor{peach}{rgb}{1.0,0.8,0.64}
+
+\DeclareTColorBox[auto counter, number within=chapter]{defbox}{O{}}{
+    enhanced,
+    boxrule=0pt,
+    frame hidden,
+    borderline west={4pt}{0pt}{green!50!black},
+    colback=green!5,
+    before upper=\textbf{Definition \thetcbcounter \ifthenelse{\isempty{#1}}{}{: #1} \\ },
+    sharp corners
+}
+
+\newcommand*{\eqbox}{\tcboxmath[
+    enhanced,
+    colback=black!10!white,
+    colframe=black,
+    sharp corners,
+    size=fbox,
+    boxsep=8pt,
+    boxrule=1pt
+]}
+
+\newtcolorbox[auto counter, number within=chapter]{exbox}{
+    parbox=false,
+    breakable,
+    enhanced,
+    sharp corners,
+    boxrule=1pt,
+    colback=white,
+    colframe=black,
+    before upper= \textbf{Example \thetcbcounter:}\,,
+    before lower= \textbf{Solution:}\,,
+    segmentation hidden
+}
+
+\newtcolorbox{resbox}{
+    enhanced,
+    colback=black!10!white,
+    colframe=black,
+    boxrule=1pt,
+    boxsep=0pt,
+    top=2pt,
+    ams nodisplayskip,
+    sharp corners
+}
