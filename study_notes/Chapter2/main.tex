@@ -105,4 +105,100 @@ There are a few properties that are useful to enumerate:
     \item The Fourier transform of $h(x) = \int_{-\infty}^{\infty} \dd{x'} f(x - x')g(x')$ (called a convolution) is just the product of the transforms of $f$ and $g$ separately: $\tilde{h}(y) = \sqrt{2 \pi} \tilde{f}(y) \tilde{g}(y)$.
 \end{enumerate}
 
+One more useful result to have in our back pocket is the Fourier transform of the $\delta$-function\footnote{We will skirt the problem of the existence of such a Fourier transform which requires that the $\delta$-function is square integrable but is not well defined at this point}:
+\begin{eqnarray}
+    \label{eq:fourier-delta}
+    \tilde{\delta}(y) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2 \pi}} e^{-iyx} \delta(x - x_0) = \frac{e^{-i x_0 y}}{\sqrt{2 \pi}}
+.\end{eqnarray}
+From this we can also derive the integral representation of the $\delta$-function by taking the inverse Fourier transform of \eref{fourier-delta}
+\begin{eqnarray}
+    \delta(x - x_0) = \int_{-\infty}^{\infty} \frac{\dd{y}}{\sqrt{2 \pi}} e^{i y x} \tilde{\delta}(y) = \int_{-\infty}^{\infty} \frac{e^{-i(x - x_0)y}}{2 \pi} \dd{x}
+.\end{eqnarray}
+
+Finally, we can extend the notion of this one-dimensional Fourier transform to three dimensions by taking successive Fourier transforms in each coordinate direction:
+\begin{eqnarray}
+    \tilde{f}(\va*{k}) = \int \frac{\dd[3]{\va*{r}}}{(2 \pi)^{3/2}} e^{-i \va*{k} \cdot \va*{r}} f(\va*{r})
+.\end{eqnarray}
+
+
+\section{Wave mechanics}
+
+Recall that a wave packet is defined by
+\begin{eqnarray}
+    \Psi(\va*{r},t) = \int \frac{\dd[3]{\va*{k'}}}{(2 \pi)^{3/2}} g(k') e^{i[ \va*{k}' \cdot \va*{r} - \omega(\va*{k}') t ]}
+.\end{eqnarray}
+Notice that this wave-function satisfies what we will call the free-particle Schr\"{o}dinger equation (S.E.):
+\begin{eqnarray}
+    i \hbar \pdv{\Psi(\va*{r},t)}{t} = -\frac{\hbar^2}{2m} \laplacian \Psi(\va*{r},t)
+.\end{eqnarray}
+Acting on the wave-packet explicitly reproduces the dispersion relation $E = \hbar \omega = \hbar^2 k^2 / 2m$.
+
+At this point, we introduce the Born interpretation of the wave function, which is that $\rho(\va*{r},t) = | \Psi(\va*{r},t) |^2$ is the spatial probability density for the particle which is describes.
+Note that these wave-functions must be normalized in the sense that
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \rho(\va*{r},t) \dd[3]{\va*{r}} = 1
+\end{eqnarray}
+since measurement of the particle's position is certain to return some value.
+
+Observe that this normalization is independent of time:
+\begin{eqnarray}
+    \dv{t} \int_{-\infty}^{\infty} | \Psi |^2 \dd[3]{\va*{r}} = 0
+,\end{eqnarray}
+This implies that
+\begin{gather}
+    \int \dd[3]{\va*{r}} \Big[ \Psi^{*} \pdv{\Psi}{t} + {\rm c.c.} \Big] = \int \dd[3]{\va*{r}} \Big[ \Psi^{*} \Big( -\frac{\hbar}{2m i} \laplacian \Psi \Big) + {\rm c.c.} \Big] = 0 \nonumber \\
+    - \int \dd[3]{\va*{r}} \frac{\hbar}{2 m i} \Big[ \Psi^{*} \laplacian \Psi - \Psi \laplacian \Psi^{*} \Big] = - \int \dd[3]{\va*{r}} \div{ \frac{\hbar}{2 m i} \Big[ \Psi^{*} \grad \Psi - \Psi \grad \Psi^{*} \Big] } = 0 \nonumber \\
+    - \int \dd{S_{\infty}} \underbrace{ \frac{\hbar}{2 m i} \Big[ \Psi^{*} \grad \Psi - \Psi \grad \Psi^{*} \Big] }_{\va*{j}(\va*{r},t)} = 0
+,\end{gather}
+where $\va*{j}$ is interpreted the probability current density.
+It should be clear that $\va*{j}(\va*{r},t)|_{S_{\infty}} = 0$ since $\Psi \rightarrow 0$ as $|\va*{r}| \rightarrow \infty$.
+Here we have proven a continuity equation
+\begin{eqnarray}
+    \pdv{\rho}{t} + \div{\va*{j}} = 0
+,\end{eqnarray}
+which is a local probability conservation result.
+
+Once we have the wave-function, we can calculate the average of a function $f(\va*{r})$ is
+\begin{eqnarray}
+    \expval{f(\va*{r})}(t) = \int \dd[3]{\va*{r}} f(\va*{r}) \rho(\va*{r},t)
+.\end{eqnarray}
+In particular, the average position of a particle is
+\begin{eqnarray}
+    \expval{\va*{r}(t)} = \int \dd[3]{\va*{r}} \, \va*{r} |\Psi(\va*{r},t)|^2
+.\end{eqnarray}
+Now, we turn our attention to the calculation of the average momentum.
+We can define a momentum space wave-function by taking the Fourier transform of the coordinate wave-function:
+\begin{eqnarray}
+    \begin{aligned}
+        \tilde{\Psi}(\va*{p},t) &= \int \frac{\dd[3]{\va*{r}}}{(2 \pi)^{3/2}} e^{-i \va*{k} \cdot \va*{r}} \Psi(\va*{r},t) \\
+                                &= \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r} / \hbar} \Bigg[ \int \frac{\dd[3]{\va*{p'}}}{(2 \pi \hbar)^{3/2}} g(\va*{p}' / \hbar) e^{-i } e^{i[ \va*{p}' \cdot \va*{r} - E t ] / \hbar} \Bigg] \\
+                                &= e^{-i E t / \hbar} g(\va*{p})
+    .\end{aligned}
+\end{eqnarray}
+From this, it is trivial to see that the average momentum is
+\begin{eqnarray}
+    \expval{\va*{p}(t)} = \int \dd[3]{\va*{p}} \, \va*{p} | \tilde{\Psi}(\va*{p},t) |^2
+.\end{eqnarray}
+Less trivially, in terms of the coordinate space wave-function:
+\begin{eqnarray}
+    \begin{aligned}
+        \expval{\va*{p}(t)} &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \va*{p} \tilde{\Psi}^{*}(\va*{p},t) \tilde{\Psi}(\va*{p},t) \\
+                            &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \va*{p} \Bigg[ \int \frac{\dd[3]{\va*{r}'}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r}' / \hbar} \Psi^{*}(\va*{r}',t) \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{p} \cdot \va*{r} / \hbar} \Psi(\va*{r},t) \Bigg] \\
+                            &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \Bigg[ \int \frac{\dd[3]{\va*{r}'}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r}' / \hbar} \Psi^{*}(\va*{r}',t) \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} \Big( i\hbar \grad e^{i \va*{p} \cdot \va*{r} / \hbar} \Big) \Psi(\va*{r},t) \Bigg] \\
+                            &= \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \Bigg[ \int \frac{\dd[3]{\va*{r}'}}{(2 \pi \hbar)^{3/2}} e^{-i \va*{p} \cdot \va*{r}' / \hbar} \Psi^{*}(\va*{r}',t) \Bigg] \Bigg[ \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} e^{i \va*{p} \cdot \va*{r} / \hbar} \Big( -i\hbar \grad \Psi(\va*{r},t) \Big) \Bigg] \\
+                            &= \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} \Psi^{*}(\va*{r},t) \Big( -i \hbar \grad \Big) \Psi(\va*{r},t)
+    .\end{aligned}
+\end{eqnarray}
+From this, we may define the coordinate space momentum operator $\va*{p} = -i \hbar \grad$.
+
+We could actually reverse the argument for $\expval{\va*{r}(t)}$, which would give
+\begin{eqnarray}
+    \expval{\va*{r}(t)} = \int \frac{\dd[3]{\va*{p}}}{(2 \pi \hbar)^{3/2}} \tilde{\Psi}^{*}(\va*{p},t) \Big( i \hbar \grad_{p} \Big) \tilde{\Psi}(\va*{p},t)
+.\end{eqnarray}
+From this, the momentum space position operator is given as $\va*{r} = i \hbar \grad_{p}$, which is quite similar to the momentum operator.
+This is one of the first hints of the intimate connection between position and momentum.
+
+
+
+
 

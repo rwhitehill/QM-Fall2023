@@ -1,0 +1,118 @@
+\chapter{Schr\"{o}dinger Equation; Uncertainty Relations}
+
+\section{Time-dependent Schr\"{o}dinger Equation}
+
+In the last section, we derived the governing equation for the wave-function of a free particle
+\begin{eqnarray}
+    i \hbar \pdv{\Psi(\va*{r},t)}{t} = - \frac{\hbar^2}{2m} \laplacian \Psi(\va*{r},t)
+.\end{eqnarray}
+We can add in interactions through the potential $V(\va*{r})$ as
+\begin{eqnarray}
+    i \hbar \pdv{\Psi(\va*{r},t)}{t} = \Big[ - \frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \Psi(\va*{r},t) = H \Psi
+,\end{eqnarray}
+where we define the Hamiltonian operator $H = \va*{p}^2 / 2m + V(\va*{r})$.
+
+Note that we still retain the Born interpretation of the wave-function, which is that $\rho(\va*{r},t) = |\Psi(\va*{r},t)|^2$ is the spatial probability density, and furthermore, we could repeat the manipulations to derive the probability density current and arrive at the exact same answer (worked out in a homework problem):
+\begin{eqnarray}
+    \va*{j}(\va*{r},t) = \frac{\hbar}{2 m i} \Big[ \Psi^{*} \grad \Psi - \Psi \grad \Psi^{*} \Big]
+.\end{eqnarray}
+Furthermore, we still have the local continuity equation
+\begin{eqnarray}
+    \pdv{\rho}{t} + \div{\va*{j}} = 0
+,\end{eqnarray}
+which follows from the normalization of the wave-function
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} |\Psi(\va*{r},t)|^2 = 1
+.\end{eqnarray}
+
+Working toward a solution, we use separation of variables and write $\Psi(\va*{r},t) = f(t) \psi(\va*{r})$ and obtain
+\begin{eqnarray}
+    \frac{1}{f(t)} \Big( i\hbar \dv{f}{t} \Big) = \frac{1}{\psi(\va*{r})} \Big[ -\frac{\hbar^2}{2m} \laplacian \psi(\va*{r}) + V(\va*{r}) \psi(\va*{r}) \Big] = E
+.\end{eqnarray}
+Thus, we have two separate equations for the time and spatial dependence.
+The time-dependence has a trivial solution
+\begin{eqnarray}
+    f(t) = e^{-i E t / \hbar}
+.\end{eqnarray}
+
+\section{Time-independent Schr\"{o}dinger Equation}
+
+
+Continuing with our separable solution, we see the spatial differential equation does not quite have such a trivial solution
+\begin{eqnarray}
+    \Big[ -\frac{\hbar^2}{2m} \laplacian + V(\va*{r}) \Big] \psi(\va*{r}) = H \psi(\va*{r}) = E \psi(\va*{r})
+.\end{eqnarray}
+This is called the time-independent S.E. typically.
+It is also an energy eigenvalue equation, where $E$ and $\psi$ are the energy eigenvalue and eigenfunction, respectively, of the Hamiltonian operator.
+Generally, we can only say a few things about $E$ and $\psi$ without an explicit form for the potential.
+\begin{itemize}
+    \item For a separable wave-function: $\expval{H} = \int \dd[3]{\va*{r}} e^{i E t / \hbar} \psi^{*}(\va*{r}) H e^{-i E t / \hbar} \psi(\va*{r}) = E$
+    \item The energy spectrum is strictly real: $H$ is a hermitian operator\footnote{$\int \dd[3]{\va*{r}} f^{*}(\va*{r}) H g(\va*{r}) = \int \dd[3]{\va*{r}} [H f(\va*{r})]^{*} g(\va*{r})$}, so $\expval{H} = E = \int \dd[3]{\va*{r}} [H \psi(\va*{r})]^{*} \psi(\va*{r}) = E^{*}$
+    \item The set of energy eigenfunctions is orthogonal: Notice that $\int \dd[3]{\va*{r}} \psi_{m}^{*} H \psi_{n} = E_{n} \int \dd[3]{\va*{r}} \psi_{m}^{*} \psi_{n} = E_{m} \int \dd[3]{\va*{r}} \psi_{m}^{*} \psi_{n}$ exploiting the hermiticity of $H$. Subtracting the two equations, we have $(E_{n} - E_{m}) \int \dd[3]{\va*{r}} \psi_{m}^{*} \psi_{n} = 0$, and since $E_{n} - E_{m} \ne 0$, $\psi_{m}$ and $\psi_{n}$ must be orthogonal.
+    \item The eigenfunctions of $H$ form a complete basis such that any square-integrable function $\phi(\va*{r}) = \sum_{n} c_{n} \psi_{n}(\va*{r})$ with $c_{n} = \int \dd[3]{\va*{r}} \psi_{n}^{*}(\va*{r}) \phi(\va*{r})$.
+\end{itemize}
+
+
+\section{General Solution of the Time-dependent Schr\"{o}dinger Equation}
+
+We worked with separable solutions above, but in general, a solution $\Psi(\va*{r},t)$ of the S.E. need not be separable.
+However, any solution can be expanded in the basis of energy eigenfunctions as in the bullet point of the last bullet point:
+\begin{eqnarray}
+    \Psi(\va*{r},t) = \sum_{n} c_{n} \psi_{n}(\va*{r}) e^{- i E_{n} t / \hbar}
+.\end{eqnarray}
+Note that $\Psi(\va*{r},t)$ must satisfy the relevant boundary conditions (BCs)\footnote{$\psi$ and $\grad \psi$ must be continuous -- except perhaps in the case where $V(\va*{r})$ contains a $\delta$-function}.
+Additionally, for bound states, $\Psi$ must be  normalizable as well.
+
+
+\section{Heisenberg's uncertainty relations}
+
+The commutator of two operators $A$ and $B$ is $[A,B] = AB - BA$.
+For the position and momentum operators
+\begin{align}
+    [x,p] f(x) &= -i\hbar [x,\pdv{x}] f(x) = -i \hbar \Big[ x \pdv{f}{x} - \pdv{x} x f(x) \Big] = i\hbar f(x) \\
+               &\Rightarrow [x,p] = i\hbar
+.\end{align}
+Generally, $[x_{i},p_{j}] = i\hbar \delta_{ij}$.
+
+Let us also define the uncertainty in the observable $A$ corresponding to the operator $A$ as
+\begin{eqnarray}
+    \Delta A^2 = \expval{(A - \expval{A})^2} = \expval{A^2} - \expval{A}^2
+.\end{eqnarray}
+Note that $\Delta A$ is not some measurement error.
+It is an intrinsic uncertainty in the quantity $A$ imposed by the fact that the wave-function is not necessarily an eigenstate of $A$.
+We can derive a lower bound on $\Delta A \Delta B$ that depends on the commutator $[A,B]$.
+
+For any square-integrable functions $f$ and $g$ we have the Cauchy-Schwarz inequality
+\begin{eqnarray}
+    \Bigg( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Bigg) \Bigg( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Bigg) \geq \Bigg| \int \dd[3]{\va*{r}} g^{*}(\va*{r}) f(\va*{r}) \Bigg|^2
+.\end{eqnarray}
+Note that the roles of $f$ and $g$ are interchangeable, so we can also write
+\begin{eqnarray} 
+    \Bigg( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Bigg) \Bigg( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Bigg) \geq \frac{1}{2} \Bigg[ \Bigg| \int \dd[3]{\va*{r}} g^{*}(\va*{r}) f(\va*{r}) \Bigg|^2 + \Bigg| \int \dd[3]{\va*{r}} f^{*}(\va*{r}) g(\va*{r}) \Bigg|^2 \Bigg]
+.\end{eqnarray}
+Observe
+\begin{eqnarray}
+    \Delta A^2 \Delta B^2 = \Bigg( \int \dd[3]{\va*{r}} \Psi^{*} (A - \expval{A})^2 \Psi \Bigg) \Bigg( \int \dd[3]{\va*{r}} (B - \expval{B})^2 \Bigg)
+.\end{eqnarray}
+Since we are interested in observables $A$ and $B$, we assume that $A$ and $B$ are hermitian such that if we define $f = (A - \expval{A}) \Psi$ and $g = (B - \expval{B}) \Psi$ then 
+\begin{eqnarray}
+    \begin{aligned}
+        \Delta A^2 \Delta B^2 &= \Big( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Big) \Big( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Big) \\
+                              &\geq \frac{1}{2} \Bigg[ \Big| \int \dd[3]{\va*{r}} \Psi^{*} (B - \expval{B})(A - \expval{A}) \Psi \Big|^2 \\
+                              &\phantom{\frac{1}{2} \Bigg[ } + \Big| \int \dd[3]{\va*{r}} \Psi^{*} (A - \expval{A})(B - \expval{B}) \Psi \Big|^2 \Bigg] \\
+                              &\geq \frac{1}{4} \Big| \int \dd[3]{\va*{r}} \Psi^{*} [A,B] \Psi \Big|^2 = \frac{1}{4} |\expval{[B,A]}|^2
+    .\end{aligned}
+\end{eqnarray}
+
+From this, we can write down the Heisenberg uncertainty relation
+\begin{eqnarray}
+    \Delta x \Delta p \geq \frac{\hbar}{2}
+.\end{eqnarray}
+
+
+
+
+
+
+
+
