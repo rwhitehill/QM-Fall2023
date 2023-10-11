@@ -1,0 +1,108 @@
+\chapter{Wave-Particle Duality and Wave Mechanics}
+
+In the previous chapter, we have observed that light can be treated as both a particle in some instances and a wave in others.
+It is natural then to extend this to matter particles such as electrons, which have in some instances as wave-like properties.
+De Broglie introduced the wavelength of a particle as $\lambda = h/p$, and from this formula, we can reproduce the different observations which corroborate this wave-particle duality of matter.
+For instance, a couple well known results are the two-slit experiment and Bragg reflection, both of which give interference patterns that can only be attributed to the wave nature of particles.
+
+\section{Wave packets}
+
+A particle's wave-function can be written
+\begin{eqnarray}
+    \label{eq:wave-packet}
+    \Psi(\va*{r},t) = \int \frac{\dd[3]{\va*{k}'}}{(2 \pi)^{3/2}} g(\va*{k}') e^{i [ \va*{k}' \cdot \va*{r} - \omega(\va*{k}') t ]}
+,\end{eqnarray}
+where $g$ is some complex profile function whose magnitude $|g|$ is strongly localized around $\va*{k}$.
+This is a superposition of plane waves corresponding to different momenta (we will see later that we cannot consider a particle with definite momentum $\va*{p} = \hbar \va*{k}$) with time dependence given by a phase with $\omega = E/\hbar = \hbar k'^2/2m$.
+
+We can analyze this wave-packet using the method of stationary phase.
+Defining $\phi(\va*{k}') = \va*{k}' \cdot \va*{r} - \omega t$, we expand around the peak of $|g|$, which gives
+\begin{eqnarray}
+    \phi(\va*{k}') \approx \phi(\va*{k}) + (\va*{k}' - \va*{k}) \cdot \grad_{\va*{k}'} \phi(\va*{k}')|_{\va*{k}' = \va*{k}} + \ldots
+.\end{eqnarray}
+Putting this into \eref{wave-packet}, we have
+\begin{eqnarray}
+    \Psi(\va*{r},t) \approx e^{i [\va*{k} \cdot \va*{r} - \omega(\va*{k}) t]} \int \frac{\dd[3]{\va*{k}'}}{(2 \pi)^{3/2}} g(\va*{k}') e^{i [ \va*{r} - \frac{\hbar \va*{k}}{m} t ] \cdot [\va*{k}' - \va*{k}]}
+.\end{eqnarray}
+Notice that the first factor is just a phase factor, and the line of constant phase $\phi = \phi_0$ is given by
+\begin{eqnarray}
+    x_{i} = \frac{\phi_0}{k_{i}} + \frac{\omega(\va*{k})}{k_{i}} t
+.\end{eqnarray}
+The coefficient in front of the second term is called the phase velocity.
+
+Now, turning to the phase factor inside the integral, we have some argument that depends on the distance between $\va*{r}$ and $\va*{r}_{0} = (\hbar \va*{k} / m) t$.
+We can identify $\va*{r}_{0}$ with the ``center'' of the wave-packet since for $\va*{r}$ far from $\va*{r}_0$, the exponential is very oscillatory and hence damps the amplitude of $\Psi$, but for $\va*{r} \approx \va*{r}_{0}$, there are no such cancellations and a peak at $\va*{r} = \va*{r}0$.
+It is clear then that the wave-packet moves globally with this center at the group velocity $\va*{v}_{\rm group} = \hbar \va*{k}/m$.
+
+
+\section{Mathematical Digression: $\delta$-Function Definition and Properties}
+
+In the hand-wavey approach, we can regard delta-functions as the limit of a sequence of functions $\delta(x) = \lim_{n \rightarrow \infty} f_{n}(x)$ such that $\delta(x) = 0$ for all $x \ne 0$ and 
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \phi(x) \delta(x) \dd{x} = \phi(0)
+.\end{eqnarray}
+A few examples (certainly not exhaustive) of $(f_{n})$ include
+\begin{itemize}
+    \item $\displaystyle f_{n}(x) = \begin{cases} n & |x| < 1/2n \\ 0 & |x| > 1/2n\end{cases}$
+    \item $\displaystyle f_{n}(x) = \frac{n}{2} e^{-n |x|}$
+    \item $\displaystyle f_{n}(x) = \frac{n}{\pi} \frac{1}{(nx)^2 + 1}$
+    \item $\displaystyle f_{n}(x) = \frac{n}{\sqrt{\pi}} e^{-(nx)^2}$
+    \item $\displaystyle f_{n}(x) = \frac{1}{\pi} \frac{\sin(nx)}{x}$
+    \item $\displaystyle f_{n}(x) = \frac{1}{n \pi} \frac{\sin^2(nx)}{x^2}$
+\end{itemize}
+
+There are a couple of properties of $\delta$-functions that should be enumerated\footnote{Note that by equality of two dirac functions $D_{1}$ and $D_{2}$, we really mean that $\int \dd{x} \phi(x) D_1(x) = \int \dd{x} \phi(x) D_2(x)$.}
+\begin{enumerate}
+    \item The $\delta$-function is even: $\delta(x) = \delta(-x)$, which can be easily shown by a substitution $x \rightarrow -x$.
+    \item $\delta(cx) = \delta(x)/|c|$ for $c \in \mathbb{R}$ (substitute $u = cx$ and consider $c > 0$ and $c < 0$ separately).
+    \item For a function $f(x)$ with simple roots $\{ x_{i} ~:~ f(x_{i}) = 0 \}$, $\delta(f(x)) = \sum_{i} \delta(x - x_{i})/|f'(x_{i})|$ (Break the integral into small pieces around each $x_{i}$ and Taylor expand $f(x)$ about $x_{i}$.).
+\end{enumerate}
+
+Generalizing to $n$ dimensions, we can define $\delta^{(n)}(\va*{x}) = 0$ for all $\va*{x} \ne 0$ and
+\begin{eqnarray}
+    \int_{\mathcal{D}} \phi(\va*{x}) \delta(\va*{x} - \va*{x}_{0}) \dd{x} = \begin{cases}
+        \phi(\va*{x}_{0}) & \va*{x}_{0} \in \mathcal{D} \\
+        0 & \va*{x}_{0} \not\in \mathcal{D}
+    \end{cases}
+.\end{eqnarray}
+Focusing on three dimensions, we have
+\begin{eqnarray}
+    \delta^{(3)}(\va*{r}) = \delta(x) \delta(y) \delta(z)
+.\end{eqnarray}
+If we want to change to curvilinear coordinates $(u,v,w)$, then
+\begin{eqnarray}
+    \delta^{(3)}(\va*{r}) = |{\rm Jac}[(x,y,z) \rightarrow (u,v,w)]| ~ \delta(u) \delta(v) \delta(w)
+.\end{eqnarray}
+For example, changing from Cartesian to spherical, we have
+\begin{eqnarray}
+    \delta^{(3)}(\va*{r} - \va*{r}_{0}) = \frac{1}{r^2} \delta(r - r_0) \delta(\cos{\theta} - \cos{\theta_0}) \delta(\phi - \phi_0)
+.\end{eqnarray}
+
+
+\section{Mathematical Digression: Fourier Transform Definition and Properties}
+
+Generically, an integral transform is of the form
+\begin{eqnarray}
+    \tilde{f}(y) = \int_{a}^{b} \dd{x} K(x,y) f(x)
+.\end{eqnarray}
+The function $K$ is called the kernel of the transform.
+
+The Fourier transform is defined with $K(x,y) = e^{-iyx}/\sqrt{2\pi}$ such that
+\begin{eqnarray}
+    \tilde{f}(y) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2\pi}} e^{-iyx} f(x)
+.\end{eqnarray}
+Note that only functions $f$ which are square integrable\footnote{$\int_{-\infty}^{\infty} |f(x)|^2 \dd{x} \in \mathbb{R}$} have a fourier transform.
+
+If we know the transform of $f$, we can invert the Fourier transform as follows to obtain
+\begin{eqnarray}
+    f(x) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2 \pi}} e^{iyx} \tilde{f}(y)
+.\end{eqnarray}
+
+There are a few properties that are useful to enumerate:
+\begin{enumerate}
+    \item Parseval's identity: $\displaystyle \int_{-\infty}^{\infty} |f(x)|^2 \dd{x} = \int_{-\infty}^{\infty} |\tilde{f}(y)|^2 \dd{y}$
+    \item $\displaystyle \mathcal{F}\Big\{ \dv[n]{f}{x} \Big\} (y) = (iy)^{n} \tilde{f}(y)$.
+    \item The Fourier transform of $h(x) = \int_{-\infty}^{\infty} \dd{x'} f(x - x')g(x')$ (called a convolution) is just the product of the transforms of $f$ and $g$ separately: $\tilde{h}(y) = \sqrt{2 \pi} \tilde{f}(y) \tilde{g}(y)$.
+\end{enumerate}
+
+

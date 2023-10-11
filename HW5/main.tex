@@ -62,10 +62,10 @@ Hence, we have
     \eqbox{ \pdv{\tilde{\Psi}(\va*{p},t)}{t} = -\frac{\va*{p}^2}{2m} \tilde{\Psi}(\va*{p},t) + \tilde{\Psi} \star \tilde{V} }
 .\end{eqnarray}
 
-(b) One way of arriving at this result is knowing that the S.E. transcends any particular basis.
-In general, for a state $\ket{\psi}$, we have
+(b) One way of arriving at this result is knowing that the S.E. is true in any particular basis.
+That is, for a state $\ket{\psi}$, we have
 \begin{eqnarray}
-    i \hbar \pdv{\ket{psi}}{t} = \Big[ \frac{p^2}{2m} + V(x) \Big] \ket{psi}
+    i \hbar \pdv{\ket{\psi}}{t} = \Big[ \frac{p^2}{2m} + V(x) \Big] \ket{\psi}
 .\end{eqnarray}
 If we project this onto the $p$-basis, then we immediately have
 \begin{eqnarray}
@@ -253,7 +253,7 @@ and rewriting in matrix form
     \end{pmatrix}
 .\end{eqnarray}
 Notice that the matrix on the r.h.s is unitary\footnote{
-Justification: (1) Without resorting to wave packets, notice that taking $x \rightarrow -x$, we have $A^{*} = G$ and $B^{*} = F$, meaning $|F|^2 + |G|^2 = |B^{*}|^2 + |A^{*}|^2 = |A|^2 + |B|^2$. (2) Using wave packets, we would see that $j(-\infty) = j(\infty)$, where $j$ is the probability current denity. Thus, $|A|^2 + |B|^2 = |F|^2 + |G|^2$. (3) One could also just do the algebra, but noticing that the scattering matrix is indeed unitary without some other physical intuition/rationale would certainly be some divine inspiration.
+Justification: (1) Without resorting to wave packets, notice that taking $x \rightarrow -x$, we have $A^{*} = G$ and $B^{*} = F$, meaning $|F|^2 + |G|^2 = |B^{*}|^2 + |A^{*}|^2 = |A|^2 + |B|^2$. (2) Using wave packets, we would see that $j(-\infty) = j(\infty)$, where $j$ is the probability current denity. Thus, $|A|^2 + |B|^2 = |F|^2 + |G|^2$. (3) Without the physical intuition, one could also just do the algebra brute force to take the inverse of the matrix, although this could be quite an unwieldy algebraic problem -- a minefield lying in wait for mistakes.
 }, meaning we can write
 \begin{eqnarray}
     \eqbox{
@@ -332,7 +332,7 @@ Compute the time delay associated with the relected wave packet in this case.
 as we take $\epsilon \rightarrow 0$.
 
 Now, we analyze the energy spectrum.
-Bound states may only exist for $E < 0$.
+Clearly, bound states may only exist for $E < 0$.
 In this regime, the wave function is given as
 \begin{eqnarray}
     \psi(x) = \begin{cases}
@@ -340,7 +340,7 @@ In this regime, the wave function is given as
         B e^{-\kappa_{+} x} & x > 0
     ,\end{cases}
 \end{eqnarray}
-where $\kappa_{-} = \sqrt{|\epsilon|}$, $\kappa_{+} = \sqrt{v_0 + |\epsilon|}$.
+where $\kappa_{-} = \sqrt{v_0 + |\epsilon|}$, $\kappa_{+} = \sqrt{|\epsilon|}$.
 Note that we have already used the condition that $\psi \rightarrow 0$ as $|x| \rightarrow \infty$ in order to gurantee normalizability.
 Imposing the BCs at $x = 0$, we find
 \begin{gather}
@@ -349,12 +349,100 @@ Imposing the BCs at $x = 0$, we find
 .\end{gather}
 Therefore,
 \begin{eqnarray}
-    \sqrt{v_0 + |\epsilon|} - \sqrt{|\epsilon|} = w_0 \Leftrightarrow \sqrt{1 + |\epsilon| / v_0} - \sqrt{|\epsilon| / v_0} = \frac{w_0}{\sqrt{v_0}}
+    \sqrt{v_0 + |\epsilon|} + \sqrt{|\epsilon|} = w_0 \Leftrightarrow \sqrt{1 + |\epsilon| / v_0} + \sqrt{|\epsilon| / v_0} = \frac{w_0}{\sqrt{v_0}}
 .\end{eqnarray}
-Notice that the l.h.s. is monotonically decreasing for $x = |\epsilon|/v_0 > 0$ but bounded between $0$ and $1$.
-Thus, we only have a bound state if $0 < w_0/\sqrt{v_0} < 1$
+Notice that the l.h.s. is positive for all $x = |\epsilon|/v_0 > 0$, and furthermore $\sqrt{1 + x} + \sqrt{x} > 1$, implying that $w_0 > \sqrt{v_0}$ for the existence of a bound state (only one though!).
 
-{\color{red} WRONG!! Need to redefine $\kappa_{\pm}$}
+If this condition is satisfied, we find that
+\begin{eqnarray}
+    \eqbox{ \epsilon = -\Big( \frac{w_0^2 - v_0}{2 w_0} \Big)^2 }
+.\end{eqnarray}
+
+Finally, notice that we may have scattering states in the energy regime $\epsilon > 0$, where the solutions for any given energy are doubly degenerate for $\epsilon > v_0$.
+
+(b) If we are in the region $\epsilon > v_0$, we can write down the wave function as follows
+\begin{eqnarray}
+    \psi(x) = \begin{cases}
+        e^{i K x} + Be^{-iKx} & x < 0 \\
+        C e^{ikx} & x > 0
+    ,\end{cases}
+\end{eqnarray}
+where $K = \sqrt{\epsilon - v_0}$ and $k = \sqrt{\epsilon}$.
+Note that we have separated the ``right'' and ``left'' moving waves in the region $x > 0$ into two separate solutions.
+The BCs at $x = 0$ give
+\begin{gather}
+   1 + B = C \\
+    ik C - iK (1 - B) = -w_0 C
+.\end{gather}
+Solving for $B$ gives
+\begin{eqnarray}
+    B = \frac{(K - k) + iw_0}{(K+k) - iw_0}
+.\end{eqnarray}
+Thus, the reflection coefficient is just
+\begin{eqnarray}
+    R = |B|^2 = \frac{(K-k)^2 + w_0^2}{(K+k)^2 + w_0^2}
+,\end{eqnarray}
+and therefore,
+\begin{eqnarray}
+    \eqbox{ T = 1 - R = \frac{4 k K}{(K + k)^2 + w_0^2} }
+.\end{eqnarray}
+
+If we consider the case where $\epsilon \gg v_0$, then $K \approx k$ and
+\begin{eqnarray}
+    T \approx \frac{4 \epsilon}{w_0^2 + 4 \epsilon}
+.\end{eqnarray}
+Furthermore, if we have $\epsilon \gg w_0$, then
+\begin{eqnarray}
+    \eqbox{ T \approx 1 - \frac{w_0^2}{4 \epsilon} \rightarrow 1 }
+\end{eqnarray}
+as $\epsilon \rightarrow \infty$.
+
+(c) If we have $0 < \epsilon < v_0$, then
+\begin{eqnarray}
+    \psi(x) = \begin{cases}
+        A e^{\kappa x} & x < 0 \\
+        B e^{ikx} + e^{-ikx}
+    ,\end{cases}
+\end{eqnarray}
+where $\kappa = \sqrt{v_0 - \epsilon}$ and $k = \sqrt{\epsilon}$.
+Note that we only have a single solution for a given $\epsilon$.
+The $e^{-\kappa x}$ solution in the region $x < 0$ was discarded since we must have a bounded solution.
+
+Imposing BCs at $x = 0$ gives
+\begin{gather}
+    A = B + 1 \\
+    ik(B - 1) - \kappa A = -w_0 A
+,\end{gather}
+and solving for $B$ gives
+\begin{eqnarray}
+    B = \frac{k - i(\kappa - w_0)}{k + i(\kappa - w_0)} = -e^{-2i\delta}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \tan{\delta} = \frac{\kappa - w_0}{k}
+.\end{eqnarray}
+Notice then that the transmission coefficient is
+\begin{eqnarray}
+    \eqbox{ T = 1 - R = 1 - |B|^2 = 0 }
+.\end{eqnarray}
+This matches with the intuition that the transmission coefficient is given by the probability current density at $x = -\infty$ at times far from the interaction at $t = 0$ with the potential step and $\delta$-well.
+Since the energy is less than the step size, the wave-function must be exponentially damped at any given energy, and therefore, the probability current would be identically zero at $x = -\infty$.
+
+If we introduce a wave packet, we find the reflected wave to be
+\begin{eqnarray}
+    \Psi_{R}(x,t) = -\int \frac{\dd{k}}{\sqrt{2 \pi}} g(k) e^{i(kx - \omega t - 2\delta)}
+.\end{eqnarray}
+The stationary phase method gives the center of the reflected wave packet as
+\begin{eqnarray}
+    x_{R}(t) = \frac{\hbar k_0}{m} t + 2 \delta'(k_0) = \frac{\hbar k_0}{m} [t - 2\tau]
+,\end{eqnarray}
+where $k_0$ is the point about which the profile $g(k)$ is localized.
+
+Thus, half the delay time is 
+\begin{eqnarray}
+    \eqbox{ \tau = \frac{m}{\hbar k_0} \frac{(\kappa_0 - w_0) + k^2/\kappa_0}{\kappa_0^2 + (\kappa_0-w_0)^2} }
+.\end{eqnarray}
+
 
 }
 

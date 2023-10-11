@@ -8,8 +8,8 @@ The primary quantity of interest here is the energy density of some box which is
 The total energy that strikes an area $A$ of the wall of the box in time $t$ is
 \begin{eqnarray}
     \int_{0}^{2 \pi} \dd{\phi} \int_{0}^{\pi/2} \dd{\theta} \sin{\theta} \int_{0}^{ct} r^2 \frac{A \cos{\theta}}{4 \pi r^2} u(\nu,T) \dd{\nu} = \frac{c t A}{4} u(\nu,T) \dd{\nu}
-,\end{eqnarray}
-implying that we can write the total energy absorbed by the box as
+.\end{eqnarray}
+If the box absorbs some fraction $f(\nu,T)$ of this energy, then the total energy absorbed by the box at temperature $T$ from light at frequency $\nu$ is
 \begin{eqnarray}
     E(\nu,T) = \frac{c}{4} f(\nu,T) u(\nu,T)
 .\end{eqnarray}
@@ -17,12 +17,28 @@ A body is called ``black'' if $f \equiv 1$, meaning that all light is perfectly 
 
 \subsection{Classical treatment}
 
-We can model the electromagnetic radiation by an infinite set of uncoupled harmonic oscillators.
-Solving Maxwell's equations in the box and using the equipartition theorem (which states that $U = \frac{1}{2} k_{B} T$ is the energy contribution from each quadratic degree of freedom in the Hamiltonian -- of which there are two for a given harmonic oscillator), we recover the Rayleigh-Jeans law for the energy density of a blackbody:
+We can solve Maxwell's equations (no sources!) inside the box with periodic boundary conditions, which gives
 \begin{eqnarray}
-    \eqbox{ u(\nu,T) = 8 \pi \frac{k_{B} T}{c^3} \nu^2 }
+    \pdv[2]{\tilde{\bf{E}}}{t} + c^2 k^2 \tilde{\bf{E}} = 0
 ,\end{eqnarray}
-which clearly diverges to $\infty$ for more energetic light (which is where the term ``ultraviolet catastrophe'' originates).
+where $\bf{\tilde{E}}(k)$ are the Fourier expansion coefficients of the electric field such that
+\begin{eqnarray}
+    \va*{E} = \sum_{k} e^{i \va*{k} \cdot \va*{r}} \bf{\tilde{E}}(k)
+.\end{eqnarray}
+A similar equation holds for the magnetic field.
+We can thus model the electromagnetic (EM) radiation by an infinite set of uncoupled harmonic oscillators.
+
+Next, we find the number of modes in a small volume of the reciprocal space to be 
+\begin{eqnarray}
+    \rho(\va*{k}) \dd[3]{\va*{k}} = 2 \frac{V}{(2\pi)^3} \dd{\va*{k}}
+.\end{eqnarray}
+The factor of two comes from the fact that there are two independent components in $\tilde{E}$ (in solving MEs, there is a condition that $\va*{E}$ be perpendicular to $\va*{k}$), and the second factor comes from the volume per mode in the reciprocal space.
+
+Using the equipartition theorem (which states that $U = \frac{1}{2} k_{B} T$ is the energy contribution from each quadratic degree of freedom in the Hamiltonian -- of which there are two for a given harmonic oscillator), the relation $\dd[3]{\va*{k}} = 4 \pi k^2 \dd{k}$ (assuming angular symmetry), and the dispersion relation $c = \nu \lambda$ ($k = 2\pi/\lambda$), we recover the Rayleigh-Jeans law for the energy density of a blackbody:
+\begin{eqnarray}
+    \eqbox{ \frac{(k_{B} T / 2 ) \rho(k) \dd{k}}{V} = \underbrace{ 8 \pi \frac{k_{B} T}{c^3} \nu^2 }_{u(\nu,T)} \dd{\nu} }
+,\end{eqnarray}
+Clearly the energy density diverges to $\infty$ for more energetic light (which is where the term ``ultraviolet catastrophe'' originates).
 
 \subsection{Quantum treatment}
 
@@ -40,5 +56,71 @@ Notice that this resolves the ultraviolet catastrophe since the energy density n
 
 
 \section{Photo-electric effect}
+
+The photo-electric effect is the phenomenon that if light is shined on a metal and set up a potential difference between the metal and some other metallic plate, say, that there is a current between the plates (in some circumstances).
+
+\subsection{Classical Treatment}
+
+We can treat an electron at the surface of the metal, which absorbs the light, to be a harmonic oscillator driven by the light (i.e. the force that the electric field of the light wave exerts on the electron).
+That is,
+\begin{eqnarray}
+    m \ddot{x}(t) + k x(t) = -e \mathcal{E}_{0} \cos(\omega t)
+.\end{eqnarray}
+Solving gives,
+\begin{eqnarray}
+    x(t) = x_0 \cos(\omega_0 t + \phi_0) -\frac{e \mathcal{E}_{0}}{m} \frac{\cos(\omega t)}{\omega_0^2 - \omega^2}
+,\end{eqnarray}
+where $\omega_0^2 = k/m$, which depends on the metal in consideration.
+The first term is just the homogeneous solution of the equation with $x_0$ and $\phi_0$ determined by initial conditions.
+Notice that the energy of the electron is (considering only the contribution associated with the transient term -- i.e. that from the driving force)
+\begin{eqnarray}
+    E(t) = \frac{1}{2} m \dot{x}^2 + \frac{k}{2} x \approx \frac{e^2 \mathcal{E}_{0}^2}{2m} \frac{1}{(\omega_0^2 - \omega^2)^2} [ \omega^2 \sin^2(\omega t) + \omega_0^2 \cos^2(\omega t) ]
+.\end{eqnarray}
+The average energy over one period of oscillation $T = 2 \pi / \omega$  is just
+\begin{eqnarray}
+    \expval{E} = \frac{e^2 \mathcal{E}_0^2}{4 m} \frac{\omega_0^2 + \omega^2}{(\omega_0^2 - \omega^2)^2}
+.\end{eqnarray}
+Recall that the intensity of light is proportional to $\mathcal{E}_{0}^2$, so the average energy of the electron is predicted to be proportional to the intensity of the light shone on the metal.
+Above some threshold energy, we should observe a current, and by increasing the intensity of the light, we would expect classically that the current is proportional in some way (would have to work out the proportionality) to the intensity.
+In fact, for any color of light, we could observe a current if we have intense enough light.
+
+\subsection{Quantum Treatment}
+
+The classical treatment is inconsistent with experimental observations.
+In reality, it is found that no matter how intense we make the light, some wavelengths are simply incapable of generating any current.
+Again, in this case, we quantize the energy of a photon as $E = h \nu$.
+For a metal with work function $W = h \nu_0$, where $\nu_0$ is a convenient parameter with which to compare the frequency of the light, the kinetic energy of an electron which is freed from the metal by this photon is
+\begin{eqnarray}
+    K = E - W = h (\nu - \nu_0)
+.\end{eqnarray}
+Clearly then, we have to have $\nu > \nu_0$ at the very least to observe a current.
+If we satisfy this condition, then increasing the intensity of light -- which corresponds to increasing the number of photons -- does in fact lead to larger observed currents.
+
+
+\section{Compton scattering}
+
+In classical mechanics, treating light as a wave, if we shine light on a charged particle, say an electron, we would find that the electron is excited by the light similar to the above argument.
+In quantum mechanics, however, treating the photon as a particle, the light has momentum proportional to $p = h/\lambda = h \nu / c$, and the photon interacts ``concretely'' with the electron by exchanging momentum and scattering at some angle $\theta$ relative to the axis of the incoming light.
+Quantitatively, we have the Compton relation
+\begin{eqnarray}
+    \Delta \lambda = \frac{h}{m c} (1 - \cos{\theta})
+.\end{eqnarray}
+Note that $h/mc$ is known as the Compton wavelength of the electron.
+
+
+\section{Atom stability and spectral lines}
+
+In the homework, we completed a problem showing that based on classical mechanics an electron should collapses into the nucleus of an atom very quickly (because of the EM radiation from its acceleration).
+Clearly this is in contrast with the stability of the universe in general, and can be broached with the introduction of a few different models, although the Schr\"{o}dinger equation is the most correct treatment and is the subject of much of the topic of non-relativistic QM.
+
+There is also the issue of the spectral lines from atoms, which are distinct wavelengths of light emitted and absorbed by atoms.
+Note that the emission and absorption spectra are identical (corresponding to the energy levels of an atom).
+This observation is in stark contradiction to the classical expectation, which is that the spectra are continuous.
+For emission, the electron radiates light of all frequencies within a certain range, given by its acceleration at any time.
+On the other hand, there is no classical restriction on which frequencies an electron is permitted to interact with, so it absorbs any light happily.
+
+
+
+
 
 
