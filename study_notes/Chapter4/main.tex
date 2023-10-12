@@ -1,0 +1,143 @@
+\chapter{The One-Dimensional Schr\"{o}dinger Equation}
+
+In one-dimension, the S.E. reduces to
+\begin{eqnarray}
+    -\frac{\hbar^2}{2m} \pdv{\psi(x)}{x} + V(x) \psi(x) = E \psi(x)
+.\end{eqnarray}
+We will simplify this a bit by introducing $v(x) = 2m V(x) / \hbar^2$ and $\epsilon = 2mE/\hbar^2$, which gives
+\begin{eqnarray}
+    \psi''(x) = [v(x) - \epsilon] \psi(x)
+.\end{eqnarray}
+Essentially, we have just introduced dimensionless constants/functions to make accounting for units a bit simpler and to avoid carrying around a lot of factors.
+
+\section{Nature of the Energy Spectrum and General Properties of the Eigenfunctions}
+
+Consider an arbitrary potential $v(x)$ such that $v_{\pm} = v(x \rightarrow \pm \infty)$ and with global minimum $v_0$.
+We can consider the general behavior of $\psi$ in certain regions of the energy spectrum relative to these values $v_{\pm}$.
+Without loss of generality assume $v_{-} > v_{+}$.
+
+\begin{enumerate}
+    \item Consider $\epsilon < v_0$. The S.E. becomes $\psi''(x) = [v(x) - \epsilon] \psi(x)$. Note that this factor on the r.h.s. is positive for all $x$ since $v(x) - \epsilon \geq v_0 - \epsilon > 0$. Thus, the concavity always has the same sign as that of the wave-function. In the first case, if $\psi(x) > 0$, then $\psi''(x) > 0$, meaning that $\psi$ grows unbounded as $x \rightarrow \infty$. If, however, $\psi(x) < 0$, the wave function grows unbounded toward $-\infty$ as $x \rightarrow -\infty$. These singular behaviors are not physical since we require a wave-function (or superposition of them) to be normalizable.
+
+    \item Consider $v_0 < \epsilon < v_{-}$. In this case, we have $\psi''(x) = [v_{\pm} - \epsilon] \psi(x)$ in the extreme regions. This accomodates decaying exponential solutions (throwing out increasing exponentials to ensure normalizability). Clearly then, we have two solutions in two regions, and matching (of $\psi$ and $\psi'$) along with normalization will determine the two constants. Our problem is then overdetermined, meaning that a solution may only exist if the matching conditions are redundant. It can be proven that the eigenfunctions in this case are non-degenerate (i.e. there do not exist linearly independent $\psi_{1}$ and $\psi_{2}$ with the same corresponding energy $\epsilon$). Additionally, one can also prove via a couple different arguments (a rigorous one based on the Sturm-Liouville equation and a more intuitive one from Feynman) that the ground state wave function has no nodes (i.e. there is no $x$ such that $\psi(x) = 0$), and by induction, the $n^{\rm th}$ ground state has $n$ nodes.
+
+    \item Consider $v_{+} < \epsilon < v_{-}$. In this case our energy is bounded as $x \rightarrow -\infty$, meaning we still have our decaying exponential here (1 constant), but as $x \rightarrow \infty$ the energy is unbounded. Hence, our solutions are imaginary exponentials in the extreme positive region (2 constants). Notice that these solutions are not normalizable. Hence, we only have the matching conditions on these energy eigenstates, leaving one undetermined constant overall, which is determined by normalizing a wave-packet. In this region then we have a single solution at each energy.
+
+    \item Finally, consider $v_{-} < \epsilon$. In this case, we have imaginary exponentials in both extreme regions (4 constants), and we still only have two matching conditions constraining these values. Hence, there are two undetermined constants and, furthermore, two linearly independent solutions at each energy.
+\end{enumerate}
+
+\section{Infinite Deep Potential Well}
+
+Consider 
+\begin{eqnarray}
+    v(x) = \begin{cases}
+        0 & |x| < a/2 \\
+        \infty & |x| > a/2
+    .\end{cases}
+\end{eqnarray}
+Notice that the wave-function is identically zero in the region $|x| > a/2$.
+Consider a well of finite depth $v_0$ ($\epsilon < v_0$).
+In the region $|x| > a/2$ the wave function reads
+\begin{eqnarray}
+    \psi(x) = e^{- \sqrt{v_0 - \epsilon} |x|}
+.\end{eqnarray}
+If we take $v_0 \rightarrow \infty$ then $\psi \equiv 0$ for $|x| > a/2$.
+
+For the interesting region $|x| < a/2$, the S.E. reads
+\begin{eqnarray}
+    \psi''(x) = -\epsilon \psi(x)
+,\end{eqnarray}
+and has solution
+\begin{eqnarray}
+    \psi(x) = A \cos{k x} + B \sin{k x}
+,\end{eqnarray}
+where $k = \sqrt{\epsilon}$.
+Continuity of the wave-function at $x = \pm a/2$ gives the following conditions:
+\begin{align}
+    A \cos(ka/2) - B \sin(ka/2) &= 0 \\
+    A \cos(ka/2) + B \sin(ka/2) &= 0
+.\end{align}
+From our discussion above, observe that we have these two matching conditions and normalization.
+Generally, these are not consistent equations, but for some energy values, these matching conditions are linearly dependent, given by
+\begin{eqnarray}
+    \det \begin{pmatrix}
+        \cos(ka/2) & -\sin(ka/2) \\
+        \cos(ka/2) & \sin(ka/2)
+    \end{pmatrix} = 2 \sin(ka/2) \cos(ka/2) = \sin{ka} = 0
+.\end{eqnarray}
+This has solution when $ka = n \pi$ for integer $n$.
+We restrict $n \geq 1$, though since the negative integers are linearly dependent on the positive ones and are hence not distinct, and furthermore, the $n = 0$ solution gives the trivial wave function $\psi \equiv 0$, which is certaintly a valid mathematical solution but not physically interesting from the perspective of the Born interpretation.
+Putting this back into the second matching condition, we find
+\begin{eqnarray}
+    A \cos(n\pi/2) + B \sin(n \pi/2) = 0
+.\end{eqnarray}
+Clearly, if $n$ is even, then $A = 0$, but if $n$ is odd, then $B = 0$.
+
+The bound state solutions (which are the only ones permitted here) are given by 
+\begin{eqnarray}
+    \psi_{n}(x) = \sqrt{\frac{2}{a}} \begin{cases}
+        \cos(n \pi x / a) & n = 1,3,\ldots \\
+        \sin(n \pi x / a) & n = 2,4,\ldots
+    ,\end{cases}
+\end{eqnarray}
+and the corresponding energies
+\begin{eqnarray}
+    E_{n} = \frac{\hbar^2}{2m} \epsilon_{n} = \frac{n^2 \pi^2 \hbar^2}{2m a^2}
+.\end{eqnarray}
+
+
+\section{Attractive $\delta$-Function Potential}
+
+The attractive $\delta$-potential can be written $v(x) = -v_0 \delta(x)$\footnote{In the course notes, the $\delta$-function is centered at $x = a$, which can be obtained by shifting to $x \rightarrow x - a$.}.
+The S.E. gives (for a bound state with $\epsilon < 0$)
+\begin{eqnarray}
+    \psi(x) = \begin{cases}
+        A e^{\kappa x} & x < 0 \\
+        B e^{-\kappa x} & x > 0
+    ,\end{cases}
+\end{eqnarray}
+where $\kappa = \sqrt{|\epsilon|}$.
+
+The solution itself is not very interesting, but the matching condition for $\psi'$ is.
+The S.E. reads
+\begin{eqnarray}
+    \psi''(x) = -[v_0 \delta(x) + \epsilon] \psi(x)
+.\end{eqnarray}
+Integrating around $x=0$ in an interval of size $2 \eta$, we find
+\begin{eqnarray}
+    \psi'(0^{+}) - \psi(0^{-}) = -v_0
+.\end{eqnarray}
+Integrating a second time, though, in this small region around $x = 0$ shows that this discontinuity is washed out such that $\psi(0^{-}) = \psi(0^{+})$, meaning the wave-function still is continuous there.
+Imposing these boundary conditions, we have
+\begin{gather}
+    A = B \\
+    \kappa (-B - A) = -v_0 A
+.\end{gather}
+Thus,
+\begin{eqnarray}
+    \kappa = \frac{v_0}{2} \Rightarrow \epsilon = -\frac{v_0^2}{4} \Rightarrow E = - \frac{m V_0}{2 \hbar^2}
+,\end{eqnarray}
+and
+\begin{eqnarray}
+    \psi(x) = \sqrt{\kappa} e^{-\kappa |x|}
+.\end{eqnarray}
+
+\section{Parity}
+
+The parity operator $\mathcal{P}$ performs the spatial inversion $\mathcal{P} f(x) = f(-x)$.
+If $V(x)$ is even (i.e. $\mathcal{P} V(x) = V(-x) = V(x)$), there are a number of interesting properties that the bound states satisfy regardless of the shape or form of $V$.
+First, if $\psi(x)$ solves the S.E., then $\psi(-x)$ also solves the S.E.
+That is, $\mathcal{P} \psi(x)$ solves the S.E.
+
+For bound states, observe $\psi(-x) = c \psi(x)$ since these two solutions correspond to the same energy and must be therefore linearly dependent since these states are non-degenerate.
+Acting with the parity operator on this relation, we obtain $\psi(x) = c \psi(-x)$, and multiplying the two relations together, we have that $c^2 = 1$ or $c = \pm 1$. 
+Hence, $\psi(x)$ must be either an even or odd function.
+
+We can go a little further and deduce that the ground state is an even function since it has no nodes.
+If it were odd, there would necessarily have to be a node at $x = 0$.
+Inductively, then, the states alternate between even and odd functions.
+
+For scattering states, our energy spectrum is doubly degenerate, so $\psi(-x)$ may be distinct from $\psi(x)$, and any general solution may be formed as a linear combination of two linearly independent solutions.
+
+
+

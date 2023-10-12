@@ -1,0 +1,23 @@
+\section*{Cauchy-Schwarz Inequality}
+
+The Cauchy-Schwarz inequality comes from the following.
+Observe that 
+\begin{eqnarray}
+    \int \dd[3]{\va*{r}} |f(\va*{r}) - \lambda g(\va*{r})|^2 \geq 0
+\end{eqnarray}
+for any $\lambda \in \mathbb{C}$.
+Expanding, we have
+\begin{eqnarray}
+    \int \dd[3]{\va*{r}} |f|^2 + |\lambda|^2 \int \dd[3]{\va*{r}} |g|^2 - \lambda \int \dd[3]{\va*{r}} f^{*} g - \lambda^{*} \int \dd[3]{\va*{r}}f g^{*}  \geq 0
+.\end{eqnarray}
+In particular, if we make the choice $\lambda = \int \dd[3]{\va*{r}} g^{*} f / \int \dd[3]{r} |g|^2$, then we recover the inequality
+\begin{gather}
+    \int \dd[3]{\va*{r}} |f|^2 + \dfrac{|\int \dd[3]{\va*{r}} g^{*} f |^2}{\int \dd[3]{\va*{r}} |g|^2} - \frac{\Big(\int \dd[3]{\va*{r}} g^{*} f \Big) \Big( \int \dd[3]{\va*{r}} f^{*} g \Big)}{\int \dd[3]{\va*{r}} |g|^2} - \frac{ \Big( \int \dd[3]{\va*{r}} g f^{*} \Big) \Big( \int \dd[3]{\va*{r}} g^{*} f \Big) }{\int \dd[3]{\va*{r}} |g|^2} \geq 0 \\
+    \Big( \int \dd[3]{\va*{r}} |f|^2 \Big) \Big( \int \dd[3]{\va*{r}} |g|^2 \Big) \geq \Big| \int \dd[3]{\va*{r}} g^{*} f  \Big|^2
+.\end{gather}
+
+
+
+
+
+

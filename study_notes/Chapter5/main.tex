@@ -1,0 +1,250 @@
+\chapter{Scattering in One Dimension}
+
+\section{Scattering in a $\delta$-function potential}
+
+Consider a repulsive $\delta$-function potential of the form $v(x) = v_0 \delta(x)$.
+We are concerned here with the so-called scattering states, which exist for $\epsilon > 0$.
+Recall that we have two linearly independent solutions for such an energy regime since the energy is unbounded for $x \rightarrow \pm \infty$.
+We can write them as follows
+\begin{eqnarray}
+    \psi_{k}^{(1)}(x) = \begin{cases}
+        e^{ikx} + A^{(1)} e^{-ikx} & x < 0 \\
+        B^{(1)} e^{ikx} & x > 0
+    \end{cases}
+    ~{\rm and}~
+    \psi_{k}^{(2)}(x) = \begin{cases}
+        B^{(2)} e^{-ikx} & x < 0 \\
+        e^{-ikx} + A^{(2)} e^{ikx} & x > 0
+    .\end{cases}
+\end{eqnarray}
+A general solution is obtained by taking a linear combination $\psi_{k}(x) = \alpha_{k} \psi_{k}^{(1)}(x) + \beta_{k} \psi_{k}^{(2)}(x)$, but for our purposes we will stick to analyzing the first since this corresponds to particles coming in from the left at $x = -\infty$, interacting with the $\delta$-function potential at $x = 0$ and either reflecting back to $x = -\infty$ or being transmitted and continuing to $x = \infty$.
+Note that this is quite distinct from the classical expectation, where the potential here acts as essentially a very hard wall and sends the particle back elastically without fail.
+
+The BCs at $x = 0$ give (dropping the superscript for brevity)
+\begin{gather}
+    1 + A = B \\
+    ik[B - (1 - A)] = v_0 B
+.\end{gather}
+Solving gives
+\begin{align}
+    A &= \frac{v_0}{-v_0 + 2ik} \\
+    B &= \frac{2ik}{-v_0 + 2ik}
+.\end{align}
+
+At this point, we motivate how to compute the reflection and transmission probabilities by considering a wave-packet of the form\footnote{Usually there is a factor $1/\sqrt{2\pi}$ because of the wave-packet's connection to the Fourier transform, but we absorb it into $g(k)$ because it would only be brought along for the ride and has no bearing on the physics.}
+\begin{align}
+    \Psi(x,t) &= \int \dd{k} g(k) \psi_{k}(x) e^{-i\omega t} = \begin{cases}
+        \int \dd{k} g(k) e^{i(kx - \omega t)} + \int \dd{k} g(k) A(k) e^{-i(kx + \omega t)} & x < 0 \\
+        \int \dd{k} g(k) B(k) e^{i(kx - \omega t)} & x > 0
+    \end{cases} \nonumber \\
+    &= \begin{cases}
+        \Psi_{I}(x,t) + \Psi_{R}(x,t) & x < 0 \\
+        \Psi_{T}(x,t) & x > 0
+    ,\end{cases}
+\end{align}
+where $\Psi_{I,R,T}$ are the incident, reflected, and transmitted wave-packets, $\omega = \hbar k^2/2m$, and as usual $g(k)$ is strongly localized around some $k = k_0$.
+Using the stationary phase method of the second chapter, the incident wave packet
+\begin{eqnarray}
+    \Psi_{I}(x,t) \approx e^{i(k_0 x - \omega_0 t)} \int \dd{k} g(k) e^{i[x - x_{I}(t)][k - k_0]}
+,\end{eqnarray}
+where $\dv{k} [kx - \omega t]_{x = x_{I}(t)} = 0$ or $x_{I}(t) = (\hbar k / m) t$.
+Observe from this that the incident wave packet's center reaches the potential at $t = 0$, and for $t \gg 0$, $x_{I}(t) \gg 0$ and the exponential is strongly oscillatory, implying that $|\Psi_{I}(x,t)| \approx |\Psi(x - x_{I}(t),0)| \approx 0$.
+
+Next, we analyze the reflected wave packet:
+\begin{eqnarray}
+    \Psi_{R}(x,t) = \int \dd{k} g(k) |A(k)| e^{i(kx + \omega t + \alpha(k))}
+.\end{eqnarray}
+We have written
+\begin{eqnarray}
+    A(k) = |A(k)|e^{i\alpha(k)}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    |A(k)| = \frac{v_0}{\sqrt{ v_0^2 + 4 k^2 }} ~{\rm and}~ \alpha(k) = \arctan( \frac{2k}{v_0} )
+.\end{eqnarray}
+Thus, the stationary phase method gives
+\begin{eqnarray}
+    \Psi_{R}(x,t) \approx |A(k_0)| e^{i(k_0 x + \omega_0 t - \alpha(k_0))} \int \dd{k} g(k) e^{i(k - k_0)(x - x_{R}(t))}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    x_{R}(t) = - \frac{\hbar k_0}{m} [t - \tau]
+\end{eqnarray}
+with
+\begin{eqnarray}
+    \tau = \frac{m}{\hbar k_0} \alpha'(k_0) = \frac{m}{\hbar k_0} \frac{2 v_0}{v_0^2 + 4k^2}
+.\end{eqnarray}
+This is interpreted as the time-delay between the interaction with the potential and reflection.
+
+Finally, we analyze the transmitted wave packet:
+\begin{eqnarray}
+    \Psi_{T}(x,t) \approx |B(k_0)| e^{i(k_0x - \omega_0 + \beta(k))} \int \dd{k} g(k) e^{i(k - k_0)(x - x_{T}(t))}
+,\end{eqnarray}
+where $|B(k_0)| = 4k^2/\sqrt{v_0^2 + 4k^2}$ and $\beta(k) = \arctan(\frac{v_0}{2k})$, which gives
+\begin{eqnarray}
+    x_{T}(t) = \frac{\hbar k_0}{m} [t - \tau ]
+\end{eqnarray}
+with
+\begin{eqnarray}
+    \tau = \frac{m}{\hbar k_0} \frac{2v_0}{v_0^2 + 4k^2}
+,\end{eqnarray}
+which is the same as for the reflected packet.
+
+Let us define
+\begin{eqnarray}
+    G(x) = \int g(k) e^{i(k-k_0)x}
+.\end{eqnarray}
+This allows us to write the wave-packet as
+\begin{align}
+    \Psi(x,t) \approx \begin{cases}
+        e^{i(k_0 x - \omega_0 t)} G(x - x_{I}(t)) + A(k_0) e^{-i(k_0x + \omega_0 t)} G(x - x_{R}(t)) & x < 0 \\
+        B(k_0) e^{i(kx - \omega_0 t)} G(x - x_{T}(t)) & x > 0
+    .\end{cases}
+\end{align}
+
+Observe that for $|x| \gg 0$, $G(x) \approx 0$.
+For times much before the interaction $t \rightarrow -\infty$, $\Psi(x,t) \approx \Psi_{I}(x,t) \theta(-x)$, and for times much after the interaction $t \rightarrow \infty$, $\Psi(x,t) \approx \Psi_{R}(x,t)\theta(-x) + \Psi_{T}(x,t)\theta(x)$.
+The conservation of proability gives
+\begin{eqnarray}
+    \int_{-\infty}^{0} |\Psi_{I}(x,t \rightarrow -\infty)| \dd{x} = \int_{-\infty}^{0} |\Psi_{R}(x,t\rightarrow \infy)|^2 + \int_{0}^{\infty} |\Psi_{T}(x,t \rightarrow \infty)|^2
+,\end{eqnarray}
+and inserting the definitions
+\begin{eqnarray}
+    1 = |A(k_0)|^2 + |B(k_0)|^2
+.\end{eqnarray}
+We thus call the reflection and transmission coefficients
+\begin{eqnarray}
+    R = |A(k_0)|^2 \quad T = |B(k_0)|^2
+.\end{eqnarray}
+
+
+\section{Scattering: An Alternative Treatment}
+
+Generally, the wave-packet treatment is the most rigorous, but the algebra for more complicated potentials can become unwieldy, but we can avoid this mess to obtain the reflection and transmission coefficients.
+In the previous section, we had
+\begin{eqnarray}
+    \psi_{k}(x) = \begin{cases}
+        e^{ikx} + A(k) e^{-ikx} & x < 0 \\
+        B(k)e^{ikx} & x > 0
+    .\end{cases}
+\end{eqnarray}
+The probability current density of this is
+\begin{eqnarray}
+    j(x) = \frac{\hbar k}{m} \begin{cases}
+        1 - |A(k)|^2 & x < 0 \\
+        |B(k)|^2
+    \end{cases} = \begin{cases}
+        j_{I} + j_{R} & x < 0 \\
+        j_{T}
+    \end{cases}
+.\end{eqnarray}
+The reflection and transmission probabilities then are just ratios of the reflected and transmitted probability currents to the incident probability current:
+\begin{eqnarray}
+    R = \Big| \frac{j_{R}}{j_{I}} \Big| = |A(k)|^2 \quad T = \Big| \frac{j_{T}}{j_{I}} \Big| = |B(k)|^2
+.\end{eqnarray}
+
+
+\section{Scattering in a parity-invariant potential: phase shift method}
+
+Let us consider the repulsive $\delta$-potential.
+The even and odd scattering states are
+\begin{eqnarray}
+    \psi_{k}^{e}(x) = \begin{cases}
+        A e^{ikx} + B e^{-ikx} & x < 0 \\
+        B e^{ikx} + A e^{-ikx} & x > 0
+    \end{cases}
+    \quad
+    \psi_{k}^{o}(x) = \begin{cases}
+        C e^{ikx} + D e^{-ikx} & x < 0 \\
+        -D e^{ikx} - C e^{-ikx} & x > 0
+    .\end{cases}
+\end{eqnarray}
+Imposing BCs on the even solutions gives
+\begin{eqnarray}
+    \frac{B}{A} = \frac{2ik - v_0}{2ik + v_0}
+.\end{eqnarray}
+
+For the odd solutions, the BCs give $C = -D$.
+We can write
+\begin{eqnarray}
+    \frac{2ik - v_0}{2ik + v_0} = e^{2i\delta(k)} ~{\rm with}~ \delta(k) = \frac{1}{2} \arctan(\frac{4 k v_0}{4 k^2 - v_0})
+.\end{eqnarray}
+Thus, the even and odd wave-functions can be expressed as
+\begin{eqnarray}
+    \psi_{k}^{e}(x) = Ae^{i\delta} \begin{cases}
+        e^{i(kx - \delta)} + e^{-i(kx + \delta)} & x < 0 \\
+        e^{i(kx + \delta)} + e^{-i(kx - \delta)} & x < 0
+    \end{cases}
+    = 2Ae^{i\delta} \cos[k|x| - \delta(k)]
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \psi_{k}^{0}(x) = C \begin{cases}
+        e^{ikx} - e^{-ikx} & x < 0 \\
+        e^{ikx} - e^{-ikx} & x > 0
+    \end{cases}
+    = 2i C \sin(kx)
+.\end{eqnarray}
+
+The reflection and transmission coefficients are ({\color{red} can do the derivation later})
+\begin{eqnarray}
+    R(k) = \sin^2{\delta(k)} \quad T(k) = \cos^2{\delta(k)}
+.\end{eqnarray}
+
+
+\section{Reflection and Transmission in a Generic Potential: General Considerations}
+{\color{red} Pressed for time so only the gist is given here}
+
+The asymptotic regions are considered with both solutions
+\begin{eqnarray}
+    \psi_{k}(x) = \begin{cases}
+        A e^{i k_{-} x} + B e^{-i k_{-} x} & x \rightarrow -\infty \\
+        C e^{i k_{+} x} + D e^{i k_{+} x} & x \rightarrow \infty
+    .\end{cases}
+\end{eqnarray}
+The probaility current is then
+\begin{eqnarray}
+    j(x) = \begin{cases}
+        \frac{\hbar k_{-}}{m} (|A|^2 - |B|^2) & x < 0 \\
+        \frac{\hbar k_{+}}{m} (|C^2| - |D|^2) & x > 0
+    \end{cases}
+.\end{eqnarray}
+Defining $A' = \sqrt{k_{-}} A$, $B' = \sqrt{k_{-}} B$, $C' = \sqrt{k_{+}} C$, and $D' = \sqrt{k_{+}} D$, so that
+\begin{eqnarray}
+    \eref{eq:continuity}
+    |A'|^2 + |B'|^2 = |C'|^2 + |D'|^2
+.\end{eqnarray}
+The matching conditions generally give
+\begin{align}
+    B' &= S_{11} A' + S_{12} C' \\
+    D' &= S_{21} A' + S_{22} C'
+,\end{align}
+which can be written in matrix form as
+\begin{eqnarray}
+    \begin{pmatrix}
+    B' \\ D'
+    \end{pmatrix}
+    =
+    \underbrace{
+    \begin{pmatrix}
+        S_{11} & S_{12} \\ S_{21} & S_{22}
+    \end{pmatrix}
+}_{S}
+    \begin{pmatrix}
+        A' & D'
+    \end{pmatrix} 
+.\end{eqnarray}
+This $S$ is the so-called scattering matrix.
+Notice it is unitary because of \eref{continuity}.
+From this, we can read off the reflection and transmission coefficients
+\begin{align}
+    R^{(1)} = |S_{11}|^2 \quad T^{(1)} = |S_{12}|^2 \\
+    R^{(2)} = |S_{21}|^2 \quad T^{(2)} = |S_{22}|^2
+.\end{align}
+
+Note that $S$ is also symmetric (i.e. $S^{\rm T} = S$).
+
+
+
+
+

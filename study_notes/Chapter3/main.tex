@@ -82,29 +82,33 @@ Note that $\Delta A$ is not some measurement error.
 It is an intrinsic uncertainty in the quantity $A$ imposed by the fact that the wave-function is not necessarily an eigenstate of $A$.
 We can derive a lower bound on $\Delta A \Delta B$ that depends on the commutator $[A,B]$.
 
-For any square-integrable functions $f$ and $g$ we have the Cauchy-Schwarz inequality
+For any square-integrable functions $f$ and $g$ we have the Cauchy-Schwarz inequality (derived in the appendix)
 \begin{eqnarray}
     \Bigg( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Bigg) \Bigg( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Bigg) \geq \Bigg| \int \dd[3]{\va*{r}} g^{*}(\va*{r}) f(\va*{r}) \Bigg|^2
 .\end{eqnarray}
 Note that the roles of $f$ and $g$ are interchangeable, so we can also write
-\begin{eqnarray} 
-    \Bigg( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Bigg) \Bigg( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Bigg) \geq \frac{1}{2} \Bigg[ \Bigg| \int \dd[3]{\va*{r}} g^{*}(\va*{r}) f(\va*{r}) \Bigg|^2 + \Bigg| \int \dd[3]{\va*{r}} f^{*}(\va*{r}) g(\va*{r}) \Bigg|^2 \Bigg]
-.\end{eqnarray}
+\begin{align} 
+        \Bigg( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Bigg) \Bigg( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Bigg) &\geq \frac{1}{2} \Bigg[ \Bigg| \int \dd[3]{\va*{r}} g^{*}(\va*{r}) f(\va*{r}) \Bigg|^2 + \Bigg| \int \dd[3]{\va*{r}} f^{*}(\va*{r}) g(\va*{r}) \Bigg|^2 \Bigg] \nonumber \\
+        &\geq \frac{1}{4} \Big| \int \dd[3]{\va*{r}} \big[ g^{*}(\va*{r}) f(\va*{r}) - f^{*}(\va*{r}) g(\va*{r}) \big] \Big|^2
+.\end{align}
+Note that we used the following inequality to go from the first to the second line:
+\begin{eqnarray}
+    |a - b|^2 \leq |a + b|^2 + |a - b|^2 = 2 \big( |a|^2 + |b|^2 \big)
+\end{eqnarray}
+with $a = \int \dd[3]{\va*{r}} g^{*} f$ and $b = \int \dd[3]{\va*{r}} g^{*} f$.
+
 Observe
 \begin{eqnarray}
     \Delta A^2 \Delta B^2 = \Bigg( \int \dd[3]{\va*{r}} \Psi^{*} (A - \expval{A})^2 \Psi \Bigg) \Bigg( \int \dd[3]{\va*{r}} (B - \expval{B})^2 \Bigg)
 .\end{eqnarray}
-Since we are interested in observables $A$ and $B$, we assume that $A$ and $B$ are hermitian such that if we define $f = (A - \expval{A}) \Psi$ and $g = (B - \expval{B}) \Psi$ then 
-\begin{eqnarray}
-    \begin{aligned}
-        \Delta A^2 \Delta B^2 &= \Big( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Big) \Big( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Big) \\
-                              &\geq \frac{1}{2} \Bigg[ \Big| \int \dd[3]{\va*{r}} \Psi^{*} (B - \expval{B})(A - \expval{A}) \Psi \Big|^2 \\
-                              &\phantom{\frac{1}{2} \Bigg[ } + \Big| \int \dd[3]{\va*{r}} \Psi^{*} (A - \expval{A})(B - \expval{B}) \Psi \Big|^2 \Bigg] \\
-                              &\geq \frac{1}{4} \Big| \int \dd[3]{\va*{r}} \Psi^{*} [A,B] \Psi \Big|^2 = \frac{1}{4} |\expval{[B,A]}|^2
-    .\end{aligned}
-\end{eqnarray}
+Since we are interested in observables $A$ and $B$, we assume that $A$ and $B$ are hermitian such that if we define $f = (A - \expval{A}) \Psi$ and $g = (B - \expval{B}) \Psi$ then
+\begin{align}
+        \Delta A^2 \Delta B^2 &= \Big( \int \dd[3]{\va*{r}} |f(\va*{r})|^2 \Big) \Big( \int \dd[3]{\va*{r}} |g(\va*{r})|^2 \Big) \nonumber \\
+                              &\geq \frac{1}{4} \Big| \int \dd[3]{\va*{r}} \Psi^{*} \big[ (B - \expval{B})(A - \expval{A}) - (A - \expval{A})(B - \expval{B}) \big] \Psi \Big|^2 \nonumber \\
+                              &= \frac{1}{4} |\expval{[A,B]}|^2
+.\end{align}
 
-From this, we can write down the Heisenberg uncertainty relation
+From this, we can write down the famous Heisenberg uncertainty relation
 \begin{eqnarray}
     \Delta x \Delta p \geq \frac{\hbar}{2}
 .\end{eqnarray}
