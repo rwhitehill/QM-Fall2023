@@ -98,7 +98,7 @@ where the coefficient $\alpha_{mn}$ depends on the energy difference $E_{m} - E_
 
 (b) Using the closure relation satisfied by the eigenstates of $\hat{H}$ and the result above, deduce the following relation (sum rule)
 \begin{eqnarray}
-    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{n}}
+    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{m}}
 .\end{eqnarray}
 
 
@@ -134,10 +134,14 @@ Rearranging, we find
 
 (b) Observe the following:
 \begin{eqnarray}
-\begin{aligned}
-    (E_{m} - E_{n})^2 |\bra{\phi_{m}} \hat{x} \ket{\phi_{n}}|^2 = \frac{\hbar^2}{m}|\bra{\phi_{m}} \hat{p} \ket{\phi_{n}}|^2
-\end{aligned}
+    (E_{m} - E_{n})^2 |\bra{\phi_{m}} \hat{x} \ket{\phi_{n}}|^2 = \frac{\hbar^2}{m^2}|\bra{\phi_{m}} \hat{p} \ket{\phi_{n}}|^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p} \ket{\phi_{n}} \bra{\phi_{n}} \hat{p} \ket{\phi_{m}}
 .\end{eqnarray}
+If we sum over $n$ on both sides we have
+\begin{eqnarray}
+    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{n}}
+,\end{eqnarray}
+where we have used the fact that the states $\{ \ket{\phi_{n}} \} $ are complete on the right.
+Note that this is not possible on the l.h.s. since the factor of the energy difference depends on $n$.
 
 }
 
@@ -209,11 +213,11 @@ Now, we solve for the eigenvectors in the supspace spanned by $\ket{\phi_2}$ and
 \begin{eqnarray}
     -ib \alpha_2 = \pm b \alpha_1 \Rightarrow \alpha_2 = \pm i \alpha_1
 .\end{eqnarray}
-The eigenvector corresponding to eigenvalue $\pm b$ is then 
+The eigenvectors corresponding to eigenvalues $\pm b$ is then 
 \begin{eqnarray}
     \frac{1}{\sqrt{2}} \Big[ \ket{\phi_2} \pm i \ket{\phi_3} \Big]
 .\end{eqnarray}
-It should be clear that these eigenvectors of $\hat{B}$ are still eigenvectors of $\hat{A}$ corresponding to eigenvalue $-a$.
+It should be clear that these eigenvectors of $\hat{B}$ are still eigenvectors of $\hat{A}$ corresponding to eigenvalue $-a$ and also that they are orthogonal to each other and $\ket{\phi_1}$.
 Furthermore, the correspondence between eigenvalues and eigenvectors is given by
 \begin{align}
     \{ a,b \} &\leftrightarrow \ket{\phi_1} \\
@@ -254,7 +258,7 @@ The possibility for the electron to jump from one site to another is modeled by 
     &\hat{V} \ket{\psi_6} = -a \ket{\psi_5} - a \ket{\psi_1}
     .\end{aligned}
 \end{eqnarray}
-Show that $\hat{R}$ commutes with the total Hamiltonian $\hat{H} = \hat{H} + \hat{V}$.
+Show that $\hat{R}$ commutes with the total Hamiltonian $\hat{H} = \hat{H}_{0} + \hat{V}$.
 From this deduce the eigenstates and eigenvalues of $\hat{H}$.
 In these eigenstates is the electron localized?
 
@@ -274,9 +278,103 @@ It is clear from the definition of $\hat{R}$ that $\hat{R}^{6} = \hat{\id}$, mea
     \hat{R}^{6} \ket{\psi} = \hat{\id} \ket{\psi} = r^{6} \ket{\psi} \Rightarrow r^{6} = 1
 .\end{eqnarray}
 The eigenvalues of $\hat{R}$ are then just the sixth roots of unity: $\{ e^{i\pi/3}, e^{i 2\pi/3}, e^{i \pi}, e^{i 4\pi/3}, e^{i 5\pi/3}, 1 \}$.
+If we denote the $n^{\rm th}$ sixth root of unity as $\omega_{n}$ for $n=1,\ldots,6$, the eigenvectors can be found from
+\begin{eqnarray}
+    \begin{pmatrix}
+        -\omega_{n} & 1 & 0 & 0 & 0 & 0 \\
+        0 & -\omega_n & 1 & 0 & 0 & 0 \\
+        0 & 0 & -\omega_{n} & 1 & 0 & 0 \\
+        0 & 0 & 0 & -\omega_{n} & 1 & 0 \\
+        0 & 0 & 0 & 0 & -\omega_{n} & 1 \\
+        1 & 0 & 0 & 0 & 0 & -\omega_n
+    \end{pmatrix} 
+    \begin{pmatrix}
+        a_1 \\ a_2 \\ a_3 \\ a_4 \\ a_5 \\ a_6
+    \end{pmatrix} 
+    =
+    0
+.\end{eqnarray}
+Equivalently, we have the system of equations
+\begin{eqnarray}
+    \begin{cases}
+    -\omega_{n} a_1 + a_2 = 0 \\
+    -\omega_{n} a_2 + a_3 = 0 \\
+    -\omega_{n} a_3 + a_4 = 0 \\
+    -\omega_{n}a_4 + a_5 = 0 \\
+    -\omega_{n} a_5 + a_6 = 0 \\
+    \phantom{+}a_1 -\omega_{n} a_6 = 0
+    .\end{cases}
+\end{eqnarray}
+While it may not be clear from the system above, we know that these equations are linearly dependent with one free undetermined parameter since each eigenvalue has algebraic multiplicity $1$.
+Thus, we can let $a_1$ be our undetermined parameter and solve for $a_2,\ldots,a_6$ in terms of $a_1$.
+Denoting the eigenvector corresponding to eigenvalue $\omega_{n}$ as $\ket{\chi_{n}}$, we find
+\begin{eqnarray}
+    \chi_{n} = a_1 \begin{pmatrix}
+        1\\
+        \omega_{n} \\
+        \omega_{n}^2 \\
+        \omega_{n}^3 \\
+        \omega_{n}^{4} \\
+        \omega_{n}^{5} \\
+    \end{pmatrix}    
+.\end{eqnarray}
+This is a very nice form for the eigenvectors.
+Normalizing we find
+\begin{eqnarray}
+    \chi_{n}^{\dagger}\chi_{n} = 6 |a_1|^2 = 1 \Rightarrow a_1 = 1/\sqrt{6}
+.\end{eqnarray}
+
+(b) In the basis $\ket{\psi_1},\ldots,\ket{\psi_6}$
+\begin{eqnarray}
+    \hat{R} = \ket{\psi_1}\bra{\psi_2} + \ket{\psi_2}\bra{\psi_3} + \ket{\psi_3}\bra{\psi_4} + \ket{\psi_4}\bra{\psi_5} + \ket{\psi_5}\bra{\psi_6} + \ket{\psi_6}\bra{\psi_1} 
+.\end{eqnarray}
+It is clear then that
+\begin{eqnarray}
+    \hat{R}^{\dagger} = \ket{\psi_2}\bra{\psi_1} + \ket{\psi_3}\bra{\psi_2} + \ket{\psi_4}\bra{\psi_3} + \ket{\psi_5}\bra{\psi_4} + \ket{\psi_6}\bra{\psi_5} + \ket{\psi_1}\bra{\psi_6} 
+.\end{eqnarray}
+Thus, we have the actions
+\begin{eqnarray}
+    \hat{R}^{\dagger} \ket{\psi_1} = \ket{\psi_6}, \quad \hat{R}^{\dagger} \ket{\psi_2} = \ket{\psi_1}, \quad \ldots, \quad \hat{R}^{\dagger} \ket{\psi_6} = \ket{\psi_5}
+.\end{eqnarray}
+
+Furthermore, we have
+\begin{eqnarray}
+    R^{\dagger} R = 
+   \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & 1 \\
+        1 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        0 & 1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 1 \\
+        1 & 0 & 0 & 0 & 0 & 0 
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        1 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 1
+    \end{pmatrix}
+.\end{eqnarray}
+Hence, $\hat{R}$ is unitary (in the matrix representation $R$ is orthogonal since it is real).
+
+(c) It is clear that $[\hat{R},\hat{H}_0] = 0$ since in the eigenbasis of $\hat{H}_{0}$, $\hat{H}_{0} = E_0 \hat{\id}$.
+Note that $\hat{V} = -a (\hat{R}^{\dagger} + \hat{R})$.
+From this, it is clear that $[\hat{R},V] = 0$ since $\hat{R}$ commutes with itself and its adjoint\footnote{This is only necessarily true since $\hat{R}$ is unitary.}.
+It is clear that $\{ \ket{\chi_{n}} \} $ forms a simultaneous orthonormal basis for $\hat{H}_0$ and $\hat{R}$.
+From the fact that $\hat{V} = -a( \hat{R}^{\dagger} + \hat{R} )$ and that $\hat{R}^{\dagger} \ket{\chi_{n}} = \omega_{n}^{*} \ket{\chi_{n}}$, we have $\hat{V} \ket{\chi_{n}} = -(a/2) \Re(\omega_{n})$.
+The eigenvalues of $\hat{H}$ are then given by $E_0 - (a/2)\cos(\pi n/3)$.
 
 }
-
-
 
 \end{document}
