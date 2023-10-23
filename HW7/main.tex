@@ -1,0 +1,282 @@
+\def\duedate{\today}
+\def\HWnum{7}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 6 \# 1}{
+
+Let $\ket{\phi_{n}}$ be the eigenstates of a Hamiltonian $\hat{H}$ (a hermitian operator).
+Assume that the $\ket{\phi_{n}}$ form a discrete orthonormal basis.
+Consider the operator $\hat{U}(m,n)$ defined as
+\begin{eqnarray}
+    \hat{U}(m,n) = \ket{\phi_{m}} \bra{\phi_{n}}
+.\end{eqnarray}
+
+(a) Obtain the adjoint $\hat{U}^{\dagger}(m,n)$.
+
+(b) Evaluate the commutator $[ \hat{H}, \hat{U}(m,n) ]$.
+
+(c) Show that
+\begin{eqnarray}
+    \hat{U}(m,n) \hat{U}^{\dagger}(p,q) = \delta_{nq} \hat{U}(m,p)
+.\end{eqnarray}
+
+(d) Calculate the trace of $\hat{U}(m,n)$.
+The trace of an operator $\hat{A}$ is defined as
+\begin{eqnarray}
+    \Tr(\hat{A}) = \sum_{n} \bra{\phi_{n}} \hat{A} \ket{\phi_{n}}
+.\end{eqnarray}
+
+(e) If $\hat{A}$ is an operator with matrix elements $A_{mn} = \bra{\phi_{m}} \hat{A} \ket{\phi_{n}}$, show that
+\begin{eqnarray}
+    \hat{A} = \sum_{m,n} A_{mn} \hat{U}(m,n)
+.\end{eqnarray}
+
+(f) Show that 
+\begin{eqnarray}
+    A_{pq} = \Tr[ \hat{A} \hat{U}^{\dagger}(p,q) ]
+.\end{eqnarray}
+
+}
+
+\sol{
+
+(a) The adjoint $A^{\dagger}$ is defined such that $\bra{\psi} A^{\dagger}$ is dual to $A \ket{\psi}$.
+Notice that $\hat{U}(m,n) \ket{\psi} = \ket{\phi_{m}} \bra{\phi_{n}}\ket{\psi}$ whose dual is $\bra{\psi} \hat{U}^{\dagger} = \bra{\phi_{n}}\ket{\psi}^{*} \bra{\phi_{m}} = \bra{\psi} \ket{\phi_{n}}\bra{\phi_{m}}$.
+Thus, $\hat{U}^{\dagger}(m,n) = \ket{\phi_{n}} \bra{\phi_{m}} = \hat{U}(n,m)$.
+
+(b) The commutator
+\begin{eqnarray}
+\begin{aligned}
+    [\hat{H},\hat{U}(m,n)] &= \hat{H} \ket{\phi_{m}}\bra{\phi_{n}} - \ket{\phi_{m}}\bra{\phi_{n}} \hat{H} = E_{m} \ket{\phi_{m}}\bra{\phi_{n}} - \ket{\phi_{m}}\bra{\phi_{n}} E_{n} \\
+                           &= (E_{m} - E_{n}) \hat{U}(m,n)
+.\end{aligned}
+\end{eqnarray}
+
+(c) Using the fact that $\{ \ket{\phi_{n}} \} $ is orthonormal
+\begin{eqnarray}
+    \hat{U}(m,n) \hat{U}^{\dagger}(p,q) = \ket{\phi_{m}}\bra{\phi_{n}} \ket{\phi_{q}} \bra{\phi_{p}} = \delta_{nq} \ket{\phi_{m}} \bra{\phi_{p}} = \delta_{nq} \hat{U}(m,p)
+.\end{eqnarray}
+
+(d) The trace of $\hat{U}(m,n)$ is 
+\begin{eqnarray}
+    \Tr(\hat{U}(m,n)) = \sum_{k} \bra{\phi_{k}} \ket{\phi_{m}}\bra{\phi_{n}} \ket{\phi_{k}} = \sum_{k} \delta_{km} \delta_{nk} = \delta_{nm}
+.\end{eqnarray}
+
+(e) Since $\{ \ket{\phi_{n}} \} $ forms an orthonormal basis
+\begin{eqnarray}
+    \hat{A} = \hat{\id} \hat{A} \hat{\id} = \sum_{n,m} \ket{\phi_{m}} \underbrace{\bra{\phi_{m}} \hat{A} \ket{\phi_{n}}}_{A_{mn}} \bra{\phi_{n}} = \sum_{n,m} A_{mn} \hat{U}(m,n)
+.\end{eqnarray}
+
+(f) Using the results above, we find
+\begin{eqnarray}
+    \hat{A} \hat{U}^{\dagger}(p,q) = \sum_{m,n} A_{mn} \hat{U}(m,n) \hat{U}^{\dagger}(p,q) = \sum_{m} A_{mq} \hat{U}(m,p)
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \Tr(\hat{A} \hat{U}^{\dagger}(p,q)) = \sum_{m} A_{mq} \delta_{mp} = A_{pq}
+.\end{eqnarray}
+
+}
+
+
+\prob{2 -- Chapter 7 \# 4}{
+
+Consider the Hamiltonian $\hat{H}$ of a particle in a one-dimensional problem given by
+\begin{eqnarray}
+    \hat{H} = \frac{\hat{p}^2}{2m} + \hat{V}(\hat{x})
+,\end{eqnarray}
+where $\hat{x}$ and $\hat{p}$ are the position and momentum operators satisfying the standard commutation relations.
+Let $\ket{\phi_{n}}$ be the eigenstates of $\hat{H}$ with $\hat{H} \ket{\phi_{n}} = E_{n} \ket{\phi_{n}}$, where $n$ is a discrete index.
+
+(a) By considering the commutator $[\hat{x},\hat{H}]$, show that 
+\begin{eqnarray}
+    \bra{\phi_{m}} \hat{p} \ket{\phi_{n}} = \alpha_{mn} \bra{\phi_{m}} \hat{x} \ket{\phi_{n}}
+,\end{eqnarray}
+where the coefficient $\alpha_{mn}$ depends on the energy difference $E_{m} - E_{n}$.
+
+(b) Using the closure relation satisfied by the eigenstates of $\hat{H}$ and the result above, deduce the following relation (sum rule)
+\begin{eqnarray}
+    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{n}}
+.\end{eqnarray}
+
+
+}
+
+\sol{
+
+(a) Consider the generic operators $\hat{A}, \hat{B}, \hat{C}$.
+The commutator
+\begin{eqnarray}
+    \begin{aligned}
+        [\hat{A},\hat{B} \hat{C}] &= \hat{A}\hat{B}\hat{C} - \hat{B}\hat{C}\hat{A} \\
+                                  &= \hat{A}\hat{B}\hat{C} - \hat{B}\hat{A}\hat{C} + \hat{B}\hat{A}\hat{C} - \hat{B}\hat{C}\hat{A} \\
+                                  &= [\hat{A},\hat{B}]\hat{C} + \hat{B}[\hat{A},\hat{C}]
+    .\end{aligned}
+\end{eqnarray}
+We can use this and the assumption that $[\hat{x},\hat{p}] = i\hbar$ to find
+\begin{eqnarray}
+    [\hat{x},\hat{p}^2] = [\hat{x},\hat{p}] \hat{p}  + \hat{p}[\hat{x},\hat{p}] = 2i\hbar \hat{p}
+,\end{eqnarray}
+and therefore,
+\begin{eqnarray}
+    [\hat{x},\hat{H}] = \frac{1}{2m} [\hat{x},\hat{p}^2] + [\hat{x},\hat{V}(\hat{x})] = \frac{i\hbar}{m}\hat{p}
+.\end{eqnarray}
+Thus, the matrix elements of the commutator
+\begin{eqnarray}
+    \bra{\phi_{m}} [\hat{x},\hat{H}] \ket{\phi_{n}} = ( E_{n} - E_{m} ) \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} = \frac{i\hbar}{m} \bra{\phi_{m}} \hat{p} \ket{\phi_{n}}
+.\end{eqnarray}
+Rearranging, we find
+\begin{eqnarray}
+    \bra{\phi_{m}} \hat{p} \ket{\phi_{n}} = \underbrace{ \frac{i m}{\hbar} (E_{m} - E_{n}) }_{\alpha_{mn}} \bra{\phi_{m}} \hat{x} \ket{\phi_{n}}
+.\end{eqnarray}
+
+(b) Observe the following:
+\begin{eqnarray}
+\begin{aligned}
+    (E_{m} - E_{n})^2 |\bra{\phi_{m}} \hat{x} \ket{\phi_{n}}|^2 = \frac{\hbar^2}{m}|\bra{\phi_{m}} \hat{p} \ket{\phi_{n}}|^2
+\end{aligned}
+.\end{eqnarray}
+
+}
+
+
+\prob{3 -- Chapter 6 \# 13}{
+
+Consider a three-dimensional state space.
+If a certain set of orthonormal kets $\ket{\phi_{1}}$, $\ket{\phi_2}$, and $\ket{\phi_3}$ are used as the base kets, the operators $\hat{A}$ and $\hat{B}$ are represented by
+\begin{eqnarray}
+    A = \begin{pmatrix}
+        a & 0 & 0 \\
+        0 & -a & 0 \\
+        0 & 0 & -a
+    \end{pmatrix}
+    , \quad
+    B = \begin{pmatrix}
+        b & 0 & 0 \\
+        0 & 0 & -ib \\
+        0 & ib & 0
+    \end{pmatrix}
+,\end{eqnarray}
+where $a$ and $b$ are real.
+
+(a) It is obvious that $\hat{A}$ has a degenerate spectrum.
+Is the spectrum of $\hat{B}$ also degenerate?
+
+(b) Show that $\hat{A}$ and $\hat{B}$ commute.
+
+(c) Find a new set of orthonormal kets which are simultaneous eigenstates of both $\hat{A}$ and $\hat{B}$.
+Specify the eigevalues of $\hat{A}$ and $\hat{B}$ for each of these three eigenstates.
+Does specifying these eigenvalues uniquely identify the relative common eigenstate?
+That is, do $\hat{A}$ and $\hat{B}$ form a complete set of commuting observables?
+
+}
+
+\sol{
+
+(a) Let $\ket{\phi_1}$ correspond to eigenvalue $a$ of $\hat{A}$ and $\ket{\phi_2},\ket{\phi_3}$ correspond to $-a$.
+Thus, $\ket{\phi_1}$ also corresopnds to eigenvalue $b$ of $\hat{B}$.
+The other eigenvalues of $\hat{B}$ will have eigenvectors which are linear combinations of $\ket{\phi_2},\ket{\phi_3}$, meaning that we only have to diagonalize
+\begin{eqnarray}
+    \begin{pmatrix}
+        0 & -ib \\
+        ib & 0
+    \end{pmatrix}
+.\end{eqnarray}
+It should be clear that this matrix has characteristic equation $\lambda^2 - b^2 = 0$, which has roots $\lambda = \pm b$.
+Thus, $\hat{B}$ also has a degenerate spectrum.
+
+(b) Taking the matrix products explicitly, we find 
+\begin{eqnarray}
+    AB - BA = \begin{pmatrix}
+        ab & 0 & 0 \\
+        0 & 0 & iab \\
+        0 & -iab & 0
+    \end{pmatrix}
+    - 
+    \begin{pmatrix}
+        ba & 0 & 0 \\
+        0 & 0 & iba \\
+        0 & -iba & 0
+    \end{pmatrix}
+    = 0
+.\end{eqnarray}
+Since the mapping between the matrix representation and hilbert space are bijective, the commutation holds for the operators $\hat{A}$ and $\hat{B}$ in the hilbert space.
+
+(c) In part (a), we found the spectrum of $\hat{B}$.
+Now, we solve for the eigenvectors in the supspace spanned by $\ket{\phi_2}$ and $\ket{\phi_3}$, which have the general form $\begin{pmatrix} \alpha_1 & \alpha_2 \end{pmatrix}^{T}$:
+\begin{eqnarray}
+    -ib \alpha_2 = \pm b \alpha_1 \Rightarrow \alpha_2 = \pm i \alpha_1
+.\end{eqnarray}
+The eigenvector corresponding to eigenvalue $\pm b$ is then 
+\begin{eqnarray}
+    \frac{1}{\sqrt{2}} \Big[ \ket{\phi_2} \pm i \ket{\phi_3} \Big]
+.\end{eqnarray}
+It should be clear that these eigenvectors of $\hat{B}$ are still eigenvectors of $\hat{A}$ corresponding to eigenvalue $-a$.
+Furthermore, the correspondence between eigenvalues and eigenvectors is given by
+\begin{align}
+    \{ a,b \} &\leftrightarrow \ket{\phi_1} \\
+    \{ -a, b \}  &\leftrightarrow (\ket{\phi_2} + i \ket{\phi_3})/\sqrt{2} \\
+    \{ -a,-b \}  &\leftrightarrow (\ket{\phi_2} - i\ket{\phi_3})/\sqrt{2}
+.\end{align}
+It is obvious then that specifying the eigenvalues of $\hat{A}$ and $\hat{B}$ uniquely specifies the simultaneous corresponding eigenvector of $\hat{A}$ and $\hat{B}$, meaning that $\hat{A}$ and $\hat{B}$ form a complete set of commuting observables.
+
+
+}
+
+
+\prob{4 -- Chapter 6 \# 14}{
+
+A molecule is composed of six identical atoms $A_1, A_2, \ldots, A_6$ which form a regular hexagon.
+Consider an electron which can be localized on each of the atoms.
+Denote with $\ket{\psi_{n}}$ the state in which the electron is localized on the $n^{\rm th}$ atom ($n = 1,2,\ldots,6$).
+The electron states will be limited to the space spanned by the $\ket{\psi_{n}}$, assumed to be orthonormal $\bra{\psi_{m}}\ket{\psi_{n}} = \delta_{mn}$; in other words, these six states form a basis.
+
+(a) Define the operator $\hat{R}$ by the following relations:
+\begin{eqnarray}
+    \hat{R} \ket{\psi_1} = \ket{\psi_2}, \quad \hat{R} \ket{\psi_2} = \ket{\psi_3}, \quad \ldots, \quad \hat{R} \ket{\psi_6} = \ket{\psi_1}
+.\end{eqnarray}
+Find the eigenvalues and eigenstates of $\hat{R}$.
+Show that the eigenvectors form an orthonormal set (i.e. they form a basis).
+
+(b) Show that the adjoint operator $\hat{R}^{\dagger}$ gives
+\begin{eqnarray}
+    \hat{R}^{\dagger} \ket{\psi_1} = \ket{\psi_6}, \quad \hat{R}^{\dagger} \ket{\psi_2} = \ket{\psi_1}, \quad \ldots, \quad \hat{R}^{\dagger} \ket{\psi_6} = \ket{\psi_5}
+.\end{eqnarray}
+Show that $\hat{R}$ is unitary.
+
+(c) When the probability of the electron jumping from one site to a contiguous one to the left or right is neglected, its energy is described by the Hamiltonian $\hat{H}_{0}$, whose eigenstates are the six states $\ket{\psi_{n}}$, all with the same eigenvalue $E_0$, namely $\hat{H}_{0} \ket{\psi_{n}} = E_0 \ket{\psi_{n}}$.
+The possibility for the electron to jump from one site to another is modeled by adding the Hamiltonian $\hat{H}_{0}$ a perturbation $\hat{V}$ such that 
+\begin{eqnarray}
+    \begin{aligned}
+    &\hat{V} \ket{\psi_1} = -a \ket{\psi_6} - a \ket{\psi_2}, \quad \hat{V} \ket{\psi_2} = -a \ket{\psi_1} - a \ket{\psi_3}, \quad \ldots, \\
+    &\hat{V} \ket{\psi_6} = -a \ket{\psi_5} - a \ket{\psi_1}
+    .\end{aligned}
+\end{eqnarray}
+Show that $\hat{R}$ commutes with the total Hamiltonian $\hat{H} = \hat{H} + \hat{V}$.
+From this deduce the eigenstates and eigenvalues of $\hat{H}$.
+In these eigenstates is the electron localized?
+
+\textbf{Hint}: The $N$ distinct complex roots of $z^{N} = 1$ are given by $z_{n} = e^{i(2\pi n/N)}$ for $n=1,2,\ldots,N$, and the following identity holds:
+\begin{eqnarray}
+    \sum_{n=0}^{N} z^{n} = \frac{1 - z^{N+1}}{1 - z}
+\end{eqnarray}
+for complex $z$.
+
+}
+
+\sol{
+
+(a) The eigen-equation for $\hat{R}$ is $\hat{R} \ket{\psi} = r \ket{\psi}$.
+It is clear from the definition of $\hat{R}$ that $\hat{R}^{6} = \hat{\id}$, meaning that
+\begin{eqnarray}
+    \hat{R}^{6} \ket{\psi} = \hat{\id} \ket{\psi} = r^{6} \ket{\psi} \Rightarrow r^{6} = 1
+.\end{eqnarray}
+The eigenvalues of $\hat{R}$ are then just the sixth roots of unity: $\{ e^{i\pi/3}, e^{i 2\pi/3}, e^{i \pi}, e^{i 4\pi/3}, e^{i 5\pi/3}, 1 \}$.
+
+}
+
+
+
+\end{document}
