@@ -138,7 +138,7 @@ Rearranging, we find
 .\end{eqnarray}
 If we sum over $n$ on both sides we have
 \begin{eqnarray}
-    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{n}}
+    \sum_{n} (E_{m} - E_{n})^2 | \bra{\phi_{m}} \hat{x} \ket{\phi_{n}} |^2 = \frac{\hbar^2}{m^2} \bra{\phi_{m}} \hat{p}^2 \ket{\phi_{m}}
 ,\end{eqnarray}
 where we have used the fact that the states $\{ \ket{\phi_{n}} \} $ are complete on the right.
 Note that this is not possible on the l.h.s. since the factor of the energy difference depends on $n$.
@@ -224,7 +224,7 @@ Furthermore, the correspondence between eigenvalues and eigenvectors is given by
     \{ -a, b \}  &\leftrightarrow (\ket{\phi_2} + i \ket{\phi_3})/\sqrt{2} \\
     \{ -a,-b \}  &\leftrightarrow (\ket{\phi_2} - i\ket{\phi_3})/\sqrt{2}
 .\end{align}
-It is obvious then that specifying the eigenvalues of $\hat{A}$ and $\hat{B}$ uniquely specifies the simultaneous corresponding eigenvector of $\hat{A}$ and $\hat{B}$, meaning that $\hat{A}$ and $\hat{B}$ form a complete set of commuting observables.
+It is clear that specifying the eigenvalues of $\hat{A}$ and $\hat{B}$ uniquely specifies the simultaneous corresponding eigenvector of $\hat{A}$ and $\hat{B}$, meaning that $\hat{A}$ and $\hat{B}$ form a complete set of commuting observables.
 
 
 }
@@ -370,7 +370,7 @@ Hence, $\hat{R}$ is unitary (in the matrix representation $R$ is orthogonal sinc
 
 (c) It is clear that $[\hat{R},\hat{H}_0] = 0$ since in the eigenbasis of $\hat{H}_{0}$, $\hat{H}_{0} = E_0 \hat{\id}$.
 Note that $\hat{V} = -a (\hat{R}^{\dagger} + \hat{R})$.
-From this, it is clear that $[\hat{R},V] = 0$ since $\hat{R}$ commutes with itself and its adjoint\footnote{This is only necessarily true since $\hat{R}$ is unitary.}.
+From this, it is clear that $[\hat{R},V] = 0$ since $\hat{R}$ commutes with itself and its adjoint\footnote{This is not generally true -- it is only the case here since $\hat{R}$ is unitary.}.
 It is clear that $\{ \ket{\chi_{n}} \} $ forms a simultaneous orthonormal basis for $\hat{H}_0$ and $\hat{R}$.
 From the fact that $\hat{V} = -a( \hat{R}^{\dagger} + \hat{R} )$ and that $\hat{R}^{\dagger} \ket{\chi_{n}} = \omega_{n}^{*} \ket{\chi_{n}}$, we have $\hat{V} \ket{\chi_{n}} = -(a/2) \Re(\omega_{n})$.
 The eigenvalues of $\hat{H}$ are then given by $E_0 - (a/2)\cos(\pi n/3)$.
