@@ -69,15 +69,15 @@ Using the fact that $A$ is a normal operator (as shown above), we have
 \end{eqnarray}
 
 (c) We will show that the spectrum of an operator in a basis which is not the eigenbasis still yields the same eigenvalues for the operator.
-Suppose that $\{ \ket{\phi_{n}} \} $ is a basis of the state space which is not the eigenbasis $\{ \ket{\psi_{n}} \} $ of the operator $A$.
+Suppose that $\{ \ket{\phi_{n}} \} $ and $\{ \ket{\psi_{n}} \}$ are two distinct bases of the operator $A$, which are not necessarily the eigenbasis of $A$.
 Note that different bases must have the same dimension since they are minimal sets that span the state space, so we can label them with the same index set.
 The matrix representation of $A$ in the basis $\{ \phi_{n} \}$ is given as
 \begin{eqnarray}
     A^{(\phi)} = (A^{(\phi)}_{mn}) = \bra{\phi_{m}} A \ket{\phi_{n}}
 ,\end{eqnarray}
-while in the eigenbasis $\{ \psi_{n} \} $, the matrix is is diagonal:
+while in the eigenbasis $\{ \psi_{n} \} $
 \begin{eqnarray}
-    A^{(\psi)} = (A^{(\psi)}_{mn}) = \bra{\psi_{m}} A \ket{\psi_{n}} = a_{n} \delta_{mn}
+    A^{(\psi)} = (A^{(\psi)}_{mn}) = \bra{\psi_{m}} A \ket{\psi_{n}}
 .\end{eqnarray}
 Since $\{ \ket{\psi_{n}} \} $ is complete, we can change bases using that
 \begin{eqnarray}
@@ -85,10 +85,10 @@ Since $\{ \ket{\psi_{n}} \} $ is complete, we can change bases using that
 ,\end{eqnarray}
 where $c_{nk} = \bra{\phi_{n}}\ket{\psi_{k}}$.
 The operator $C = (c_{nm})$ then gives the basis transformation from $\{ \ket{ \phi_{n} } \} $ to $\{ \ket{\psi_{n}} \} $.
-Furthermore, note that $C$ is unitary\footnote{This is true since we can reverse the argument and write $\ket{\psi_{n}}$ in terms of the vectors $\ket{\phi_{m}}$. Doing so gives that $C C^{\dagger} = \id$.}
+Furthermore, note that $C$ is unitary\footnote{This is true since we can reverse the argument and write $\ket{\psi_{n}}$ in terms of the vectors $\ket{\phi_{m}}$. Doing so gives that $C C^{\dagger} = \id$.}.
 That is, if $\va*{\alpha}_{\phi}$ is the vector of coordinates in the basis $\{ \ket{ \phi_{n} } \} $, then $\va*{\alpha}_{\psi} = C \va*{\alpha}_{\phi}$ is the vector of coordinates in the basis $\{ \ket{ \psi_{n} } \} $.
-It also then follows that $A^{(\phi)} = C A^{(\psi)} C^{\dagger}$.
-Finally, recall that the eigenvalues are just the roots of a matrix's characteristic equation:
+It also then follows that $A^{(\phi)} = C A^{(\psi)} C^{\dagger}$\footnote{This is proven by considering how the matrix elements of $A$ transform between bases.}.
+Finally, recall that the eigenvalues $\lambda$ are just the roots of a matrix's characteristic equation:
 \begin{gather}
     \det(A^{(\psi)} - \lambda \id) = 0 \nonumber \\
     \det(C^{\dagger} A^{(\phi)} C - \lambda C^{\dagger} C \id C^{\dagger} C) = 0 \nonumber \\
@@ -97,7 +97,7 @@ Finally, recall that the eigenvalues are just the roots of a matrix's characteri
     \det(C^{\dagger} C) \det(A^{(\phi)} - \lambda \id) = 0 \nonumber \\
     \det(A^{(\phi)} - \lambda \id) = 0
 .\end{gather}
-Thus, the eigenvalues $\lambda$ of $A^{(\psi)}$ satisfy the characteristic equation of $A$ in the basis $\{ \ket{\phi_{n}} \}$, meaning that the eigenvalues of $A$ are independent of the basis used to represent $A$.
+Thus, the roots $\lambda$ of the characteristic equation for $A$ in the basis $\{ \ket{\psi_{n}} \}$ also satisfy the characteristic equation of $A$ in the basis $\{ \ket{\phi_{n}} \}$, meaning that the eigenvalues of $A$ are independent of the basis used to represent $A$.
 
 It is strongly emphasized, though, that this result hinges on the completeness of the basis of the state-space and therefore the normality of the operator $A$.
 If $A$ is not normal then the eigenvectors do not necessarily form a complete set, and it is generally not true that there exists an operator $C$ which transforms between the set of eigenvectors of $A$ and a generic basis of the state space.
@@ -144,7 +144,84 @@ Show that this probability is the same as obtained in part (a) above when $p_{3}
 
 \sol{
 
-(a) 
+(a) The probability to measure $p_{x} \in [p_1,p_2]$ in the state $\ket{\psi}$ is given by
+\begin{eqnarray}
+    \mathcal{P}(p_1 \leq p_{x} \leq p_2) = \bra{\psi} P(p_1 \leq p_{x} \leq p_2) \ket{\psi}
+,\end{eqnarray}
+where $P(p_1 \leq p_{x} \leq p_{2})$ is the projection operator from the general state space onto the subspace spanned by momentum eigenvectors with momentum $p_{x}$ in the given range.
+This is explictly written
+\begin{eqnarray}
+    P = \int_{p_1}^{p_2} \dd{p_{x}} \int_{-\infty}^{\infty} \dd{p_{y}} \int_{-\infty}^{\infty} \dd{p_{z}} \ket{\psi_{\va*{p}}} \bra{\psi_{\va*{p}}}
+,\end{eqnarray}
+where $\ket{\psi_{\va*{p}}} = \ket{\psi_{p_{x}}} \otimes \ket{\psi_{p_{y}}} \otimes \ket{\psi_{p_{z}}}$.
+We can insert the spatial state completeness into the projector definition as follows
+\begin{align}
+    P &= \int_{p_1}^{p_2} \dd{p_{x}} \int_{-\infty}^{\infty} \dd{p_{y}} \int_{-\infty}^{\infty} \dd{p_{z}} \id \ket{\psi_{\va*{p}}} \bra{\psi_{\va*{p}}} \id \nonumber \\
+    &= \int_{p_1}^{p_2} \dd{p_{x}} \int_{-\infty}^{\infty} \dd{p_{y}} \int_{-\infty}^{\infty} \dd{p_{z}} \int \dd[3]{\va*{r}} \dd[3]{\va*{r}'} \ket{\phi_{\va*{r}}} \frac{1}{(2 \pi \hbar)^{3}} e^{-i \va*{p} \cdot (\va*{r} - \va*{r}') / \hbar} \bra{\phi_{\va*{r}'}} \nonumber \\
+    &= \int \dd[3]{\va*{r}} \dd[3]{\va*{r}'} \int_{p_1}^{p_2} \dd{p_{x}} \frac{1}{2 \pi \hbar} e^{-i p_{x}(x - x')/\hbar} \underbrace{ \Bigg[ \int_{-\infty}^{\infty} \frac{\dd{p_{y}}}{2 \pi \hbar} e^{-ip_{y}(y-y')/\hbar} \Bigg] }_{\delta(y-y')} \underbrace{ \Bigg[ \int_{-\infty}^{\infty} \frac{\dd{p_z}}{2\pi\hbar} e^{-ip_{z}(z-z')/\hbar} \Bigg] }_{\delta(z - z')} \ket{\phi_{\va*{r}}} \bra{\phi_{\va*{r}'}} \nonumber \\
+    &= \int_{-\infty}^{\infty} \dd{y} \int_{-\infty}^{\infty} \dd{z} \int_{p_1}^{p_2} \dd{p_x} \int_{-\infty}^{\infty} \dd{x} \int_{-\infty}^{\infty} \dd{x'} \frac{1}{\sqrt{2 \pi \hbar}} e^{-ip_{x}x/\hbar} \frac{1}{\sqrt{2 \pi \hbar}} e^{i p_{x} x' / \hbar} \ket{\phi_{x}} \ket{\phi_{y}} \ket{\phi_{z}} \bra{\phi_{x'}} \bra{\phi_{y}} \bra{\phi_{z}}
+\end{align}
+If we put this into the expression for the measurement probability above, we have
+\begin{eqnarray}
+    \mathcal{P}(p_1 \leq p_{x} \leq p_{2}) = \int_{-\infty}^{\infty} \dd{y} \int_{-\infty}^{\infty} \dd{z} \int_{p_1}^{p_2} \dd{p_{x}} |\tilde{\psi}(p_{x},y,z)|^2
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \tilde{\psi}(p_{x},y,z) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2 \pi \hbar}} e^{-i p_{x} x / \hbar} \psi(\va*{r})
+.\end{eqnarray}
+
+{ \color{red}
+Let us digress a bit and take a look at the generic integral
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x}
+.\end{eqnarray}
+It is clear that this cannot be done via elementary integration methods, but we can, however, analytically continue the integrand to the complex plane ($x' \rightarrow z$) and then use contour integration methods.
+Assuming for now that $a > 0$
+\begin{eqnarray}
+\begin{aligned}
+    \int_{C} \frac{e^{ia(z-x)} f(z)}{z-x} &= \int_{-\infty}^{x-\epsilon} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{|z-x|=\epsilon,\phi \in [\pi,0]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z - x} \\
+    &+ \int_{x+\epsilon}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{\Gamma} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x}
+,\end{aligned}
+\end{eqnarray}
+where $\Gamma$ is the semi-circle $|z| = R$ with $\phi \in [0,\pi]$, taking $R \rightarrow \infty$.
+This path was chosen such that there are no poles enclosed by $C$ and that the contribution along $\Gamma$ is identically zero.
+Taking $\epsilon \rightarrow 0$, we have the principal value of the integral above
+\begin{eqnarray}
+\begin{aligned}
+    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} &= \lim_{\epsilon \rightarrow 0} \int_{|z-x|=\epsilon,\phi \in [0,\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} \\
+    &= \lim_{\epsilon \rightarrow 0} \int_{0}^{\pi} (i \epsilon e^{i\phi} \dd{\phi}) \frac{1}{\epsilon e^{i\phi}} \sum_{n,m=0}^{\infty} \frac{(ia)^{n}f^{(m)}(x)}{n!m!} \epsilon^{n+m} e^{i (n+m) \phi} \\
+    &= \sum_{n=0}^{\infty} \frac{i f^{(n)}(x)}{n!} \lim_{\epsilon \rightarrow 0} \epsilon^{n+m} \Big[ \int_{0}^{\pi} \dd{\phi} e^{i n \phi} \Big] = i \pi f(x)
+.\end{aligned}
+\end{eqnarray}
+Note that if $a < 0$, we would draw the contour with lots of sign flips.
+The contour $C$ would still have the portions along the real axis which constitute the integral we desire when $\epsilon \rightarrow 0$, but the small half-circle would have $\phi \in [\pi,2\pi]$ and $\Gamma$ would be the semi-circle in the lower half-plane.
+Still, there would be no enclosed poles by $C$, and the line integral along $\Gamma$ would contribute nothing, leaving us with
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} = -\int_{|z-x|=\epsilon,\phi \in [\pi,2\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} = - i \pi f(x)
+.\end{eqnarray}
+Hence, the integral in general is just $i\pi f(x) {\rm sgn}(a)$.
+
+After a very long-winded argument, we now can simplify the measurement probability expression.
+\begin{eqnarray}
+    \mathcal{P}(p_1 \leq p_{x} \leq p_2) = \int \frac{\dd[3]{\va*{r}}}{2 \pi \hbar} \frac{i\pi \hbar [ {\rm sgn}(p_2) - {\rm sgn}(p_1) ]}{i} |\psi(\va*{r})|^2 = \frac{1}{2} \int \dd[3]{\va*{r}} []
+.\end{eqnarray}
+
+}
+
+(b)
+
+(c) If we restrict the momenta ranges of $p_{y}$ and $p_{z}$, we then have
+\begin{eqnarray}
+    \mathcal{P}(\va*{p} \in [p_1,p_2] \times [p_3,p_4] \times [p_5,p_6]) = \int_{p_1}^{p_2} \dd{p_{x}} \int_{p_3}^{p_4} \dd{p_{y}} \int_{p_5}^{p_6} \dd{p_{z}} |\tilde{\psi}(\va*{p})|^2
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \tilde{\psi}(\va*{p}) = \int \frac{\dd[3]{\va*{r}}}{(2 \pi \hbar)^{3/2}} \psi(\va*{r})
+.\end{eqnarray}
+This is essentially found by stitching the result from part (a) together three times.
+Instead of delta-functions in $y$ and $z$, we keep the exponential factors, which in turn give the Fourier transform with respect to $y$ and $z$.
+We recover the simplified version of part (a) taking $p_3,p_5 \rightarrow -\infty$ and $p_4,p_6 \rightarrow \infty$.
+In this case, we could explicitly write the is equivalent to taking the inverse Fourier Transform of $\tilde{\psi}$ with respect to $y$ and $z$ respectively.
 
 }
 
