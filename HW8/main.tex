@@ -1,0 +1,225 @@
+\def\duedate{\today}
+\def\HWnum{8}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 6 \#9}{
+
+A \textit{normal} operator is one that commutes with its adjoint.
+A linear algebra theorem assures that (at least for a finite-dimensional state space) a normal operator can be diagonalized and that the eigenvectors form a basis in the state space.
+
+(a) Prove the converse statement that an operator whose eigenstates form a basis in the state space must be normal.
+
+(b) A hermitian operator is an obvious example of a normal operator.
+Is a unitary operator also a normal operator?
+Show that the eigenvalues of a unitary operator all have unit magnitude.
+
+(c) Show that the eigenvalues of an operator are independent of the basis used to represent this operator.
+
+(d) Prove that if $A$ is a normal matrix representing the (normal) operator $\hat{A}$, then
+\begin{eqnarray}
+    \det(e^{A}) = e^{\Tr A}, \quad \Tr A = \sum_i A_{ii}
+.\end{eqnarray}
+
+}
+
+\sol{
+
+(a) Suppose that $\{ \ket{\psi_n} \}$ is the set of eigenvectors of an operator $\hat{A}$ satisfying $\hat{A} \ket{\psi_{n}} = a_{n} \ket{\psi_{n}}$, where $n$ is a discrete index from a finite set.
+Further suppose that any vector
+\begin{eqnarray}
+    \ket{\phi} = \sum_{n} c_{n} \ket{\psi_{n}}
+,\end{eqnarray}
+where the coefficients $c_{n} = \bra{\phi}\ket{\psi_{n}}$.
+An equivalent, alternative statement of this completeness is
+\begin{eqnarray}
+    \sum_{n} \bra{\psi_{n}} \ket{\psi_{n}} = \id
+.\end{eqnarray}
+We want to prove then that the operator $\hat{A}$ is normal: $[\hat{A}^{\dagger},\hat{A}] = 0$.
+Observe the following:
+\begin{eqnarray}
+\begin{aligned}
+    [A^{\dagger},A] &= A^{\dagger} A - A A^{\dagger} \\
+                    &= \id A^{\dagger} A \id - A \id A^{\dagger} \\
+                    &= \sum_{m} \ket{\psi_{m}}\bra{\psi_{m}} A^{\dagger} A \sum_{n} \ket{\psi_{n}} \bra{\psi_{n}} - A \sum_{n} \ket{\psi_{n}} \bra{\psi_{n}} A^{\dagger} \\
+                    &= \sum_{m} \sum_{n} a_{m}^{*} a_{n} \ket{\psi_{m}} \underbrace{\bra{\psi_{m}} \ket{\psi_{n}}}_{\delta_{nm}} \bra{\psi_{n}} - \sum_{n} |a_{n}|^2 \ket{\psi_{n}} \bra{\psi_{n}} \\
+                    &= \sum_{n} |a_{n}|^2 \bra{\psi_{n}} \ket{\psi_{n}} - \sum_{n} |a_{n}|^2 \bra{\psi_{n}} \ket{\psi_{n}} = 0
+.\end{aligned}
+\end{eqnarray}
+From this, we see that $A$ is a normal operator since it commutes with its adjoint.
+
+(b) A hermitian operator $A$ is clearly a normal operator since $[A^{\dagger},A] = [A,A] = 0$.
+On the other hand, a unitary operator $A$ is also normal since
+\begin{eqnarray}
+    [A^{\dagger},A] = A^{\dagger} A - A A^{\dagger} = \id - \id = 0
+.\end{eqnarray}
+
+Suppose that $\ket{\psi}$ is an eigenstate of $A$, which is unitary, with corresponding eigenvalue $\lambda$.
+That is,
+\begin{eqnarray}
+    A \ket{\psi} = \lambda \ket{\psi}
+.\end{eqnarray}
+Using the fact that $A$ is a normal operator (as shown above), we have
+\begin{eqnarray}
+\begin{aligned}
+    \bra{\psi} [A^{\dagger},A] \ket{\psi} = &\bra{\psi} A^{\dagger} A \ket{\psi} - \bra{\psi} A A^{\dagger} \ket{\psi} = 0 \\
+                                          &|\lambda|^2 - 1 = 0 \Rightarrow |\lambda| = 1
+.\end{aligned}
+\end{eqnarray}
+
+(c) We will show that the spectrum of an operator in a basis which is not the eigenbasis still yields the same eigenvalues for the operator.
+Suppose that $\{ \ket{\phi_{n}} \} $ is a basis of the state space which is not the eigenbasis $\{ \ket{\psi_{n}} \} $ of the operator $A$.
+Note that different bases must have the same dimension since they are minimal sets that span the state space, so we can label them with the same index set.
+The matrix representation of $A$ in the basis $\{ \phi_{n} \}$ is given as
+\begin{eqnarray}
+    A^{(\phi)} = (A^{(\phi)}_{mn}) = \bra{\phi_{m}} A \ket{\phi_{n}}
+,\end{eqnarray}
+while in the eigenbasis $\{ \psi_{n} \} $, the matrix is is diagonal:
+\begin{eqnarray}
+    A^{(\psi)} = (A^{(\psi)}_{mn}) = \bra{\psi_{m}} A \ket{\psi_{n}} = a_{n} \delta_{mn}
+.\end{eqnarray}
+Since $\{ \ket{\psi_{n}} \} $ is complete, we can change bases using that
+\begin{eqnarray}
+    \ket{ \phi_{n} } = \sum_{k} c_{nk} \ket{\psi_{k}}
+,\end{eqnarray}
+where $c_{nk} = \bra{\phi_{n}}\ket{\psi_{k}}$.
+The operator $C = (c_{nm})$ then gives the basis transformation from $\{ \ket{ \phi_{n} } \} $ to $\{ \ket{\psi_{n}} \} $.
+Furthermore, note that $C$ is unitary\footnote{This is true since we can reverse the argument and write $\ket{\psi_{n}}$ in terms of the vectors $\ket{\phi_{m}}$. Doing so gives that $C C^{\dagger} = \id$.}
+That is, if $\va*{\alpha}_{\phi}$ is the vector of coordinates in the basis $\{ \ket{ \phi_{n} } \} $, then $\va*{\alpha}_{\psi} = C \va*{\alpha}_{\phi}$ is the vector of coordinates in the basis $\{ \ket{ \psi_{n} } \} $.
+It also then follows that $A^{(\phi)} = C A^{(\psi)} C^{\dagger}$.
+Finally, recall that the eigenvalues are just the roots of a matrix's characteristic equation:
+\begin{gather}
+    \det(A^{(\psi)} - \lambda \id) = 0 \nonumber \\
+    \det(C^{\dagger} A^{(\phi)} C - \lambda C^{\dagger} C \id C^{\dagger} C) = 0 \nonumber \\
+    \det[ C^{\dagger} ( A^{(\phi)} - \lambda C C^{\dagger} ) C ] = 0 \nonumber \\
+    \det(C^{\dagger}) \det(A^{(\phi)} - \lambda \id ) \det(C) = 0 \nonumber \\
+    \det(C^{\dagger} C) \det(A^{(\phi)} - \lambda \id) = 0 \nonumber \\
+    \det(A^{(\phi)} - \lambda \id) = 0
+.\end{gather}
+Thus, the eigenvalues $\lambda$ of $A^{(\psi)}$ satisfy the characteristic equation of $A$ in the basis $\{ \ket{\phi_{n}} \}$, meaning that the eigenvalues of $A$ are independent of the basis used to represent $A$.
+
+It is strongly emphasized, though, that this result hinges on the completeness of the basis of the state-space and therefore the normality of the operator $A$.
+If $A$ is not normal then the eigenvectors do not necessarily form a complete set, and it is generally not true that there exists an operator $C$ which transforms between the set of eigenvectors of $A$ and a generic basis of the state space.
+
+(d) In part (c), we saw that a normal matrix $A$ can be diagonalized as
+\begin{eqnarray}
+    A = C D C^{\dagger}
+,\end{eqnarray}
+where $D$ is a diagonal matrix with $D_{nn} = \lambda_{n}$ being the $n^{\rm th}$ eigenvalue of $A$ and $C$ is the matrix which transforms $A$ from its representation in an arbitrary basis to its eigenbasis.
+It follows then that
+\begin{eqnarray}
+    \det(e^{A}) = \det(e^{C D C^{\dagger}}) = \det(C^{\dagger} e^{D} C) = \det(C^{\dagger} C e^{D}) = \det(e^{D}) = e^{\sum_{n} \lambda_{n}} = e^{\Tr(A)}
+.\end{eqnarray}
+This line of algebra hinged on two facts.
+First,
+\begin{eqnarray}
+\begin{aligned}
+    e^{C D C^{\dagger}} &= \sum_{n=0}^{\infty} \frac{(C D C^{\dagger})^{n}}{n!} = \sum_{n=0}^{\infty} \frac{1}{n!} (C D C^{\dagger}) (C D C^{\dagger}) \ldots (C D C^{\dagger}) (C D C^{\dagger}) = \sum_{n=0}^{\infty} \frac{C D^{n} C^{\dagger}}{n!} \\
+                        &= C \Bigg( \sum_{n=0}^{\infty} \frac{D^{n}}{n!} \Bigg) C^{\dagger} = C e^{D} C^{\dagger}
+,\end{aligned}
+\end{eqnarray}
+and second,
+\begin{eqnarray}
+    \Tr(A) = \Tr(C D C^{\dagger}) = \Tr(C^{\dagger} C D) = \Tr(D)
+,\end{eqnarray}
+using the cylic behavior of the trace.
+
+}
+
+
+\prob{2 -- Chapter 7 \# 3}{
+
+Let $\psi(\va*{r})$ be the normalized wave function of a particle.
+Express in terms of $\psi(\va*{r})$ the probability for:
+
+(a) A measurement of the momentum component $\hat{p}_{x}$ to yield a result included between $p_1$ and $p_2$.
+
+(b) A simultaneous measurement of the position component $\hat{x}$ and the momentum component $\hat{p}_{z}$ to yield results $x_1 \leq x \leq x_2$ and $p_{z} \geq 0$, respectively.
+
+(c) A simultaneous measurement of the three momentum components $\hat{p}_{x},~\hat{p}_{y},~{\rm and}~\hat{p}_{z}$ to yield results $p_1 \leq p_{x} \leq p_{2}$, $p_{3} \leq p_{y} \leq p_{4}$, and $p_{5} \leq p_{z} \leq p_{6}$.
+Show that this probability is the same as obtained in part (a) above when $p_{3},p_{5} \rightarrow -\infty$ and $p_{4},p_{6} \rightarrow \infty$.
+
+}
+
+\sol{
+
+(a) 
+
+}
+
+
+\prob{3 -- Chapter 7 \# 4}{
+
+Consider three non-commuting observables $\hat{A}$, $\hat{B}$, and $\hat{C}$.
+Observable $\hat{A}$ is measured yielding the non-degenerate eigenvalue $a$ with corresponding eigenstate $\ket{\psi_{a}}$.
+Then, the following two different experiments are carried out.
+
+(a) In the first experiment, before the system has had any time to evolve after the measurement of $\hat{A}$, observable $\hat{C}$ is measured yielding the non-degenerate eigenvalue $c$ with corresponding eigenstate $\ket{\chi_{c}}$.
+Calculate the probability $P_{a}(c)$ to measure $c$.
+
+(b) In the second experiment, observables $\hat{B}$ and $\hat{C}$ are measured in rapid succession, so that the system has not had any time to evolve between the measurements of $\hat{A}$ and $\hat{B}$ and those of $\hat{B}$ and $\hat{C}$.
+Suppose these measurements yield, respectively, the non-degenerate eigenvalues $b$ and $c$, where $\ket{\phi_{b}}$ is the eigenstate corresponding to the eigenvalue $b$.
+Calculate the probability $P_{a}(b,c)$ to measure $b$ and $c$.
+
+(c) Assuming that the eigenvalues of $\hat{B}$ are all non-degenerate, show that
+\begin{eqnarray}
+    P_{a}(c) = \sum_{b} P_{a}(b,c) + \mathbf{X}
+.\end{eqnarray}
+Provide an expression for $\mathbf{X}$.
+What is then the essential difference between the two experiments?
+What conclusions can you draw?
+
+}
+
+\sol{}
+
+
+\prob{4 -- Chapter \#7}{
+
+Consider a system with a three-dimensional state space.
+The Hamiltonian $\hat{H}$ has a non-degenerate eigenvalue $E_1 = E_0$ with (normalized) eigenstate $\ket{\phi_1}$ and a degenerate eigenvalue $E_2 = 2E_0$ with (orthonormal) eigenstates $\ket{\phi_2}$ and $\ket{\phi_3}$.
+Suppose at time $t = 0$ the system is in the normalized state $\ket{\psi(0)}$ given by
+\begin{eqnarray}
+    \ket{\psi(0)} = \frac{1}{\sqrt{2}} \ket{\phi_1} + \frac{1}{2}( \ket{\phi_2} + \ket{\phi_3} )
+.\end{eqnarray}
+
+(a) At $t = 0$ the energy of the system is measured.
+What values can be found and with what probabilities?
+Calculate $\expval{H}$ and the root-mean-square deviation $\Delta H$ for the system in the state $\ket{\psi(0)}$.
+
+(b) Suppose at $t = 0$, instead of $\hat{H}$, the observable $\hat{A}$, which in the basis $\ket{\phi_1}$, $\ket{\phi_2}$, and $\ket{\phi_3}$ is represented by the following matrix
+\begin{eqnarray}
+    A = a \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 0
+    \end{pmatrix}
+,\end{eqnarray}
+is measured with $a \in \reals^{+}$.
+What results can be found and with what probabilities?
+
+(c) Obtain the state vector $\ket{\psi(t)}$ at time $t$.
+
+(d) In addition to $\hat{A}$ above, consider another observable $\hat{B}$ with respresentation (in the same basis of Hamiltonian eigenstates) given by
+\begin{eqnarray}
+    B = b \begin{pmatrix}
+        0 & 1 & 0 \\
+        1 & 0 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}
+,\end{eqnarray}
+where $b \in \reals^{+}$.
+What are the mean values $\expval{A(t)}$ and $\expval{B(t)}$?
+Any comments?
+
+(e) What results are obtained if $\hat{A}$ is measured at time $t$?
+Same question for $\hat{B}$?
+Interpret these results.
+
+}
+
+\sol{}
+
+
+\end{document}
