@@ -208,7 +208,16 @@ where
 %
 %}
 
-(b)
+(b) In this case, we have something quite similar to the above.
+If we insert the projection operator for $p_{z}$ onto momentum states with $p_{z} > 0$ and the projection operator for $x$ onto coordinate states with $x_1 \leq x \leq x_2$, we have
+\begin{eqnarray}
+    P(x_1 \leq x \leq x_2; p_{z} \geq 0) = \int_{x_1}^{x_2} \dd{x} \int_{-\infty}^{\infty} \dd{y} \int_{0}^{\infty} |\tilde{\psi}(x,y,p_{z})|^2
+,\end{eqnarray}
+where in this case
+\begin{eqnarray}
+    \tilde{\psi}(x,y,p_{z}) = \int_{-\infty}^{\infty} \frac{\dd{z}}{\sqrt{2 \pi \hbar}} e^{-i p_{z} z / \hbar} \psi(\va*{r})
+.\end{eqnarray}
+Again, this is just the Fourier transform of the wave function with respect to only the $z$-coordinate.
 
 (c) If we restrict the momenta ranges of $p_{y}$ and $p_{z}$, we then have
 \begin{eqnarray}
