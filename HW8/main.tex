@@ -170,43 +170,43 @@ where
     \tilde{\psi}(p_{x},y,z) = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2 \pi \hbar}} e^{-i p_{x} x / \hbar} \psi(\va*{r})
 .\end{eqnarray}
 
-{ \color{red}
-Let us digress a bit and take a look at the generic integral
-\begin{eqnarray}
-    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x}
-.\end{eqnarray}
-It is clear that this cannot be done via elementary integration methods, but we can, however, analytically continue the integrand to the complex plane ($x' \rightarrow z$) and then use contour integration methods.
-Assuming for now that $a > 0$
-\begin{eqnarray}
-\begin{aligned}
-    \int_{C} \frac{e^{ia(z-x)} f(z)}{z-x} &= \int_{-\infty}^{x-\epsilon} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{|z-x|=\epsilon,\phi \in [\pi,0]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z - x} \\
-    &+ \int_{x+\epsilon}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{\Gamma} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x}
-,\end{aligned}
-\end{eqnarray}
-where $\Gamma$ is the semi-circle $|z| = R$ with $\phi \in [0,\pi]$, taking $R \rightarrow \infty$.
-This path was chosen such that there are no poles enclosed by $C$ and that the contribution along $\Gamma$ is identically zero.
-Taking $\epsilon \rightarrow 0$, we have the principal value of the integral above
-\begin{eqnarray}
-\begin{aligned}
-    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} &= \lim_{\epsilon \rightarrow 0} \int_{|z-x|=\epsilon,\phi \in [0,\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} \\
-    &= \lim_{\epsilon \rightarrow 0} \int_{0}^{\pi} (i \epsilon e^{i\phi} \dd{\phi}) \frac{1}{\epsilon e^{i\phi}} \sum_{n,m=0}^{\infty} \frac{(ia)^{n}f^{(m)}(x)}{n!m!} \epsilon^{n+m} e^{i (n+m) \phi} \\
-    &= \sum_{n=0}^{\infty} \frac{i f^{(n)}(x)}{n!} \lim_{\epsilon \rightarrow 0} \epsilon^{n+m} \Big[ \int_{0}^{\pi} \dd{\phi} e^{i n \phi} \Big] = i \pi f(x)
-.\end{aligned}
-\end{eqnarray}
-Note that if $a < 0$, we would draw the contour with lots of sign flips.
-The contour $C$ would still have the portions along the real axis which constitute the integral we desire when $\epsilon \rightarrow 0$, but the small half-circle would have $\phi \in [\pi,2\pi]$ and $\Gamma$ would be the semi-circle in the lower half-plane.
-Still, there would be no enclosed poles by $C$, and the line integral along $\Gamma$ would contribute nothing, leaving us with
-\begin{eqnarray}
-    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} = -\int_{|z-x|=\epsilon,\phi \in [\pi,2\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} = - i \pi f(x)
-.\end{eqnarray}
-Hence, the integral in general is just $i\pi f(x) {\rm sgn}(a)$.
-
-After a very long-winded argument, we now can simplify the measurement probability expression.
-\begin{eqnarray}
-    \mathcal{P}(p_1 \leq p_{x} \leq p_2) = \int \frac{\dd[3]{\va*{r}}}{2 \pi \hbar} \frac{i\pi \hbar [ {\rm sgn}(p_2) - {\rm sgn}(p_1) ]}{i} |\psi(\va*{r})|^2 = \frac{1}{2} \int \dd[3]{\va*{r}} []
-.\end{eqnarray}
-
-}
+%{ \color{red}
+%Let us digress a bit and take a look at the generic integral
+%\begin{eqnarray}
+%    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x}
+%.\end{eqnarray}
+%It is clear that this cannot be done via elementary integration methods, but we can, however, analytically continue the integrand to the complex plane ($x' \rightarrow z$) and then use contour integration methods.
+%Assuming for now that $a > 0$
+%\begin{eqnarray}
+%\begin{aligned}
+%    \int_{C} \frac{e^{ia(z-x)} f(z)}{z-x} &= \int_{-\infty}^{x-\epsilon} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{|z-x|=\epsilon,\phi \in [\pi,0]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z - x} \\
+%    &+ \int_{x+\epsilon}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} + \int_{\Gamma} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x}
+%,\end{aligned}
+%\end{eqnarray}
+%where $\Gamma$ is the semi-circle $|z| = R$ with $\phi \in [0,\pi]$, taking $R \rightarrow \infty$.
+%This path was chosen such that there are no poles enclosed by $C$ and that the contribution along $\Gamma$ is identically zero.
+%Taking $\epsilon \rightarrow 0$, we have the principal value of the integral above
+%\begin{eqnarray}
+%\begin{aligned}
+%    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} &= \lim_{\epsilon \rightarrow 0} \int_{|z-x|=\epsilon,\phi \in [0,\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} \\
+%    &= \lim_{\epsilon \rightarrow 0} \int_{0}^{\pi} (i \epsilon e^{i\phi} \dd{\phi}) \frac{1}{\epsilon e^{i\phi}} \sum_{n,m=0}^{\infty} \frac{(ia)^{n}f^{(m)}(x)}{n!m!} \epsilon^{n+m} e^{i (n+m) \phi} \\
+%    &= \sum_{n=0}^{\infty} \frac{i f^{(n)}(x)}{n!} \lim_{\epsilon \rightarrow 0} \epsilon^{n+m} \Big[ \int_{0}^{\pi} \dd{\phi} e^{i n \phi} \Big] = i \pi f(x)
+%.\end{aligned}
+%\end{eqnarray}
+%Note that if $a < 0$, we would draw the contour with lots of sign flips.
+%The contour $C$ would still have the portions along the real axis which constitute the integral we desire when $\epsilon \rightarrow 0$, but the small half-circle would have $\phi \in [\pi,2\pi]$ and $\Gamma$ would be the semi-circle in the lower half-plane.
+%Still, there would be no enclosed poles by $C$, and the line integral along $\Gamma$ would contribute nothing, leaving us with
+%\begin{eqnarray}
+%    \int_{-\infty}^{\infty} \dd{x'} \frac{e^{ia(x'-x)}f(x')}{x'-x} = -\int_{|z-x|=\epsilon,\phi \in [\pi,2\pi]} \dd{z} \frac{e^{ia(z-x)}f(z)}{z-x} = - i \pi f(x)
+%.\end{eqnarray}
+%Hence, the integral in general is just $i\pi f(x) {\rm sgn}(a)$.
+%
+%After a very long-winded argument, we now can simplify the measurement probability expression.
+%\begin{eqnarray}
+%    \mathcal{P}(p_1 \leq p_{x} \leq p_2) = \int \frac{\dd[3]{\va*{r}}}{2 \pi \hbar} \frac{i\pi \hbar [ {\rm sgn}(p_2) - {\rm sgn}(p_1) ]}{i} |\psi(\va*{r})|^2 = \frac{1}{2} \int \dd[3]{\va*{r}} []
+%.\end{eqnarray}
+%
+%}
 
 (b)
 
@@ -221,7 +221,8 @@ where
 This is essentially found by stitching the result from part (a) together three times.
 Instead of delta-functions in $y$ and $z$, we keep the exponential factors, which in turn give the Fourier transform with respect to $y$ and $z$.
 We recover the simplified version of part (a) taking $p_3,p_5 \rightarrow -\infty$ and $p_4,p_6 \rightarrow \infty$.
-In this case, we could explicitly write the is equivalent to taking the inverse Fourier Transform of $\tilde{\psi}$ with respect to $y$ and $z$ respectively.
+In this case, we would effectively have the Fourier transform of the wave function with respect to $y$ and $z$ but also immediately the inverse of these.
+
 
 }
 
@@ -249,7 +250,40 @@ What conclusions can you draw?
 
 }
 
-\sol{}
+\sol{
+
+(a) The probability to measure $c$ is just
+\begin{eqnarray}
+    P_a(c) = \bra{\psi_{a}} \mathcal{P}_{c} \ket{\psi_{a}} = \bra{\psi_{a}} (\ket{\chi_{c}} \bra{\chi_{c}}) \ket{\psi_{a}} = |\bra{\chi_{c}}\ket{\psi_{a}}|^2
+.\end{eqnarray}
+
+(b) The probability to measure $b$ is
+\begin{eqnarray}
+    P_{a}(b) = \bra{\psi_{a}} \mathcal{P}_{b} \ket{\psi_{a}} = |\bra{\phi_{b}}\ket{\psi_{a}}|^2
+.\end{eqnarray}
+After this measurement, the system collapses to $\ket{\phi_{b}}$\footnote{It may sound odd to say that the system ``collapses'' to another state. How can a system which is already in an eigenstate collapse to another eigenstate? This is because $\ket{\psi_{a}} = \sum_{b} \ket{\phi_{}} \bra{\phi_{b}}\ket{\psi_{a}}$ since $\ket{\psi_{a}}$ is not an eigenstate of $B$, given that $[A,B] \ne 0$. The eigenstates are of distinct, non-commuting observables, which are not simultaneously diagonalizable.}
+The probability to measure $c$ in the state $\ket{\phi_{b}}$ is then just
+\begin{eqnarray}
+    P_{b}(a) = \bra{\phi_{b}} \mathcal{P}_{c} \ket{\phi_{b}} = |\bra{\chi_{c}}\ket{\phi_{b}}|^2
+.\end{eqnarray}
+The probability to measure $b$ then $c$ is then just
+\begin{eqnarray}
+    P_{a}(b,c) = P_{a}(b)P_{b}(c) = |\bra{\phi_{b}}\ket{\psi_{a}}|^2 |\bra{\chi_{c}}\ket{\phi_{b}}|^2 = |\bra{\chi_{c}} \mathcal{P}_{b} \ket{\psi_{a}}|^2
+.\end{eqnarray}
+
+(c) If the eigenvalues of $B$ are non-degenerate, we can then write
+\begin{eqnarray}
+\begin{aligned}
+    P_{a}(c) &= |\bra{\chi_{c}} \sum_{b} \mathcal{P}_{b} \ket{\psi_{a}}|^2 = \sum_{b,b'} \bra{\psi_{a}} \mathcal{P}_{b} \ket{\chi_{c}} \bra{\chi_{c}} \mathcal{P}_{b'} \ket{\psi_{a}} \\
+             &= \sum_{b=b'} P_{a}(b,c) + \underbrace{ \sum_{b \ne b'} \bra{\psi_{a}} \mathcal{P}_{b} \mathcal{P}_{c} \mathcal{P}_{b'} \ket{\psi_{a}} }_{\mathbf{X}}
+.\end{aligned}
+\end{eqnarray}
+The essential difference is that the measurement of $B$ then $C$ forces the system to assume the eigenstate $\ket{\phi_{b}}$ before measurement of $C$.
+In the process where $C$ is measured, the particle is in state $\ket{\psi_{a}}$, which is a superposition of the states $\{ \ket{\phi_{b}} \} $.
+We can then imagine repeating second measurement an infinite number of times.
+To recover the probability $P_{a}(c)$ in this case, we have to sum over all the events (all possibilite transitions from an eigenstate of $B$ to the final eigenstate with eigenvalue $c$ of $C$).
+
+}
 
 
 \prob{4 -- Chapter \#7}{
@@ -296,7 +330,84 @@ Interpret these results.
 
 }
 
-\sol{}
+\sol{
+
+(a) The energy $E_1$ has probability
+\begin{eqnarray}
+    P_{1} = |\bra{\phi_1}\ket{\psi(0)}|^2 = \frac{1}{2}
+\end{eqnarray}
+to be measured at time $t = 0$, and similarly
+\begin{eqnarray}
+    P_{2} = \bra{\psi(0)} ( \ket{\phi_2}\bra{\phi_2} + \ket{\phi_3}\bra{\phi_3} ) \ket{\psi(0)} = \frac{1}{4} + \frac{1}{4} = \frac{1}{2}
+\end{eqnarray}
+is the proability to measure $E_2$, which is as expected since the probability of measuring $E_1$ or $E_2$ must be unity.
+
+The expectation value of the energy in this state is
+\begin{eqnarray}
+    \expval{H} = \bra{\psi(0)} \Big[ E_1 \ket{\phi_1}\bra{\phi_1} + E_2 ( \ket{\phi_2}\bra{\phi_2} + \ket{\phi_3}\bra{\phi_3} ) \Big] \ket{\psi(0)} = \frac{1}{2} E_1 + \frac{1}{2} E_2 = \frac{3}{2} E_0
+.\end{eqnarray}
+Similarly,
+\begin{eqnarray}
+    \expval{H^2} = \frac{1}{2} E_1^2 + \frac{1}{2} E_2^2 = \frac{5}{2} E_0^2
+,\end{eqnarray}
+which gives
+\begin{eqnarray}
+    \Delta H = \sqrt{ \expval{H}^2 - \expval{H}^2 } = \sqrt{ \frac{10 - 9}{4} } E_0 = \frac{1}{2} E_0
+.\end{eqnarray}
+
+(b) We can write
+\begin{eqnarray}
+    A = a ( \ket{\phi_1} \bra{\phi_1} + \ket{\phi_2} \bra{\phi_3} + \ket{\phi_3} \bra{\phi_2} )
+.\end{eqnarray}
+The possible measured values of $A$ are $\pm a$.
+Note that the eigenvectors of $A$ corresponding to $a$ are $\ket{\phi_1}$ and $(\ket{\phi_2} + \ket{\phi_3})/\sqrt{2}$ while for $-a$ we have $(\ket{\phi_2} - \ket{\phi_3})/\sqrt{2}$.
+The probability to measure $a$ is then
+\begin{eqnarray}
+\begin{aligned}
+    P_{+a} &= \bra{\psi(0)} [ \ket{\phi_1}\bra{\phi_1} + \frac{1}{2}(\ket{\phi_2} + \ket{\phi_3})( \bra{\phi_{2}} + \bra{\phi_3} ) ] \ket{\psi(0)} \\
+           &= \frac{1}{2} + \frac{1}{2}(1 + 1)\frac{1}{2} (1 + 1) = 1
+\end{aligned}
+.\end{eqnarray}
+The proability to measure $-a$ is then zero:
+\begin{eqnarray}
+    P_{-a} = \bra{\psi(0)} \frac{1}{2} ( \ket{\phi_2} - \ket{\phi_3} )( \bra{\phi_2} - \bra{\phi_3} ) \ket{\psi(0)} = \frac{1}{2} \Big[ \frac{1}{2}\frac{1}{2} - \frac{1}{2}\frac{1}{2} - \frac{1}{2}\frac{1}{2} + \frac{1}{2}\frac{1}{2} \Big] = 0
+.\end{eqnarray}
+
+(c) Since the Hamiltonian is time-independent, we can write the unitary time evolution operator (with initial time $t = 0$) as
+\begin{eqnarray}
+    \mathcal{U}(t) = e^{-i H t / \hbar}
+,\end{eqnarray}
+which gives
+\begin{eqnarray}
+    \ket{\psi(t)} = \mathcal{U}(t) \ket{\psi(0)} = \frac{1}{\sqrt{2}} e^{-i E_1 t / \hbar} \ket{\phi_1} + \frac{1}{2} e^{-i E_2 t / \hbar} ( \ket{\phi_2} + \ket{\phi_3} )
+.\end{eqnarray}
+
+(d) The operator $B$ has eigenvalues $\pm b$ with eigenstates $( \ket{\phi_1} + \ket{\phi_2} )/\sqrt{2}$ and $\ket{\phi_3}$ corresponding to $b$ and eigenstate $( \ket{\phi_1} - \ket{\phi_2} )/\sqrt{2}$ corresponding to $-b$.
+
+The mean value
+\begin{eqnarray}
+    \expval{A(t)} = \bra{\psi(t)} A \ket{\psi(t)} = \bra{\psi(t)} a \ket{\psi(t)} = a
+\end{eqnarray}
+This is expected since $\ket{\psi(t)}$ is always in the subspace of the state space spanned by the eigenvectors of $A$ corresponding to eigenvalue $a$.
+
+On the other hand, observe that we can write
+\begin{eqnarray}
+\begin{aligned}
+    \expval{B(t)} &= \bra{\psi(t)} B \ket{\psi(t)} = b \bra{\psi(t)} \Big[ \frac{1}{\sqrt{2}} e^{-i E_1 t /\hbar} \ket{\phi_2} + \frac{1}{2} e^{-i E_2 t /\hbar} ( \ket{\phi_1} + \ket{\phi_3} ) \Big] \\
+                  &= b \Bigg[ \frac{1}{2\sqrt{2}} ( e^{i E_2 t /\hbar} e^{-iE_1t/\hbar} + e^{i E_1 t /\hbar} e^{-i E_2 t /\hbar} ) + \frac{1}{4} \Bigg] \\
+                  &= \Big[ \frac{1}{4} + \frac{1}{\sqrt{2}} \cos[(E_2-E_1)t/\hbar] \Big] b \\
+                  &= \big[ 1 + 2 \sqrt{2} \cos(E_0 t /\hbar) \big] \frac{b}{4}
+\end{aligned}
+.\end{eqnarray}
+
+(e) The interpretation of $\expval{A(t)} = a$ is just that if one prepares the state $\ket{\psi(0)}$ and allows it to evolve to any aribitrary time $t$ and measures $A$, the result would always be $a$.
+Actually, this should be true for subsequent measurements of $A$ too\footnote{This is true because the system collapses to an eigenstate of $a$. \textbf{Question}: Does the system's state change after measurement of $A$? It is already in the subspace spanned by the degenerate eigenstates of $A$. It would not spontaneously assume another state in the same space, would it?}.
+
+Notice that $\expval{B(t)}$ oscillates between $\pm b/4$.
+This is an interference phenomenon which is present because $\ket{\psi(t)}$ is a linear combination of the eigenstates of $B$, containing terms correspoding to eigenvalues $\pm b$, respectively.
+It is the relative phases of these terms and the fact that the probabilities are square-amplitudes that generates the cross-terms between the eigenstates of $B$, which collectively generate a sinusoidal behavior in the expectation value of $B$ over time.
+
+}
 
 
 \end{document}
