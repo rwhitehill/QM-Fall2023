@@ -1,0 +1,133 @@
+\def\duedate{\today}
+\def\HWnum{9}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 7 \# 12}{
+
+This problem deals with the phenomenon of neutrino oscillations in a simplified scenario, in which the neutrino flavors are two (electron and muon neutrinos) rather than three (electron, muon, and tau neutrinos) as observed in Nature.
+We denote these two flavors with $\nu_{e}$ and $\nu_{\mu}$, respectively.
+It turns out that an electron neutrino of momentum $\va*{p}$ is given by
+\begin{eqnarray}
+    \ket{\nu_{e};\va*{p}} = \cos{\theta} \ket{\nu_1;\va*{p}} + \sin{\theta} \ket{\nu_2;\va*{p}}
+,\end{eqnarray}
+where $\ket{\nu_{k};\va*{p}}$ with $k = 1,2$ is an eigenstate of the relativistic free-particle Hamiltonian
+\begin{eqnarray}
+    \hat{H}_{k} = c \sqrt{\hat{\va*{p}}^2 + (m_{k} c)^2}
+.\end{eqnarray}
+That is
+\begin{eqnarray}
+    \hat{H}_{k} \ket{\nu_{k};\va*{p}} = E_{k} \ket{\nu_{k};\va*{p}}, \quad E_{k} = c \sqrt{p^2 + (m_{k}c)^2}
+,\end{eqnarray}
+where $m_{k}$ and $c$ are, respectively, the mass and speed of light, and 
+\begin{eqnarray}
+    \bra{\nu_{k};\va*{p}}\ket{\nu_{l};\va*{q}} = \delta_{kl} \delta(\va*{p} - \va*{q})
+.\end{eqnarray}
+A muon neutrino of momentum $\va*{p}$ is given, in terms of the Hamiltonian eigenstates defined above, by the orthogonal linear combination
+\begin{eqnarray}
+    \ket{\nu_{\mu};\va*{p}} = -\sin{\theta} \ket{\nu_1;\va*{p}} + \cos{\theta} \ket{\nu_2;\va*{p}}
+.\end{eqnarray}
+
+(a) Assume that at time $t = 0$ the neutrino state is $\ket{\psi(0)} = \ket{\nu_{e};\va*{p}}$.
+Calculate the probability $P_{\nu_{e} \rightarrow \nu_{\mu}}(t)$ that at time $t$ the neutrino is in state $\ket{\psi(t)} = \ket{\nu_{\mu};\va*{p}}$, that is the neutrino has undergone the flavor oscillation $\nu_{e} \rightarrow \nu_{\mu}$.
+Calculatealso the survival probability $P_{\nu_e \rightarrow \nu_{\mu}}$.
+Alternatively, assume that the neutrino state at time $t = 0$ is $\ket{\psi(0)} = \ket{\nu_{\mu};\va*{p}}$, and calculate $P_{\nu_{\mu} \rightarrow \nu_{e}}(t)$ and $P_{\nu_{\mu} \rightarrow \nu_{e}}(t)$.
+
+(b) Assume that the momentum $\va*{p}$ (that is, the eigenvalue of the momentum operator) is such that $|\va*{p}| \gg m_{k}c$.
+Show that to leading order in $\Delta m^2 = m_1^2 - m_2^2$ the probability for the conversion $\nu_{e} \rightarrow \nu_{\mu}$ can be written as
+\begin{eqnarray}
+    P_{\nu_{e} \rightarrow \nu_{\mu}}(L) = \sin^2(2 \theta) \sin^2\Big( \frac{\Delta m^2 L c^2}{4 \hbar p} \Big)
+,\end{eqnarray}
+where $L$ is the distance the neutrino has travelled in the time $t$.
+
+}
+
+\sol{}
+
+
+\prob{2 -- Chapter 8 \# 3}{
+
+A harmonic oscillator of mass $m$ and angular frequency $\omega$ is in the ground state with normalized wave function given by
+\begin{eqnarray}
+    \psi_0(x) = \Big( \frac{m \omega}{\pi \hbar} \Big)^{1/4} \exp( -\frac{m \omega}{2 \hbar} x^2 )
+.\end{eqnarray}
+
+(a) At $t = 0$ a measurement of the particle's position is made.
+What is the probability that the particle be found in an interval $\dd{x}$ centered at $x = 0$?
+
+(b) Assume that the measurement of the particle's position at $t = 0$ indeed yields the result $x = 0$.
+What is the particle's wave function $\psi(x,0)$ immediately after this measurement?
+
+(c) What is the particle's wave function $\psi(x,t)$ at a later time $t$?
+
+(d) What is the probability that a measurement of the energy at time $t$ yields the result $\hbar \omega / 2$?
+
+(e) Without doing any detailed calculation, explain why there is zero probability to measure an energy $( n + 1/2 )\hbar \omega$ with $n$ odd.
+
+}
+
+\sol{}
+
+
+\prob{3 -- Chapter 8 \# 5}{
+
+The Hamiltonian of two particles is given by
+\begin{eqnarray}
+    \hat{H} = \hat{H}_1 + \hat{H}_2, \quad \hat{H}_{i} = \frac{\hat{p}_{i}^2}{2m} + \frac{m \omega^2}{2} \hat{x}_{i}^2
+,\end{eqnarray}
+where $\hat{x}_{i}$ and $\hat{p}_{i}$ are the position and momentum operator of particle $i$.
+At time $t = 0$ the system is in state
+\begin{eqnarray}
+    \ket{\psi(0)} = \frac{1}{2} ( \ket{0,0} + \ket{1,0} + \ket{0,1} + \ket{1,1} )
+.\end{eqnarray}
+
+(a) At time $t = 0$ the total energy is measured and the result $2 \hbar \omega$ is obtained: (i) Calculate the mean values of the position, momentum, and energy of particle 1 and (ii) At $t > 0$ the energy of particle 1 is measured. What results can be found and with what probabilities?
+Same question for a measurement of the position of particle 1.
+
+(b) Instead of measuring the total energy at $t = 0$, the energy of particle 2 is measured and the result $\hbar \omega / 2$ is obtained.
+What happens to the answers to questions (a) and (b) above?
+
+
+}
+
+\sol{}
+
+
+\prob{4 -- Chapter 8 \# 6}{
+
+The Hamiltonian of two particles is given by
+\begin{eqnarray}
+    \hat{H} = \hat{H}_1 + \hat{H}_2, \quad \hat{H}_{i} = \frac{\hat{p}_{i}^2}{2m} + \frac{m \omega^2}{2} \hat{x}_{i}^2
+,\end{eqnarray}
+where $\hat{x}_{i}$ and $\hat{p}_{i}$ are the position and momentum operators of particle $i$.
+Let $\ket{n_1,n_2}$ denote the common eigenstates of $\hat{H}_1$ and $\hat{H}_2$ with eigenvalues $\hbar \omega (n_1 + 1/2)$ and $\hbar \omega (n_2 + 1/2)$, respectively.
+We define the two-particle exchange operator as
+\begin{eqnarray}
+    \hat{P}_{e}\ket{n_1,n_2} = \ket{n_2,n_1}
+.\end{eqnarray}
+
+(a) Show that $\hat{P}_{e}^{-1} = \hat{P}_{e}$ and that $\hat{P}_{e}$ is unitary.
+What are the eigenvalues of $\hat{P}_{e}$?
+Let $\hat{A}' = \hat{P}_{e} \hat{A} \hat{P}_{e}^{\dagger}$ be the observable resulting from the transformation by $\hat{P}_{e}$ of an arbitrary observable $\hat{A}$.
+Show that the condition $\hat{A}' = \hat{A}$ is equivalent to $[ \hat{A}, \hat{P}_{e} ] = 0$.
+
+(b) Show that
+\begin{eqnarray}
+    \hat{P}_{e} \hat{H}_{1} \hat{P}_{e}^{\dagger} = \hat{H}_{2}, \quad \hat{P}_{e} \hat{H}_{2} \hat{P}_{e}^{\dagger} = \hat{H}_{1} 
+.\end{eqnarray}
+Does $\hat{H}$ commute with $\hat{P}_{e}$?
+Calculate the action of $\hat{P}_{e}$ on the observables $\hat{x}_{1,2}$ and $\hat{p}_{1,2}$.
+
+(c) Construct a basis of common eigenstates of $\hat{H}$ and $\hat{P}_{e}$.
+Do these two operators form a complete set of commuting observables?
+What happens to the spectrum of $\hat{H}$ and the degeneracy of its eigenvalues if only those eigenvectors of $\hat{H}$ are retained such that they are odd under exchange?
+
+}
+
+\sol{}
+
+
+
+
+\end{document}
