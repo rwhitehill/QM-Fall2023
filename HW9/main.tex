@@ -31,7 +31,7 @@ A muon neutrino of momentum $\va*{p}$ is given, in terms of the Hamiltonian eige
 
 (a) Assume that at time $t = 0$ the neutrino state is $\ket{\psi(0)} = \ket{\nu_{e};\va*{p}}$.
 Calculate the probability $P_{\nu_{e} \rightarrow \nu_{\mu}}(t)$ that at time $t$ the neutrino is in state $\ket{\psi(t)} = \ket{\nu_{\mu};\va*{p}}$, that is the neutrino has undergone the flavor oscillation $\nu_{e} \rightarrow \nu_{\mu}$.
-Calculatealso the survival probability $P_{\nu_e \rightarrow \nu_{\mu}}$.
+Calculate also the survival probability $P_{\nu_e \rightarrow \nu_{\mu}}$.
 Alternatively, assume that the neutrino state at time $t = 0$ is $\ket{\psi(0)} = \ket{\nu_{\mu};\va*{p}}$, and calculate $P_{\nu_{\mu} \rightarrow \nu_{e}}(t)$ and $P_{\nu_{\mu} \rightarrow \nu_{e}}(t)$.
 
 (b) Assume that the momentum $\va*{p}$ (that is, the eigenvalue of the momentum operator) is such that $|\va*{p}| \gg m_{k}c$.
@@ -43,7 +43,60 @@ where $L$ is the distance the neutrino has travelled in the time $t$.
 
 }
 
-\sol{}
+\sol{
+
+(a) If the neutrino state is in the electron neutrino eigenstate at the initial time, then in terms of the mass eigenstates (which are also energy eigenstates)
+\begin{eqnarray}
+    \ket{\psi(0)} = \cos{\theta} \ket{\nu_1;\va*{p}} + \sin{\theta} \ket{\nu_2;\va*{p}}
+,\end{eqnarray}
+and at an arbitary time $t$
+\begin{eqnarray}
+    \ket{\psi(t)} = \cos{\theta} e^{-i E_1 t / \hbar} \ket{\nu_1;\va*{p}} + \sin{\theta} e^{-i E_2 t / \hbar} \ket{\nu_2;\va*{p}}
+,\end{eqnarray}
+where $E_{1,2}$ are as given above.
+We can then calculate the probability that the neutrino has undergone a flavor oscillation (i.e. that a flavor measurement of the neutrino gives $\nu_{\mu}$) as
+\begin{eqnarray}
+\begin{aligned}
+    P_{e \rightarrow \mu}(t) &= |\bra{\nu_{\mu};\va*{p}}\ket{\psi(t)}|^2 = \Big| ( -\sin{\theta} \bra{\nu_1;\va*{p}} + \cos{\theta} \bra{\nu_2;\va*{p}} ) \ket{\psi(t)} \Big|^2 \\
+                             &= | -\sin{\theta}\cos{\theta} e^{-i E_1 t/\hbar} + \cos{\theta} \sin{\theta} e^{-i E_2 t / \hbar} |^2 = \sin^2{\theta} \cos^2{\theta} | 1 - e^{i(E_1 - E_2) t / \hbar} |^2 \\
+                             &= \sin^2{2 \theta} \sin^2\Bigg(\frac{[E_1 - E_2]t}{2 \hbar}\Bigg)
+\end{aligned}
+.\end{eqnarray}
+From this, we can calulate the probability that the neutrino is measured to be of electronic flavor as
+\begin{eqnarray}
+\begin{aligned}
+    P_{e \rightarrow e}(t) &= 1 - \sin^2{2\theta} \sin^2\Bigg( \frac{[E_1 - E_2]t}{2\hbar} \Bigg)
+\end{aligned}
+.\end{eqnarray}
+
+Let us now assume that the neutrino state is initially in the muonic flavor eigenstate.
+We can calculate the oscillation amplitude
+\begin{eqnarray}
+    P_{\mu \rightarrow e}(t) = P_{e \rightarrow \mu}(t)
+\end{eqnarray}
+by observing that the mass and flavor eigenstates are given by a rotation of bases through some mixing angle $\theta$.
+It is clear then that we can take $\theta \rightarrow -\theta$ and permute flavors $e \rightarrow \mu$, ending up with the same description.
+Thus, permuting flavor indices in the oscillation probability and taking $\theta \rightarrow -\theta$, we end up with the same result since $\sin^2{2\theta}$ is even in $\theta$.
+It also follows from the argument that
+\begin{eqnarray}
+    P_{\mu \rightarrow \mu}(t) = P_{e \rightarrow e}
+.\end{eqnarray}
+
+(b) We take the first result demonstrated above.
+If $|\va*{p}| \gg m_{k}c$, then we can write
+\begin{eqnarray}
+    E_{k} \approx c p \Big[ 1 + \frac{1}{2} \frac{(m_{k} c)^2}{p^2} \Big]
+,\end{eqnarray}
+and therefore the energy difference
+\begin{eqnarray}
+    E_1 - E_2 \approx \frac{\Delta m^2 c^3}{2p}
+.\end{eqnarray}
+To first order in $\Delta m^2$, the oscillation probability from electronic to muonic flavor for a neutrino with momentum $\va*{p}$ traveling a distance $L$ over time $t$ ($L \approx c t$ since the particle is ultra-relativistic)
+\begin{eqnarray}
+    P_{e \rightarrow \mu} = \sin^2{2 \theta} \sin^2\Bigg( \frac{\Delta m^2 L c^2}{4 \hbar p} \Bigg)
+.\end{eqnarray}
+
+}
 
 
 \prob{2 -- Chapter 8 \# 3}{
@@ -67,7 +120,44 @@ What is the particle's wave function $\psi(x,0)$ immediately after this measurem
 
 }
 
-\sol{}
+\sol{
+
+(a) The probability density is given as
+\begin{eqnarray}
+    \rho(x) = |\psi_0(x)|^2 = \sqrt{ \frac{m \omega}{\pi \hbar} } \exp( -\frac{m\omega}{\hbar} x^2 ) \Rightarrow \rho(0) = \sqrt{\frac{m \omega}{\pi \hbar}}
+.\end{eqnarray}
+
+(b) Right after measurement of the position, which yields $x = 0$, the system collapses to the state
+\begin{eqnarray}
+    \psi(x,0) = \bra{\phi_{x}} \frac{\ket{\phi_{0}} \psi_0(x)}{\sqrt{|\bra{\phi_{0}}\ket{n=0}|^2}} = \frac{\psi_0(x)}{\psi_0(0)} \delta(x) = \delta(x)
+,\end{eqnarray}
+which is as expected sine the system collapses to the normalized eigenstate corresponding to the position $x = 0$.
+
+(c) Before writing the full time-dependent wave-function, we must determine the energy decomposition
+\begin{eqnarray}
+    \psi(x,0) = \sum_{n=0}^{\infty} c_{n} \psi_{n}(x)
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    c_{n} = \int_{-\infty}^{\infty} \psi_{n}^{*}(x) \delta(x) \dd{x} = \psi_{n}^{*}(0)
+.\end{eqnarray}
+Note that $c_{2n+1} = 0$ since $\psi_{2n+1}(0) = 0$, leaving only the even energy eigenstates:
+\begin{eqnarray}
+    \psi(x,0) = \sum_{n=0}^{\infty} \psi_{2n}^{*}(0) \psi_{2n}(x)
+.\end{eqnarray}
+The wave-function at arbitrary time $t$ is then just
+\begin{eqnarray}
+    \psi(x,t) = \sum_{n=0}^{\infty} \psi_{2n}^{*}(0) \psi_{2n}(x) e^{-i (2n + 1) \omega t / 2}
+.\end{eqnarray}
+
+(d) The probabilty that an energy measurement on this state gives the $E_{0} = \hbar \omega / 2$ at time $t$ is simply
+\begin{eqnarray}
+P_{0}(t) = | \psi_{0}(0) |^2 = \sqrt{\frac{m \omega}{\pi \hbar}}
+.\end{eqnarray}
+
+(e) This fact follows simply from the fact that $\psi(x,0)$ is even and therefore orthognal to odd energy eigenstates as explained in part (c).
+
+}
 
 
 \prob{3 -- Chapter 8 \# 5}{
@@ -88,10 +178,78 @@ Same question for a measurement of the position of particle 1.
 (b) Instead of measuring the total energy at $t = 0$, the energy of particle 2 is measured and the result $\hbar \omega / 2$ is obtained.
 What happens to the answers to questions (a) and (b) above?
 
-
 }
 
-\sol{}
+\sol{
+
+(a) It is useful to write the position, momentum, and Hamiltonian operators in terms of the creation and annihilation operators
+\begin{align}
+    \hat{x}_{k} &= \sqrt{\frac{\hbar}{2m\omega}} (\hat{a}^{\dagger}_{k} + \hat{a}_{k}) \\
+    \hat{p}_{k} &= i \sqrt{\frac{\hbar m \omega}{2}} (\hat{a}^{\dagger}_{k} - \hat{a}_{k}) \\
+    \hat{H}_{k} &= \hbar \omega \Big( \hat{a}^{\dagger}_{k} \hat{a}_{k} + \frac{1}{2} \Big)
+.\end{align}
+Recall the following properties:
+\begin{align}
+    \hat{a}^{\dagger} \ket{n} &= \sqrt{n+1} \ket{n+1} \\
+    \hat{a} \ket{n} &= \sqrt{n} \ket{n-1} \\
+    \hat{a}^{\dagger} a \ket{n} &= n \ket{n}
+.\end{align}
+(i) It follows then that the average position, momentum, and energy of particle 1 in the composite state after the measurement are
+\begin{gather}
+\begin{aligned}
+    \expval{x_1} &= \frac{1}{2} \sqrt{\frac{\hbar}{2 m \omega}} ( \bra{1,0} + \bra{0,1} ) (a^{\dagger}_{1} + a ) ( \ket{1,0} + \ket{0,1} ) \\
+               &= \frac{1}{2} \sqrt{\frac{\hbar}{2 m \omega}} ( \bra{1,0} + \bra{0,1} ) ( \sqrt{2} \ket{2,0} + \ket{1,1} + \ket{0,0} ) = 0
+\end{aligned}
+\\
+\begin{aligned}
+    \expval{p_1} &= \frac{i}{4} \sqrt{\frac{\hbar m \omega}{2}} ( \bra{1,0} + \bra{0,1} ) (a^{\dagger}_{1} - a_{1}) ( \ket{1,0} + \ket{0,1} ) \\
+               &= \frac{i}{4} \sqrt{\frac{ \hbar m \omega}{2}} ( \bra{1,0} + \bra{0,1} ) ( \sqrt{2}\ket{2,0} + \ket{1,1} - \ket{0,0} ) = 0 \\
+\end{aligned}
+\\
+\begin{aligned}
+    \expval{H_1} = \frac{\hbar \omega}{2} [  ( 1 + 1/2 ) + ( 0 + 1/2 ) ] = \hbar \omega
+\end{aligned}
+\end{gather}
+(ii) After the energy measurement, the state collapses to 
+\begin{eqnarray}
+    \ket{\psi(0)} = \frac{1}{\sqrt{2}} ( \ket{1,0} + \ket{0,1} )
+,\end{eqnarray}
+and if the system is allowed to evolve,
+\begin{eqnarray}
+    \ket{\psi(t)} = e^{-i 2 \omega t} \ket{\psi(0)}
+.\end{eqnarray}
+Notice that there is only a phase factor since $E_{nm} = \hbar \omega (n_1 + n_2 + 1)$ and $E_{10} = E_{01}$.
+Thus, it is immediately clear that the ``physics'' is actually stationary in time.
+That is, if we perform a measurement of the system's total energy, we must get $E = 2 \hbar \omega$ with certainty.
+On the other hand, a position measurement can yield any real number with probability given by the square wave-function $\Big|\bra{\phi_{x}^{(1)},\phi_{x}^{(2)}} \ket{\psi(0)} \Big|^2$.
+
+(b) If $E_2 = \hbar \omega / 2$ is measured at $t = 0$, the wave-function collapses to
+\begin{eqnarray}
+    \ket{\psi(0)} = \frac{1}{\sqrt{2}} ( \ket{0,0} + \ket{1,0} )
+,\end{eqnarray}
+and in this case, the system dynamics are non-trivial:
+\begin{eqnarray}
+    \ket{\psi(t)} = \frac{1}{\sqrt{2}} ( e^{-i \omega t} \ket{0,0} + e^{-i 2 \omega t} \ket{1,0} ) = \frac{e^{-i\omega t}}{\sqrt{2}} ( \ket{0,0} + e^{-i \omega t} \ket{1,0} )
+.\end{eqnarray}
+At time $t = 0$
+\begin{align}
+\begin{aligned}
+    \expval{x_1} &= \frac{1}{2} \sqrt{\frac{\hbar}{2 m \omega}} ( \bra{0,0} + \bra{1,0} ) (a^{\dagger}_{1} + a_{1}) ( \ket{0,0} + \ket{1,0} ) \\
+               &= \frac{1}{2} \sqrt{\frac{\hbar}{2 m \omega}} ( \bra{0,0} + \bra{1,0} ) ( \ket{1,0} + \sqrt{2} \ket{2,0} ) \\
+               &= \frac{1}{2} \sqrt{\frac{\hbar}{2 m \omega}}
+\end{aligned}
+\\
+\begin{aligned}
+    \expval{p_1} &= \frac{1}{2} \sqrt{\frac{\hbar m \omega}{2}} ( \bra{0,0} + \bra{1,0} ) (a^{\dagger}_{1} - a_1) ( \ket{0,0} + \ket{1,0} ) \\
+                 &= \frac{1}{2} \sqrt{\frac{\hbar m \omega}{2}} ( \bra{0,0} + \bra{1,0} ) ( \ket{1,0} + \sqrt{2} \ket{2,0} - \ket{0,0} ) \\
+                 &= 0
+\end{aligned}
+\\
+\expval{H_1} = \frac{1}{2} [ ( 0 + 1/2 ) + (1 + 1/2) ] \hbar \omega = \hbar \omega
+\end{align}
+Considering the time dependence, the possible energy values of particle 1 are $\hbar \omega / 2$ and $3 \hbar \omega / 2$ with equal probability, and we can get any real number for the position given by the square of the wave-function.
+
+}
 
 
 \prob{4 -- Chapter 8 \# 6}{
@@ -125,7 +283,59 @@ What happens to the spectrum of $\hat{H}$ and the degeneracy of its eigenvalues 
 
 }
 
-\sol{}
+\sol{
+
+(a) It is clear that $\hat{P}_{e}$ is its own inverse since
+\begin{eqnarray}
+    \hat{P}_{e}^2 \ket{n_1,n_2} = \hat{P}_{e} \ket{n_2,n_1} = \ket{n_1,n_2}
+.\end{eqnarray}
+We also can see fairly easily that $\hat{P}_{e}$ is unitary since
+\begin{eqnarray}
+    \bra{n_1',n_2'} \hat{P}_{e}^{\dagger} \hat{P}_{e} \ket{n_1,n_2} = \bra{n_2',n_1'} \ket{n_2,n_1} = \delta_{n_2,n_2'} \delta_{n_1,n_1'}
+,\end{eqnarray}
+meaning that $\hat{P}_{e}^{\dagger} \hat{P}_{e} = \hat{\id}$.
+We can actually use these two facts to show that
+\begin{eqnarray}
+    \hat{P}_{e}^{\dagger} \hat{P}_{e}^2 = \hat{P}_{e} = \hat{P}_{e}^{\dagger}
+.\end{eqnarray}
+
+The eigenvalues of $\hat{P}_{e}$ are $\pm 1$.
+If $\hat{A}' = \hat{A}$, then
+\begin{gather}
+    \hat{P}_{e} \hat{A} \hat{P}_{e}^{\dagger} = \hat{A} \nonumber \\
+    \hat{P}_{e} \hat{A} = \hat{A} \hat{P}_{e} \nonumber \\
+    \hat{A} \hat{P}_{e} - \hat{P}_{e} \hat{A} = [\hat{A}, \hat{P}_{e}] = 0
+.\end{gather}
+
+(b) Operators are equal if their matrix elements are the same:
+\begin{eqnarray}
+\begin{aligned}
+    \bra{n_1',n_2'} P_{e} \hat{H}_1 \hat{P}_{e}^{\dagger} \ket{n_1,n_2} &= \bra{n_2',n_1'} H_1 \ket{n_2,n_1} \\
+                                                                        &= \hbar \omega ( n_2 + 1/2 ) \delta_{n_2,n_2'} \delta_{n_1,n_1'} \\
+                                                                        &= \bra{n_1',n_2'} \hat{H}_2 \ket{n_1,n_2}
+\end{aligned}
+.\end{eqnarray}
+Since this has to be true for any matrix element, $\hat{P}_{e} \hat{H}_1 \hat{P}_{e}^{\dagger} = \hat{H}_2$.
+The manipulations are the same for the second identity.
+From these, it is immediate that
+\begin{eqnarray}
+    \hat{P}_{e} \hat{H} \hat{P}_{e}^{\dagger} = \hat{P}_{e} \hat{H}_{1} \hat{P}_{e}^{\dagger} + \hat{P}_{e} \hat{H}_2 \hat{P}_{e}^{\dagger} = \hat{H}_{2} + \hat{H}_{1} = \hat{H}
+,\end{eqnarray}
+and therefore $[ \hat{H},\hat{P}_{e} ] = 0$.
+The action of $\hat{P}_{e}$ on the position and momentum operators is the same as on the Hamiltonian, and furthermore, any operator that acts solely on the individual particle Hilbert spaces has the same form.
+The operator $\hat{P}_{e}$ therefore essentially exhanges the identities of the particles.
+
+(c) We can simply construct the common eigenstates as
+\begin{eqnarray}
+    \frac{1}{\sqrt{2}} ( \ket{n_1,n_2} \pm \ket{n_2,n_1} )
+,\end{eqnarray}
+corresponding to total energy eigenvalue $\hbar \omega (n_1 + n_2 + 1)$ and permutation eigenvalue $\pm 1$.
+It should be clear that these operators do not form a complete set of commuting observables since the specification of both eigenvalues does not uniquely specify the state.
+If we retain only eigenstates which are odd under exchange, there is still degeneracy in the spectrum, but not quite as much for even $n_1 + n_2$.
+We see a form of the Pauli exclusion principle here, which is that if the system is in a state which is odd under exchange, then the individual particles cannot be in the same state with respect to their individual Hamiltonians.
+That is $( \ket{n,n} - \ket{n,n} )/\sqrt{2} = 0$.
+
+}
 
 
 
