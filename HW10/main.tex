@@ -1,0 +1,252 @@
+\def\duedate{\today}
+\def\HWnum{10}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 9 \# 1}{
+
+Prove the relation
+\begin{eqnarray}
+    [\vu*{n} \cdot \va*{L},\va*{V}] = i \hbar \va*{V} \cross \vu*{n}
+,\end{eqnarray}
+where $\vu*{n}$ is a unit vector and $\va*{V}$ is a vector operator.
+
+}
+
+\sol{
+
+We will use the Einstein summation convention for brevity in our notation while still maintaining clarity: repeated indices in products are implicitly summed over unless otherwise specified.
+The commutator
+\begin{eqnarray}
+    [\vu*{n} \cdot \va*{L},\va*{V}] = [n_{i} L_{i},\vu*{e}_{j} V_{j}] = n_{i} \vu*{e}_{j} [ L_{i},V_{j} ] = n_{i} \vu*{e}_{j} i \hbar \epsilon_{ijk} V_{k} = i \hbar \vu*{e}_{j} \epsilon_{jki} V_{k} n_{i} = i\hbar \va*{V} \cross \vu*{n}
+.\end{eqnarray}
+
+}
+
+\prob{2 -- Chapter 9 \# 4}{
+
+A particle of mass $\mu$ is under the influence of a central potential $V(r)$.
+Its wave function is given by
+\begin{eqnarray}
+    \psi(\va*{r}) = (x + y + 3z)f(r)
+.\end{eqnarray}
+
+(a) Is $\psi(\va*{r})$ an eigenfunction of $\va*{L}^2$?
+If so, what is the $l$-value?
+If not, what are the possible values of $l$ we may obtain if $\va*{L}^2$ is measured?
+
+(b) What are the probabilities for the particle to be found in various $m$ states?
+
+(c) Suppose it is known that $\psi(\va*{r})$ above is an energy eigenfunction with eigenvalue $E$.
+Indicate how we may determine the potential $V(r)$.
+
+}
+
+\sol{
+
+(a) We know that the eigenstates of $\va*{L}^2$ are the spherical harmonics $Y_{lm}(\theta,\phi)$ with corresponding eigenvalue $\hbar^2 l(l+1)$.
+Notice that
+\begin{eqnarray}
+\begin{aligned}
+    x + y + 3z &= r[ \sin{\theta} ( \cos{\phi} + \sin{\phi} ) + 3 \cos{\theta} ] \\
+               &= r \Bigg[ \frac{1-i}{2}\sin{\theta}e^{-i\phi} + \frac{1+i}{2}\sin{\theta} e^{i\phi} + 3\cos{\theta} \Bigg] \\
+              &= r \Bigg[ (1+i)\sqrt{\frac{2\pi}{3}}Y_{1,-1} - (1-i)\sqrt{\frac{2\pi}{3}} Y_{1,1} + 2\sqrt{3 \pi} Y_{1,0} \Bigg]
+.\end{aligned}
+\end{eqnarray}
+We have a linear combination of spherical harmonics with $l=1$ and $m=-1,0,1$.
+For fixed $l$, the different $m$-states are degenerate, meaning that $\psi(\va*{r})$ is in fact an eigenstate of $\va*{L}^2$ with eigenvalue $2\hbar^2$.
+
+(b) If a measurement of $L_{z}$ were performed, then we could obtain
+\begin{eqnarray}
+\begin{aligned}
+    m = -1 &\leftrightarrow P(-1) = \frac{1}{11} \\
+    m = 0 &\leftrightarrow P(0) = \frac{9}{11} \\
+    m = 1 &\leftrightarrow P(1) = \frac{1}{11}
+.\end{aligned}
+\end{eqnarray}
+
+(c) Since $\psi$ is an energy eigenstate, we can write
+\begin{eqnarray}
+    H\psi = \frac{\va*{p}^2}{2m} \psi + V(r) \psi = E \psi
+.\end{eqnarray}
+We know how $\va*{p}^2$ and $\va*{L}^2$ are related:
+\begin{eqnarray}
+    \va*{p}^2 = -\frac{\hbar^2}{r^2} \pdv{r} r^2 \pdv{r} + \frac{\va*{L}^2}{r^2}
+.\end{eqnarray}
+Since $\psi(\va*{r})$ is an eigenstate of $\va*{L}^2$, we can determine the action of the derivatives in the first term on $\psi$ and rearrange the S.E. to isolate $V(r)$.
+
+}
+
+
+\prob{3 -- Chapter 9 \# 5}{
+
+Consider a particle in three dimensions with Hamiltonian given by
+\begin{eqnarray}
+    H = \frac{\va*{p}^2}{2m} + V(\va*{r})
+.\end{eqnarray}
+Show that the time derivative of the expectation value of the orbital angular momentum operator $\va*{L} = \va*{r} \cross \va*{p}$ is given by
+\begin{eqnarray}
+    \dv{t} \bra{\psi(t)} \va*{L} \ket{\psi(t)} = - \bra{\psi(t)} \va*{r} \cross \grad{V(\va*{r})} \ket{\psi(t)}
+.\end{eqnarray}
+Does this equation have a classical counterpart?
+
+}
+
+\sol{
+
+We have already proven Ehrenfest's theorem, which states that for any operator $A$
+\begin{eqnarray}
+    \dv{t} \bra{\psi(t)} A \ket{\psi(t)} = i \hbar \bra{\psi(t)} [H,A] \ket{\psi(t)} + \bra{\psi(t)} \pdv{A}{t} \ket{\psi(t)}
+.\end{eqnarray}
+Note that $\va*{L}$ is a time-independent operator, so we only need to determine the first term.
+The commutator is a vector operator, and it is easier to look at only a single component and generalize to the vector itself.
+Observe that 
+\begin{eqnarray}
+    [H,L_{i}] = \epsilon_{ijk} [H,r_{j}p_{k}] = \epsilon_{ijk} \Big\{ [H,r_{j}]p_{k} + r_{j}[H,p_{k}] \Big\}
+.\end{eqnarray}
+We therefore have two commutators to determine.
+The first is as follows:
+\begin{eqnarray}
+\begin{aligned}
+    [H,r_{j}] &= \frac{1}{2m}[\va*{p}^2,r_{j}] = \frac{1}{2m} [p_{l}p_{m}\delta_{lm},r_{j}] = \frac{1}{2m} \delta_{lm} ( p_{l}[p_{m},r_{j}] + [p_{l},r_{j}]p_{m} ) \\
+              &= \frac{1}{2m}(-2i\hbar p_{j}) = -\frac{i\hbar}{m} p_{j}
+.\end{aligned}
+\end{eqnarray}
+The second commutator is as follows:
+\begin{eqnarray}
+    [H,p_{k}] = [V(\va*{r}),p_{k}] = -p_{k}V(\va*{r}) = i\hbar \partial_{k} V(\va*{r})
+.\end{eqnarray}
+Putting these together, we have
+\begin{eqnarray}
+    [H,L_{i}] =  -\frac{i \hbar}{m} \epsilon_{ijk} p_{j} p_{k} + i\hbar \epsilon_{ijk} r_{j} \partial_{k} V(\va*{r}) = i\hbar [\va*{r} \cross \grad]_{i} V(\va*{r})
+.\end{eqnarray}
+Finally, we have
+\begin{eqnarray}
+    \dv{t} \bra{\psi(t)} \va*{L} \ket{\psi(t)} = - \bra{\psi(t)} \va*{r} \cross \grad V(\va*{r}) \ket{\psi(t)}
+.\end{eqnarray}
+This is the quantum analogue of the classical definition of torque.
+
+}
+
+
+\prob{4 -- Chapter 9 \# 6}{
+
+Show that the following properties relating to the orbital angular momentum operator $\va*{L} = \va*{r} \cross \va*{p}$ are satisfied:
+
+(a) $\va*{r} \cdot \va*{L}$ and $\va*{L} \cdot \va*{r}$, and similarly $\va*{p} \cdot \va*{L}$ and $\va*{L} \cdot \va*{p}$, are null operators;
+
+(b) $\va*{L}^2 = -\va*{r} \cdot [ \va*{p} (\va*{p} \cdot \va*{r}) - \va*{p}^2 \va*{r} ]$ (pay attention to the order of the operators);
+next show
+\begin{eqnarray}
+    [\va*{r},\va*{p}^2] = 2 i\hbar \va*{p}, \quad \va*{r} \cdot \va*{p} - \va*{p} \cdot \va*{r} = 3 i \hbar
+,\end{eqnarray}
+and hence obtain
+\begin{eqnarray}
+    \va*{L}^2 = r^2 \va*{p}^2 + i\hbar \va*{r} \cdot \va*{p} - (\va*{r} \cdot \va*{p})^2
+,\end{eqnarray}
+
+(c) By direct calculation show that in spherical coordinates
+\begin{eqnarray}
+    \va*{r} \cdot \va*{p} = -i \hbar r \pdv{r}
+,\end{eqnarray}
+and using the result in part (b) above obtain
+\begin{eqnarray}
+    \va*{L}^2 = r^2 \va*{p}^2 + \hbar^2 \pdv{r} r^2 \pdv{r}
+.\end{eqnarray}
+
+}
+
+\sol{
+
+It is easy to see that
+\begin{eqnarray}
+    \va*{r} \cdot \va*{L} = \epsilon_{ijk} r_{i} r_{j} p_{k} = 0
+\end{eqnarray}
+since we can permute the indices $j$ and $k$ and pick up a minus sign of the same sum.
+Similarly,
+\begin{eqnarray}
+    \va*{L} \cdot \va*{p} = \epsilon_{ijk} r_{j} p_{k} p_{i} = \epsilon_{jki} r_{j} p_{k} p_{i} = 0
+.\end{eqnarray}
+Next, we find
+\begin{eqnarray}
+    \va*{L} \cdot \va*{r} = \epsilon_{ijk} r_{j} p_{j} r_{k} = \epsilon_{ijk} r_{j} r_{k} p_{j} + \epsilon_{ijk} r_{j} \underbrace{ [p_{j},r_{k}] }_{-i\hbar \delta_{jk}} = 0 
+.\end{eqnarray}
+Similarly,
+\begin{eqnarray}
+    \va*{p} \cdot \va*{L} = 0
+.\end{eqnarray}
+
+(b) Notice that we can write
+\begin{eqnarray}
+\begin{aligned}
+    \va*{L}^2 &= L_{i} L_{i} = \epsilon_{ijk} \epsilon_{ilm} r_{j} p_{k} r_{l} p_{m} = [\delta_{jl}\delta_{km} - \delta_{jm}\delta_{lk}] r_{j} p_{k} r_{l} p_{m} \\
+              &= r_{j} p_{k} r_{j} p_{k} - r_{j} p_{k} r_{k} p_{j} \\
+              &= -r_{j} [ p_{k}r_{k}p_{j} - p_{k}r_{j}p_{k} ] \\
+              &= -r_{j} [ p_{j} p_{k} r_{k} + p_{k}[r_{k},p_{j}] - p_{k} p_{k} r_{j} - p_{k}[r_{j},p_{k}] ] \\
+              &= -r_{j} [p_{j} (\va*{p} \cdot \va*{r}) - \va*{p}^2 r_{j}] \\
+              &= \va*{r} \cdot [ \va*{p} (\va*{p} \cdot \va*{r}) - \va*{p}^2 \va*{r} ]
+.\end{aligned}
+\end{eqnarray}
+
+Next, we have 
+\begin{eqnarray}
+    [\va*{r},\va*{p}^2] = \vu*{e}_{i} [r_{i},p_{j}p_{j}] = \vu*{e}_{i} ( [r_{i},p_{j}]p_{j} + p_{j}[r_{i},p_{j}] ) = \vu*{e}_{i} [ i\hbar \delta_{ij} p_{j} + p_{j} i \hbar \delta_{ij} ] = 2i\hbar \va*{p}
+,\end{eqnarray}
+and
+\begin{eqnarray}
+    \va*{r} \cdot \va*{p} - \va*{p} \cdot \va*{r} = r_{i} p_{i} - p_{i} r_{i} = r_{i} p_{i} - r_{i} p_{i} + [p_{i},r_{i}] = 3 i \hbar
+.\end{eqnarray}
+From these two relations, we can write
+\begin{eqnarray}
+\begin{aligned}
+    \va*{L}^2 &= -\va*{r} \cdot [ \va*{p}(\va*{r} \cdot \va*{p}) - 3 i \hbar \va*{p} + 2i\hbar \va*{p} + \va*{r} \va*{p}^2] \\
+              &= r^2 \va*{p}^2 + i\hbar \va*{r} \cdot \va*{p} -(\va*{r} \cdot \va*{p})^2
+.\end{aligned}
+\end{eqnarray}
+
+(c) Observe the following
+\begin{eqnarray}
+    \va*{r} \cdot \va*{p} = -i \hbar \, \va*{r} \cdot \grad
+.\end{eqnarray}
+We can write $\va*{r} = r \vu*{r}$.
+We write explictly the transformation from cartesian to spherical coordinates:
+\begin{eqnarray}
+    r = \sqrt{x^2 + y^2 + z^2}, ~ \phi = \arctan(\frac{y}{x}),~ \theta = \arctan(\frac{\sqrt{x^2 + y^2}}{z})
+.\end{eqnarray}
+We will need the following table of derivatives for the chain rules:
+\begin{gather}
+    \pdv{r}{x} = \sin{\theta}\cos{\phi} \quad \pdv{r}{y} = \sin{\theta}\sin{\phi} \quad \pdv{r}{z} = \cos{\theta} \\
+    \pdv{\theta}{x} = \frac{\cos{\phi}\cos{\theta}}{r} \quad \pdv{\theta}{y} = \frac{\sin{\phi}\cos{\theta}}{r} \quad \pdv{\theta}{z} = - \frac{\sin{\theta}}{r} \\
+    \pdv{\phi}{x} = -\frac{\sin{\phi}}{r\sin{\theta}} \quad \pdv{\phi}{y} = \frac{\cos{\phi}}{r\sin{\theta}} \quad \pdv{\phi}{z} = 0
+.\end{gather}
+Note that the derivatives transform from cartesian to spherical coordinates as
+\begin{align}
+    \pdv{x} &= \sin{\theta}\cos{\phi} \pdv{r} + \frac{\cos{\theta}\cos{\phi}}{r} \pdv{\theta} - \frac{\sin{\phi}}{r\sin{\theta}} \pdv{\phi} \\
+    \pdv{y} &= \sin{\theta}\sin{\phi} \pdv{r} + \frac{\sin{\phi}\cos{\theta}}{r} \pdv{\theta} + \frac{\cos{\phi}}{r\sin{\theta}} \pdv{\phi} \\
+    \pdv{z} &= \cos{\theta} \pdv{r} - \frac{\sin{\theta}}{r} \pdv{\theta}
+.\end{align}
+It follows then that
+\begin{eqnarray}
+\begin{aligned} 
+    \va*{r} \cdot \grad &= x \pdv{x} + y \pdv{y} + z \pdv{z} \\
+                        &= r \Bigg\{ \Big[ \sin^2{\theta} \cos^2{\phi} + \sin^2{\theta} \sin^2{\phi} + \cos^2{\theta} \Big] \pdv{r} \\
+                        &\phantom{r\Bigg\{}+ \frac{1}{r}\Big[ \sin{\theta}\cos{\theta}\cos^2{\phi} + \sin{\theta}\cos{\theta} \sin^2{\phi} - \sin{\theta}\cos{\theta} \Big] \pdv{\theta} \\
+                        &\phantom{r\Bigg\{}+ \frac{1}{r} \Big[ -\sin{\phi}\cos{\phi} + \cos{\phi}\sin{\phi} \Big] \pdv{\phi} \Bigg\} \\
+                        &= r \pdv{r}
+,\end{aligned}
+\end{eqnarray}
+so finally, we arrive at
+\begin{eqnarray}
+    \va*{r} \cdot \va*{p} = -i \hbar r \pdv{r}
+\end{eqnarray}
+and
+\begin{eqnarray}
+    \va*{L}^2 = r^2 \va*{p}^2 + \hbar^2 r \pdv{r} + \hbar^2 r \pdv{r} r \pdv{r} = r^2 \va*{p}^2 + \hbar^2 \pdv{r} r^2 \pdv{r}
+.\end{eqnarray}
+
+}
+
+
+
+\end{document}
