@@ -1,0 +1,404 @@
+\chapter{Mathematical Formulation of Quantum Mechanics}
+
+In the past chapters, we've solved for the wave function primarily in coordinate space.
+It was seen that knowledge of the wave function is knowledge of all the dynamics of a system.
+Indeed, though, there is nothing unique about the representation of the wave-function $\psi(\va*{r})$.
+We can take the fourier transform of $\psi(\va*{r})$ and obtain the momentum-space wave-function $\tilde{\psi}(\va*{r})$, which satisfies an equivalent momentum-space Schr\"{o}dinger equation and satisfies analogous properties to the coordinate space wave-function.
+In this chapter, we will see how to define an abstract quantity that describes the ``state'' of a quantum system that satisfies Schr\"{o}dinger's equation and is equivalent to the wave-function.
+On the way, we will build up the mathematical framework of Hilbert spaces, which is where our states will live, and operators which act on those spaces with particular attention on operators representing observables.
+
+\section{Hilbert space $L^2(\R^3)$ of square-integrable functions}
+
+In our discussion of the coordinate wave-function $\psi(\va*{r})$ which satisfy the Schr\"{o}dinger equation, we only imposed that they be normalizable in order to satisfy the Born interpretation:
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} |\psi(\va*{r})|^2 \dd[3]{\va*{r}} < \infty
+.\end{eqnarray}
+This property actually defines a normed vector space of square integrable functions $L^2(\R^3)$.
+It turns out that a linear combination of two square integrable functions $\lambda_1 \psi_1 + \lambda_2 \psi_2$ is also square-integrable, meaning $\lambda_1 \psi_1 + \lambda_2 \psi_2 \in L^2(\R^3)$.
+It is an inner product space because we can define a bilinear operation
+\begin{eqnarray}
+    (\psi,\phi) = \int \dd[3]{\va*{r}} \psi^{*}(\va*{r}) \phi(\va*{r})
+,\end{eqnarray}
+which satisfies the following properties:
+\begin{enumerate}
+    \item $(\psi,\phi) = (\phi,\psi)^{*}$
+    \item $(\phi,\lambda_1 \psi_1 + \lambda_2 \psi_2) = \lambda_1 (\phi,\psi_1) + \lambda_2 (\phi,\psi_2)$
+    \item $(\psi,\psi) \geq 0$ for all $\psi \in L^2(\R^3)$
+    \item $(\psi,\psi) = 0 \Leftrightarrow \psi = 0$
+\end{enumerate}
+From this, a norm of a vector in the space $L^2(\R^3)$ can be defined simply as $|| \psi || = \sqrt{(\psi,\psi)}$, and it can be shown that it satisfies all the following properties quite easily:
+\begin{enumerate}
+    \item $|| \psi || \geq 0$ for all $\psi \in L^2(\R^3)$
+    \item $|| \psi || = 0 \Leftrightarrow \psi = 0$
+    \item $|| \lambda \psi || = |\lambda| ||\psi||$
+    \item $|| \psi + \phi || \leq || \psi || + || \phi || $
+\end{enumerate}
+
+
+\section{Operators in $L^2(\R^3)$}
+
+Generically, we define a unary operator as a mapping from a Hilbert space to itself\footnote{an endomorphism}.
+That is, if $A$ is an operator on $L^2(\R^3)$, then $A: L^2(\R^3) \rightarrow L^2(\R^3)$ and $A: \psi(\va*{r}) \mapsto \psi'(\va*{r}) = A\psi(\va*{r})$.
+Typically, in quantum mechanics, we are interested in linear operators where $A ( \lambda_1 \psi_1 + \lambda_2 \psi_2 ) = \lambda_1 A \psi_1 + \lambda_2 A \psi_2$.
+We can define the composition of operators $A$ and $B$ as $AB$, where $(AB)\psi = A(B \psi)$.
+Notice that the composition is not generally commutative: $AB \ne BA$.
+
+Next, we define the important notion of an adjoint operator.
+The adjoint of an operator $A$ is denoted $A^{\dagger}$ and defined such that $(A^{\dagger} \phi,\psi) = (\phi,A\psi)$.
+From this, a few properties immediately follow:
+\begin{enumerate}
+    \item $(A^{\dagger})^{\dagger} = A$
+    \item $(\lambda A)^{\dagger} = \lambda^{*} A^{\dagger}$
+    \item $(A + B)^{\dagger} = A^{\dagger} + B ^{\dagger}$
+    \item $(AB)^{\dagger} = B^{\dagger} A ^{\dagger}$
+\end{enumerate}
+Furthermore, there is are two important classes of operators: (1) self-adjoint or hermitian, meaning that $A^{\dagger} = A$ and (2) unitary, meaning that $A^{\dagger} = A^{-1}$.
+
+
+\section{Discrete and continuous bases}
+
+In the previous chapters, when we solved the Schr\"{o}dinger equation, we claimed that the energy eigenstates formed a complete basis for a generic solution.
+Here we formally define a basis as a collection of linearly independent vectors which span a vector space.
+Recall that linear independence of a set of vectors $\{ \phi_{i} \}$ implies that 
+\begin{eqnarray}
+    \sum_{i} c_{i} \phi_{i} = 0
+\end{eqnarray}
+if and only if $c_{i} = 0$.
+Additionally, a set of vectors $\{ \phi_{i} \}$spans a vector space if any vector 
+\begin{eqnarray}
+    \psi = \sum_{i} c_{i} \phi_{i}
+\end{eqnarray}
+for some combination of coefficients $c_{i}$.
+We define the dimension of a vector space as the cardinality of its basis\footnote{One may question the uniqueness of this definition since there is not necessarily only one basis of a vector space. It can be proven that the cardinality of any basis of a vector space is the same. Essentially, the proof proceeds via contradiction. One assumes that two bases have different cardinality. It is proven that the set with larger cardinality is linearly dependent since we can expand these vectors in the other basis exactly.}
+
+It is generally convenient to work with orthogonal bases.
+If our vector space has an inner product $(\cdot,\cdot)$, two vectors $\phi$ and $\psi$ are orthogonal if $(\phi,\psi) = 0$.
+Notice that a generic basis is not necessarily orthogonal.
+Take as an example the simple case of vectors in $\R^2$.
+We can use the basis $\{ \vu*{x},\vu*{y} \}$, or equivalently, we can use $\{ \vu*{x},\vu*{x} + \vu*{y} \}$.
+It is clear that these are both linearly dependent sets from which we can derive any vector $a \vu*{x} + b \vu*{y}$, but if we define the inner product to be the dot product, it is clear that by definition the first set is orthogonal but not the second.
+We can, however, obtain an orthogonal (and even better normalized) basis from the second via the Gram-Schmidt procedure.
+
+With this, we can define completeness through the definition of our basis.
+Let $\psi$ be a vector.
+First, if our basis is denumerable with dimension $n$ (possibly infinite), then
+\begin{eqnarray}
+    \lim_{p \rightarrow n} \Big| \Big| \psi - \sum_{m=1}^{p} \lambda_{m} \phi_{m} \Big| \Big| = 0
+.\end{eqnarray}
+In this limit, we can find the coefficients $\lambda_{m} = (\phi_{m},\psi)$ if our basis is orthonormal.
+Next, if our basis is infinite but continuous (with the orthogonality condition $(\phi_{\alpha},\phi_{\beta}) = \delta(\alpha - \beta)$), then a space is complete in the sense that any vector 
+\begin{eqnarray}
+    \psi(\va*{r}) = \int \dd{\alpha} c(\alpha) \phi_{\alpha}(\va*{r})
+,\end{eqnarray}
+where $c_{\alpha} = (\phi_{\alpha},\psi)$.
+
+
+\section{Abstract Hilbert space}
+
+We can define an abstract vector space which holds objects that represent states of a quantum system in a generic sense, independent of any particular representation or coordinates.
+Following the work of Dirac, we define the ket space as a Hilbert space $\mathcal{S}$ holding vectors $\ket{\psi}$, which are called state vectors.
+Next, we define the bra space $\mathcal{S}^{*}$, which is the dual vector space to the ket space.
+The correspondence between the ket and bra space is such that for each vector $\ket{\psi}$ there is a corresponding bra vector $\bra{\psi}$ (denoted $\ket{\psi} \rightleftharpoons \bra{\psi}$) such that the inner product on the space $\mathcal{S}$ is $\bra{\psi}\ket{\psi} \in \R$.
+The inner product between two distinct vectors $\ket{\psi}$ and $\ket{\phi}$ is $\bra{\phi}\ket{\psi} = \bra{\psi}\ket{\phi}^{*}$ and satisfies all the necessary properties.
+The norm of a vector is then defined as $|| \psi || = \sqrt{\bra{\psi}\ket{\psi}}$.
+
+
+\section{Operators}
+
+The definition of an operator generalizes directly from our previous discussion on the space of square-integrable functions to $\mathcal{S}$.
+That is, an operator $\hat{A}: \mathcal{S} \rightarrow \mathcal{S}$.
+As stated previously, in general, the operators we deal with are linear: $\hat{A} ( \lambda_1 \ket{\psi_1} + \lambda_2 \ket{\psi_2} ) = \lambda_1 \hat{A} \ket{\psi_1} + \lambda_2 \hat{A} \ket{\psi_2}$.
+Addition of operators is both commutative and associative, but while multiplication is associative, it is not necessarily commutative, meaning that $[\hat{A},\hat{B}] = \hat{A} \hat{B} - \hat{B} \hat{A} \ne 0$ in general.
+Note that we can also define the action of an operator on the dual space $\mathcal{S}^{*}$, where $\hat{A}$ acts from the right on a bra vector: $A: \bra{\psi} \mapsto \bra{\psi} \hat{A}$.
+Observe, however that the vector $\bra{\psi} \hat{A} \not\rightleftharpoons \hat{A} \ket{\psi}$.
+We can see this easily by defining an operator $\hat{A} = \ket{\psi}\bra{\phi}$.
+If we act as $\hat{A} \ket{\chi} = \bra{\phi}\ket{\chi} \ket{\psi} \rightleftharpoons \bra{\chi} \ket{\phi} \bra{\psi} = \bra{\chi} ( \ket{\phi} \bra{\psi} ) = \bra{\chi} A^{\dagger}$.
+Clearly the operator in parentheses is not equal to $A$, and in fact it is by definition the adjoint of $A$.
+
+This correspondence is actually more general.
+We define the adjoint $\hat{A}^{\dagger}$ of $A$ such that the correspondence $\hat{A} \ket{\psi} \rightleftharpoons \bra{\psi} \hat{A}^{\dagger}$ is satisfied.
+Alternatively, we can write $\bra{\phi} \hat{A} \ket{\psi} = \bra{\psi} \hat{A}^{\dagger} \ket{\phi}^{*}$.
+Using this, we can prove a number of facts about adjoint operators, which are identical to those outlined in the section on operators acting on $L^2(\R^3)$.
+Again, a hermitian operator is one such that $\hat{A}^{\dagger} = \hat{A}$, and a unitary operator is one such that $\hat{A}^{\dagger} \hat{A} = \id$, where $\id$ is the identity operator.
+
+Let us examine another operator that will be useful: $\hat{P}_{\psi} = \ket{\psi}\bra{\psi}$.
+This is a projection operator in the sense that $\hat{P}_{\psi} \ket{\phi} = \ket{\psi} \bra{\psi}\ket{\phi}$ is a scalar multiple of $\ket{\psi}$ for any $\ket{\phi}$.
+It should be clear that $\hat{P}_{\psi}$ is a linear, hermitian operator.
+Additionally, we can observe that $\hat{P}_{\psi}$ is idempotent, meaning that $\hat{P}_{\psi} = \hat{P}_{\psi}$.
+We can extend this notion of a projection operator onto a single state to a projection operator onto a subspace $\{ \ket{\psi_{n}} \}$ by defining
+\begin{eqnarray}
+    \hat{P}_{\{ \psi \}} = \sum_{n} \ket{\psi_{n}} \bra{\psi_{n}}
+.\end{eqnarray}
+
+Additionally, we can define a function of an operator through the power series of a function as
+\begin{eqnarray}
+    f(\hat{A}) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} \hat{A}^{n}
+.\end{eqnarray}
+As an example, consider 
+\begin{eqnarray}
+    e^{i \hat{A}} = \sum_{n=0}^{\infty} \frac{1}{n!} \Big( i \hat{A} \Big)^{n}
+.\end{eqnarray}
+Suppose that $A$ is a Hermitian operator, then it follows that this exponential is a unitary operator, and furthermore, its adjoint $(e^{i \hat{A}})^{\dagger} = e^{-i \hat{A}}$.
+It may be tempting to conclude from this that the exponential with operator ``powers'' inherits those properties with real number powers such as $e^{a}e^{b} = e^{a + b}$, but this is not true.
+In fact, it is only true if $[A,B] = 0$.
+If they do not commute, then the product $e^{\hat{A}} e^{\hat{B}}$ is given by the Baker-Campbell-Hausdorff formula.
+
+
+\section{Representations}
+
+Choosing a representation means choosing a basis in the state space.
+Let us suppose that our basis is orthonormal and complete.
+For now, let us also assume that our basis is denumerable.
+Once we choose a respresentation, we can use the completeness property to expand any state as
+\begin{eqnarray}
+    \ket{\psi} = \sum_{n} c_{n} \ket{\phi_{n}}
+,\end{eqnarray}
+where $c_{n} = \bra{\phi_{n}}\ket{\psi}$.
+Note that this gives an alternate statement of completeness for an orthonormal basis $\sum_{n} \ket{\phi_{n}} \bra{\psi_{n}} = \sum_{n} \hat{P}_{n} = \id$.
+From this, there exists a unique isomorphism between the Hilbert space $\mathcal{S}$ and $\R^{N}$, where $N$ is the dimension of the Hilbert space.
+It follows then that
+\begin{align}
+    \ket{\psi} \mapsto \psi = \begin{pmatrix}
+        c_1 \\ c_2 \\ \vdots
+    \end{pmatrix}
+,\end{align}
+and additionally, there is an isomorphism between operators and $\R^{N \times N}$:
+\begin{eqnarray}
+    A \mapsto A = \begin{pmatrix}
+        A_{11} & A_{12} & \ldots \\
+        A_{21} & A_{22} & \ldots \\
+        \vdots & \vdots & \ddots \\
+    \end{pmatrix}
+,\end{eqnarray}
+where the matrix elements $A_{nm} = \bra{\psi_{n}} \hat{A} \ket{\psi_{m}}$.
+
+
+\section{Change of representation}
+
+As we discussed previously, there is not a unique basis of a vector space.
+Suppose that for $\mathcal{S}$, we have two distinct bases $\{ \phi_{n} \}$ and $\{ \ket{\chi_{n}} \}$.
+Our goal here is to understand how the components of our abstract vectors and operators under the isomorphism change when we change representations/bases.
+The components of $\ket{\psi}$ in the $\chi$-basis as
+\begin{eqnarray}
+    c_{n}^{(\chi)} = \bra{\chi_{n}}\ket{\psi}
+.\end{eqnarray}
+If we insert the completeness relation for the $\phi$-basis, then
+\begin{eqnarray}
+    c_{n}^{(\chi)} = \sum_{m} \bra{\chi_{n}}\ket{\phi_{m}} \bra{\phi_{m}}\ket{\psi} = \sum_{m} T_{nm}^{*} c_{m}^{(\phi)} = \sum_{m} T_{mn}^{\dagger} c_{m}^{(\phi)}
+.\end{eqnarray}
+Observe that we have defined a matrix $T$ with elements $T_{nm} = \bra{\phi_{n}}\ket{\chi_{m}}$ wich performs the change of basis.
+By inverting the transformation, we can write
+\begin{eqnarray}
+    c_{n}^{(\phi)} = \sum_{m} T_{nm} c_{m}^{(\chi)}
+,\end{eqnarray}
+and furthermore, we find
+\begin{eqnarray}
+    c_{n}^{(\phi)} = \sum_{m} \Big( \sum_{l} T_{lm}^{\dagger} T_{nm} \Big) c_{l}^{(\phi)}
+.\end{eqnarray}
+In order to ensure that the left and right-hand-sides are in fact equal, we find that $T^{\dagger} T = \id$, meaning that our change of basis/coordinates is unitary.
+
+Next, we address the matrix elements under the change of basis.
+Observe that
+\begin{align}
+    A_{nm}^{(\chi)} &= \bra{\chi_{n}} \hat{A} \ket{\chi_{m}} = \sum_{p,q} \bra{\chi_{n}} \ket{\phi_{p}} \bra{\phi_{p}} \hat{A} \ket{\phi_{q}} \bra{\phi_{q}} \ket{\chi_{m}} \nonumber \\
+                    &= \sum_{p,q} T_{pn}^{*} A^{(\phi)}_{pq} T_{qm} = \sum_{p,q} T_{np}^{\dagger} A^{(\phi)}_{pq} T_{qm}
+.\end{align}
+Thus, $A^{(\chi)} = T^{\dagger} A^{(\phi)} T$, or exploiting the unitarity of $T$, we have $A^{(\phi)} = T A^{(\chi)} T^{\dagger}$.
+
+
+\section{Eigenvalues and eigenvectors of a hermitian operator}
+
+In linear algebra, we were introduced to the eigenvalue problem.
+We have the same kind of problem with abstract operators.
+Suppose that $\hat{A}$ has an eigenvalue, eigenvector pair $\lambda, \ket{\psi}$ such that $\hat{A} \ket{\psi} = \lambda \ket{\psi}$.
+For this section, suppose that $\hat{A}$ is a hermitian operator.
+It follows that $\lambda \in \R$.
+Notice that the dual of this equation is $\bra{\psi} \hat{A}^{\dagger} = \bra{\psi} \hat{A} = \lambda^{*} \bra{\psi}$, so
+\begin{align}
+    \bra{\psi} \hat{A} \ket{\psi} = \lambda = \lambda^{*}
+.\end{align}
+
+Thinking about the matrix representation of $A$, it may be that a given eigenvalue $\lambda$ is degenerate.
+That is, for each eigenvalue $\lambda_{i}$ there may be a set of corresponding, distinct eigenvectors $\{ \psi_{i}^{j} \}$, where $j = 1,\ldots,g_{i}$ is the degeneracy label for the eigenvalue $\lambda_{i}$.
+
+We can prove that eigenvectors corresponding to distinct eigenvectors are orthogonal.
+Suppose that we have the eigenvalue, eigenvector pairs $\lambda, \ket{\psi_{\lambda}}$ and $\mu, \ket{\psi_{\mu}}$, where $\lambda \ne \mu$, then
+\begin{eqnarray}
+    \bra{\psi_{\mu}} \hat{A} \ket{\psi_{\lambda}} = \mu \bra{\psi_{\mu}} \ket{\psi_{\lambda}} = \lambda \bra{\psi_{\mu}} \ket{\psi_{\lambda}} \Rightarrow \lambda = \mu
+.\end{eqnarray}
+
+Notice that this proof hinged on the fact that $\lambda - \mu \ne 0$.
+Therefore, there is no such proof here that the degenerate eigenvectors are automatically orthogonal, but we can perform a procedure such as Gram-Schmidt orthogonalization to construct an orthonormal set of degenerate eigenvectors.
+
+
+\section{Changing to the basis of eigenvectors}
+
+In this section, we describe how to construct the change of basis between an arbitrary representation of our Hilbert space and the eigenrepresentation.
+For this, notice that the matrix representation of $\hat{A}$ in the eigenbasis is diagonal, assuming that we have already made any degenerate eigenvectors orthogonal.
+Our goal here is to construct the matrix $T_{nm}$ which performs the change of basis.
+Let us denote $\ket{\phi_{n}}$ and $\ket{\psi_{n}}$ as the basis vectors in an arbitrary and the eigenvector representations.
+Recall that $T_{nm} = \bra{\phi_{n}}\ket{\psi_{m}}$.
+If we expand our eigenvectors in the $\phi$-basis, we have
+\begin{eqnarray}
+    T_{nm} = \sum_{p} \bra{\phi_{n}} \ket{\phi_{p}} \bra{\phi_{p}} \ket{\psi_{m}} = \sum_{p} \delta_{np} c_{p}^{(m)} = c_{n}^{(m)}
+,\end{eqnarray}
+where $c_{n}^{(m)}$ is the $n^{\rm th}$ component of the $m^{\th}$ eigenvector of $\hat{A}$ in the $\phi$-representation.
+Thus, if our space has dimension $N$, we can write
+\begin{eqnarray}
+    T = \begin{pmatrix}
+        c_{1}^{(1)} & c_{1}^{(2)} & \ldots & c_{1}^{(N)} \\
+        c_2^{(1)} & c_{2}^{(2)} & \ldots & c_{2}^{(N)} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        c_{N}^{(1)} & c_{N}^{(2)} & \ldots & c_{N}^{(N)}
+    \end{pmatrix}
+.\end{eqnarray}
+
+
+\section{Observables}
+
+We define an operator $\hat{A}$ to be an observable if it is hermitian and its eigenstates form a basis of $\mathcal{S}$:
+\begin{eqnarray}
+    \hat{A} \ket{\psi_{i}^{(j)}} = \lambda_{i} \ket{\psi_{i}^{(j)}}, \quad \sum_{i,j} \ket{\psi_{i}^{(j)}} \bra{\psi_{i}^{(j)}} = \id
+,\end{eqnarray}
+where $i$ labels the eigenvalue of $\hat{A}$ and $j$ labels the degeneracy of a given eigenvalue.
+Based on our discussion above, it may be tempting to think that any hermitian operator admits a complete basis of the Hilbert space of interest, but this is not necessarily true.
+It is generally tricky to prove completeness.
+Here we only postulate that observables are operators which do have a complete spectrum.
+
+Observe the following results that hold for observables:
+\begin{enumerate}
+    \item If $\hat{A}$ and $\hat{B}$ commute and $\ket{\psi}$ is an eigenstate of $\hat{A}$, then $\hat{B} \ket{\psi}$ is also an eigenstate of $\hat{A}$ corresponding to the same eigenvalue $a$ of $\hat{A}$. If $a$ is non-degenerate, it must follow that $\hat{B} \ket{\psi} = b \ket{\psi}$, meaning that $\ket{\psi}$ is also an eigenstate of $\hat{B}$. However, if $a$ is degenerate, then all we can say is that $B \ket{\psi}$ is a vector in the subspace spanned by the eigenstates of $\hat{A}$ corresponding to eigenvalue $a$: $\hat{B} \ket{\psi^{(j)}} = \sum_{i} c_{i}^{(j)} \ket{\psi^{i}}$ or $c_{i}^{(j)} = \bra{\psi^{(i)}} \hat{B} \ket{\psi^{(j)}}$.
+
+    \item If $\hat{A}$ and $\hat{B}$ commute and $\ket{\psi_1}$ and $\ket{\psi_2}$ are eigenstates of $\hat{A}$ corresponding to eigenvalues $a_1 \ne a_2$ of $\hat{A}$, respectively, then $\bra{\psi_1}\hat{B}\ket{\psi_2} = 0$.
+
+    \item If $\hat{A}$ and $\hat{B}$ commute, then there exists a basis of common eigenstates of $\hat{A}$ and $\hat{B}$. This is immediate when the spectrum of $\hat{A}$ is non-degenerate. If the spectrum of $\hat{A}$ is degenerate, then we can only guarantee the $\hat{B}$ is block-diagonal in its matrix representation with respect to the eigenbasis of $\hat{A}$. We can, however, diagonalize these sub-blocks. This amounts to constructing the eigenstates of $\hat{B}$ by taking linear combinations of degenerate eigenstates of $\hat{A}$. Since we are solely taking linear combinations of the degenerate eigenvectors of $\hat{A}$, the result is still an eigenstate of $\hat{A}$ but also is an eigenstate of $\hat{B}$. We thus have a basis where both $\hat{A}$ and $\hat{B}$ are diagonal in their matrix representations.
+\end{enumerate}
+In our last point, we outlined a sketch of how to construct a basis of $\mathcal{S}$ where both $\hat{A}$ and $\hat{B}$ are diagonal.
+Note, however, that this does not prove that this common eigenbasis is non-degenerate.
+If we are lucky enough to find that there is no degeneracy, we have managed to find a complete set of commuting observables.
+Essentially, specifying the eigenvalues of both $\hat{A}$ and $\hat{B}$ uniquely specify the corresponding common eigenstate.
+Alternatively, if the common spectrum is degenerate, then we must find other observables which commute with $\hat{A}$ and $\hat{B}$ and further if necessary such that the total spectrum is non-degenerate.
+
+In our study of bound states of one-dimensional potentials, we found that the energy eigenvalues were all non-degenerate, meaning that $\hat{H}$ forms a complete set of commuting observables trivially.
+However, in our study of scattering, we found that each energy is doubly degenerate.
+For example, though, the Hamiltonian and parity operators uniquely specify the scattering states from a one-dimensional repulsive delta-function potential at the origin.
+
+
+\section{The $r$-representation}
+
+In this section, we will see how wave mechanics arises from the more abstract framework of quantum mechanics in terms of Hilbert spaces and operators.
+Consider a position operator $\hat{x}$, which is an observable and has continuous eigenvalues such that $\hat{x} \ket{\phi_{x}} = x \ket{\phi_{x}}$, where $-\infty < x < \infty$.
+By assumption, the states of $\hat{x}$ are orthogonal and complete in the sense that
+\begin{eqnarray}
+    \bra{\phi_{x}}\ket{\phi_{x'}} = \delta(x - x'), \quad \int_{-\infty}^{\infty} \dd{x} \ket{\phi_{x}} \bra{\phi_{x}} = \id
+.\end{eqnarray}
+We can then expand our state $\ket{\psi}$ in position eigenstates as
+\begin{eqnarray}
+    \ket{psi} = \int_{-\infty}^{\infty} \dd{x} \ket{\phi_{x}} \bra{\phi_{x}}\ket{\psi} = \int_{-\infty}^{\infty} \dd{x} \psi(x) \ket{\phi_{x}}
+,\end{eqnarray}
+where we have the wave-function $\psi(x) = \bra{\phi_{x}}\ket{\psi}$ as the component of $\ket{\psi}$ corresponding to position $x$.
+
+It follows then that operators which are functions of position such as the potential energy operator have position matrix elements
+\begin{align}
+    \bra{\phi_{x}} \hat{V}(\hat{x}) \ket{\phi_{x'}} &= \bra{\phi_{x}} \sum_{n=0}^{\infty} \frac{V^{(n)}(0)}{n!} \hat{x}^{n} \ket{\phi_{x'}} = \sum_{n=0}^{\infty} \frac{V^{(n)}(0)}{n!} x^{n} \bra{\phi_{x}} \ket{\phi_{x'}} \nonumber \\
+                                                    &= V(x) \delta(x-x')
+.\end{align}
+
+If we consider, however, the momentum operator, the matrix elements are
+\begin{eqnarray}
+    \bra{\phi_{x}} \hat{p} \ket{\phi_{x'}} = -i \hbar \dv{x} \delta(x-x')
+.\end{eqnarray}
+This follows from the commutation relation $[\hat{x},\hat{p}] = i\hbar \id$ and considering the operator $\hat{T} = \id - i \eta \hat{p} / \hbar$, where $\eta$ is a very small parameter.
+We can generalize to $\bra{\phi_{x}} \hat{p}^{n} \ket{\phi_{x'}} = (-i\hbar)^{n} \dv[n]{x} \delta(x-x')$ by inserting completeness between each factor of $\hat{p}$.
+
+\subsection{Eigenvalue problems in the $r$-representation}
+
+Consider an observable $\hat{A}$ with eigenvalue problem $\hat{A} \ket{\psi} = a \ket{\psi}$, which we would like to solve in the $r$-representation.
+We can project onto the eigenstate $\ket{\phi_{x}}$ and insert completeness to find that
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \dd{x'} A(x,x') \psi(x') = a \psi(x)
+,\end{eqnarray}
+where $A(x,x') = \bra{\phi_{x}} \hat{A} \ket{\phi_{x'}}$.
+
+As an example, consider the momentum operator.
+We have
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \dd{x'} -i\hbar \dv{x} \delta(x-x') \psi(x') = -i\hbar \dv{\psi}{x} = p \psi
+.\end{eqnarray}
+This is a differential equation for the eigenstates of $\hat{p}$ in the $r$-representation and has solution $\psi_{p}(x) = e^{i p x / \hbar} / \sqrt{2 \pi \hbar}$, where the factor $1/\sqrt{2 \pi \hbar}$ is introduced to respect the normalization of momentum eigenstates.
+
+Next, consider the Hamiltonian operator, which is an observable since it corresponds to the total energy of a system, $\hat{H} = \frac{\hat{p}^2}{2m} + \hat{V}(\hat{x})$.
+If we project onto the position states as above, we find
+\begin{align}
+    \int_{-\infty}^{\infty} H(x,x') \psi(x') &= \int_{-\infty}^{\infty} \dd{x'} \Big[ -\frac{\hbar^2}{2m} \dv[2]{x} + V(x) \Big] \delta(x-x') \psi(x') \nonumber \\
+                                             &= \Big[ -\frac{\hbar^2}{2m} \dv[2]{x} + V(x) \Big] \psi(x) = E \psi(x)
+,\end{align}
+which is the time-independent Sch\"{o}dinger equation in position space.
+
+
+\section{The $p$-representation}
+
+As we have seen, quantum mechanics is equally valid in the $p$-representation as in the $r$-representation.
+The momentum operator is an observable, meaning its eigenstates are orthonormal and complete.
+As in the $r$-representation $\bra{\psi_{p}} \hat{F}(\hat{p}) \ket{\psi_{p'}} = F(p) \delta(p-p')$ and
+\begin{eqnarray}
+    \bra{\psi_{p}} \hat{x} \ket{\psi_{p'}} = i\hbar \pdv{p} \delta(p-p')
+.\end{eqnarray}
+We can insert the completeness of position states on both sides of $\hat{x}$ and use the results of the previous section to derive this result.
+It follows in the same way as above that an abstract eigenvalue problem reduces to
+\begin{eqnarray}
+    \int_{-\infty}^{\infty} \dd{p'} A(p,p') \tilde{\psi}(p') = a \tilde{\psi}(p')
+,\end{eqnarray}
+where $A(p,p') = \bra{\psi_{p}}\hat{A}\ket{\psi_{p'}}$.
+We also can quickly derive the relationship between the $r$ and $p$-space wave-functions:
+\begin{eqnarray}
+    \tilde{\psi}(\va*{p}) = \bra{\psi_{p}}\ket{\psi} = \int_{-\infty}^{\infty} \frac{\dd{x}}{\sqrt{2 \pi \hbar}} e^{-ipx/\hbar} \psi(x)
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    \psi(x) = \int_{-\infty}^{\infty} \frac{\dd{p}}{\sqrt{2\pi \hbar}} e^{ipx/\hbar} \tilde{\psi}(p)
+.\end{eqnarray}
+Additionally, we can write the momentum-space Schr\"{o}dinger equation as
+\begin{eqnarray}
+    \Big( E - \frac{p^2}{2m} \Big) \tilde{\psi}(p) = \frac{1}{\sqrt{2 \pi \hbar}} \int_{-\infty}^{\infty} \dd{p'} \tilde{V}(p - p') \tilde{\psi}(p')
+.\end{eqnarray}
+
+
+\section{Tensor products}
+
+In the past two sections, we considered states constrained only to one-dimensional position and momentum.
+Generally, though, our particles live in three dimensions.
+Thus, the Hilbert space of position states is really $\mathcal{S}_{\va*{r}}$ with states $\ket{\phi_{\va*{r}}}$.
+We can however construct this space using the tensor product:
+\begin{eqnarray}
+    \mathcal{S}_{\va*{r}} = \mathcal{S}_{x} \otimes \mathcal{S}_{y} \otimes \mathcal{S}_{z}
+,\end{eqnarray}
+where the state $\ket{\phi_{\va*{r}}} = \ket{\phi_{x}} \otimes \ket{\phi_{y}} \otimes \ket{\phi_{z}}$.
+Note that the relative ordering of the basis states is irrelevant.
+These are separate one-dimensional Hilbert spaces which do not interact with each other directly and only are composed together to construct the three-dimensional Hilbert space.
+Thus, we can write a three-dimensional state
+\begin{eqnarray}
+    \ket{\psi} = \int \dd{x} \int \dd{y} \int \dd{z} \psi(x,y,z) \ket{\phi_{x}} \otimes \ket{\phi_{y}} \otimes \ket{\phi_{z}} = \int \dd[3]{\va*{r}} \psi(\va*{r}) \ket{\phi_{\va*{r}}}
+.\end{eqnarray}
+
+Additionally, we can promote an operator acting in a one-dimensional Hilbert space to the three-dimensional Hilbert space by taking a tensor product of the operator with the identity operator in the other Hilbert spaces.
+For example, $\hat{A}_{x} \rightarrow \hat{A}_{x} \otimes \id_{y} \otimes \id_{z}$, and therefore
+\begin{eqnarray}
+    \hat{A}_{x} \times \id_{y} \otimes \id_{z} \ket{\psi} = \int \dd{x} \int \dd{y} \int \dd{z} \psi(x,y,z) \, \hat{A}_{x} \ket{\phi_{x}} \otimes \ket{\phi_{y}} \otimes \ket{\phi_{z}}
+.\end{eqnarray}
+
+As a final note, there is nothing special about the position eigenstates.
+If we have a complete set of commuting observables, then we can compose our Hilbert space as a tensor product of the Hilbert spaces of the commuting observables.
+For example, we could substitute any of these position states with momentum and obtain a valid expansion.
+Certainly, the details will look slightly different, but the result will be just as valid and different problems may require different choices for our decompositions.
+
+
+
+
+
+
+
+
+
+
+

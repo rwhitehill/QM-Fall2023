@@ -27,4 +27,19 @@
 \contentsline {section}{\numberline {5.2}Scattering: An Alternative Treatment}{21}{section.5.2}%
 \contentsline {section}{\numberline {5.3}Scattering in a parity-invariant potential: phase shift method}{22}{section.5.3}%
 \contentsline {section}{\numberline {5.4}Reflection and Transmission in a Generic Potential: General Considerations}{22}{section.5.4}%
-\contentsline {chapter}{Appendices}{25}{section*.2}%
+\contentsline {chapter}{\numberline {6}Mathematical Formulation of Quantum Mechanics}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Hilbert space $L^2(\mathbb {R}^3)$ of square-integrable functions}{25}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Operators in $L^2(\mathbb {R}^3)$}{26}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Discrete and continuous bases}{26}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Abstract Hilbert space}{27}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Operators}{28}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Representations}{29}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Change of representation}{29}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Eigenvalues and eigenvectors of a hermitian operator}{30}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Changing to the basis of eigenvectors}{31}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Observables}{31}{section.6.10}%
+\contentsline {section}{\numberline {6.11}The $r$-representation}{32}{section.6.11}%
+\contentsline {subsection}{\numberline {6.11.1}Eigenvalue problems in the $r$-representation}{33}{subsection.6.11.1}%
+\contentsline {section}{\numberline {6.12}The $p$-representation}{33}{section.6.12}%
+\contentsline {section}{\numberline {6.13}Tensor products}{34}{section.6.13}%
+\contentsline {chapter}{Appendices}{37}{section*.2}%
