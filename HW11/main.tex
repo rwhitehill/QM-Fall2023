@@ -1,0 +1,388 @@
+\def\duedate{November 21, 2023}
+\def\HWnum{11}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 10 \# 2}{
+
+Consider the two-dimensional Schr\"{o}dinger equation for the case where the potential energy depends only on the radial variable.
+
+(a) Introduce polar coordinates $x = \rho \cos{\theta}$, $y = \rho \sin{\theta}$ and derive the identity
+\begin{eqnarray}
+    \pdv[2]{x} + \pdv[2]{y} = \pdv[2]{\rho} + \frac{1}{\rho} \pdv{\rho} + \frac{1}{\rho^2} \pdv[2]{\theta}
+.\end{eqnarray}
+
+(b) Deduce from this, using separation of variables, that there is a complete set of eigenfunctions of the form
+\begin{eqnarray}
+    \psi_{E,n} = f_{E,n}(\rho) e^{in\theta} \quad n = 0,\pm 1,\pm 2, \ldots
+,\end{eqnarray}
+where $f_{E,n}(\rho)$ is the solution of the radial equation
+\begin{eqnarray}
+    \Big[ \pdv[2]{\rho} + \frac{1}{\rho} \pdv{\rho} - \frac{n^2}{\rho^2} - v(\rho) + \epsilon \Big] f_{E,n}(\rho) = 0, \quad \epsilon = \frac{2mE}{\hbar^2}, \quad v(\rho) = \frac{2m}{\hbar^2} V(\rho)
+\end{eqnarray}
+
+(c) Consider the free case $v(\rho) = 0$.
+Define $x = k \rho$ with $k^2 = 2mE/\hbar^2 > 0$, and show that the radial equation reduces to
+\begin{eqnarray}
+    \Big[ \dv[2]{x} + \frac{1}{x} \dv{x} - \frac{n^2}{x^2} + 1 \Big] f_{n}(x) = 0
+.\end{eqnarray}
+
+(d) Solve the free-particle radial equation by assuming
+\begin{eqnarray}
+    f_{n}(x) = x^{s} \sum_{p=0}^{\infty} a_{p} x^{p}
+,\end{eqnarray}
+with $a_0 \ne 0$, where the dependence on the coefficients $a_{p}$ on the quantum number $n$ is understood.
+Verify that the regular solution (well behaved in the limit $x \rightarrow 0$) coincides with the power series expansion of the regular Bessel function.
+
+}
+
+\sol{
+
+(a) The time-indenpent S.E. in 2d is just
+\begin{eqnarray}
+    H \psi(x,y) = -\frac{\hbar^2}{2m} \Big[ \pdv[2]{x} + \pdv[2]{y} \Big] \psi + V(x,y) \psi = E \psi
+.\end{eqnarray}
+We can transform to polar coordinates using
+\begin{eqnarray}
+    \rho = \sqrt{x^2 + y^2}, \quad \theta = \arctan(y/x)
+.\end{eqnarray}
+Then the derivatives transform as
+\begin{align}
+    \pdv{x} &= \pdv{\theta}{x} \pdv{\theta} + \pdv{\rho}{x} \pdv{\rho} = - \frac{\sin{\theta}}{\rho} \pdv{\theta} + \cos{\theta} \pdv{\rho} \\
+    \pdv{y} &= \pdv{\theta}{y} \pdv{\theta} + \pdv{\rho}{y} \pdv{\rho} = \frac{\cos{\theta}}{\rho} \pdv{\theta} + \sin{\theta} \pdv{\rho}
+\end{align}
+and
+\begin{align}
+    \pdv[2]{x} &= \Big[ -\frac{\sin{\theta}}{\rho} \pdv{\theta} + \cos{\theta} \pdv{\rho} \Big] \Big[ - \frac{\sin{\theta}}{\rho} \pdv{\theta} + \cos{\theta} \pdv{\rho} \Big] \nonumber \\
+               &= \frac{\sin{\theta}}{\rho^2} \pdv{\theta} \sin{\theta} \pdv{\theta} - \frac{\sin{\theta}}{\rho} \pdv{\theta} \cos{\theta} \pdv{\rho} - \cos{\theta} \sin{\theta} \pdv{\rho} \frac{1}{\rho} \pdv{\theta} + \cos^2{\theta} \pdv[2]{\rho} \nonumber \\
+               &= \frac{\sin{\theta} \cos{\theta}}{\rho^2} \pdv{\theta} + \frac{\sin^2{\theta}}{\rho^2} \pdv[2]{\theta} + \frac{\sin^2{\theta}}{\rho} \pdv{\rho} - \frac{\sin{\theta}\cos{\theta}}{\rho} \pdv{\theta}\pdv{\rho} \nonumber \\
+               &+ \frac{\cos{\theta} \sin{\theta}}{\rho^2} \pdv{\theta} - \frac{\cos{\theta} \sin{\theta}}{\rho} \pdv{\rho} \pdv{\theta} + \cos^2{\theta} \pdv[2]{\rho} \nonumber \\
+    \pdv[2]{y} &= \Big[ \frac{\cos{\theta}}{\rho} \pdv{\theta} + \sin{\theta} \pdv{\rho} \Big] \Big[ \frac{\cos{\theta}}{\rho} \pdv{\theta} + \sin{\theta} \pdv{\rho} \Big] \nonumber \\
+               &= \frac{\cos{\theta}}{\rho^2} \pdv{\theta} \cos{\theta} \pdv{\theta} + \frac{\cos{\theta}}{\rho} \pdv{\theta} \sin{\theta} \pdv{\rho} + \sin{\theta} \cos{\theta} \pdv{\rho} \frac{1}{\rho} \pdv{\theta} + \sin^2{\theta} \pdv[2]{\rho} \nonumber \\
+               &= -\frac{\cos{\theta} \sin{\theta}}{\rho^2} \pdv{\theta} + \frac{\cos^2{\theta}}{\rho^2} \pdv[2]{\theta} + \frac{\cos^2{\theta}}{\rho} \pdv{\rho} + \frac{\cos{\theta} \sin{\theta}}{\rho} \pdv{\theta} \pdv{\rho} \nonumber \\
+               &- \frac{\sin{\theta} \cos{\theta}}{\rho^2} \pdv{\theta} + \frac{\sin{\theta} \cos{\theta}}{\rho} \pdv{\rho} \pdv{\theta} + \sin^2{\theta} \pdv[2]{\rho}
+.\end{align}
+Putting these together and rearranging, we have
+\begin{align}
+    \pdv[2]{x} + \pdv[2]{y} = \frac{1}{\rho^2} \pdv[2]{\theta} + \frac{1}{\rho} \pdv{\rho} + \pdv[2]{\rho}
+.\end{align}
+Thus, the S.E. in polar coordinates is
+\begin{eqnarray}
+    \Bigg[ \pdv[2]{\rho} + \frac{1}{\rho} \pdv{\rho} + \frac{1}{\rho^2} \pdv[2]{\theta} - v(\rho) + \epsilon \Bigg] \psi(\rho,\theta) = 0
+,\end{eqnarray}
+where we have defined $v(\rho) = 2mV/\hbar^2$ and $\epsilon = 2mE/\hbar^2$.
+
+(b) If we pose a separable ansatz such that $\psi_{E,n}(\rho,\theta) = f(\rho) T(\phi)$, then
+\begin{align}
+    \frac{1}{f} \Bigg[ \rho^2 \dv[2]{f}{\rho} + \rho \pdv{f}{\rho} + \rho^2 (\epsilon - v(\rho)) f \Bigg] + \frac{1}{T} \dv[2]{T}{\theta} = 0
+.\end{align}
+We must have $T(\theta + 2\pi) = T(\theta)$, so we impose
+\begin{eqnarray}
+    T''(\theta)  = -n^2 T \Rightarrow T = e^{in\theta}
+,\end{eqnarray}
+where $n \in \mathbb{Z}$.
+Turning our attention to the radial equation, we have
+\begin{align}
+    \Big[ \dv[2]{\rho} + \frac{1}{\rho} \dv{\rho} - \frac{n^2}{\rho^2} - v(\rho) + \epsilon \Big] f(\rho) = 0
+.\end{align}
+
+(c) If we consider a free particle such that $v(\rho) = 0$, then we can define $x = k \rho$, where $k^2 = \epsilon > 0$, such that
+\begin{align}
+    \dv{\rho} = \dv{x}{\rho} \dv{x} = k \dv{x}
+.\end{align}
+and
+\begin{align}
+    \Big[ \dv[2]{x} + \frac{1}{x} \dv{x} - \frac{n^2}{x^2} + 1 \Big] f(x) = 0
+.\end{align}
+
+(d) Let us use Frobenius' method and write a power series solution for $f$ such that
+\begin{eqnarray}
+    f(x) = x^{s} \sum_{p=0}^{\infty} a_{p} x^{p}
+,\end{eqnarray}
+where by assumption $a_0 \ne 0$.
+Putting this into the differential equation for the free particle to which we just arrived, we find
+\begin{gather}
+    \sum_{p=0}^{\infty} a_{p} (s + p) (s + p - 1) x^{p-2} + \sum_{p=0}^{\infty} a_{p} (s + p) x^{p-2} - \sum_{p=0}^{\infty} a_{p} n^2 x^{p-2} + \sum_{p=0}^{\infty} a_{p} x^{p} = 0 \nonumber \\
+    \sum_{p=0}^{\infty} a_{p} [ (s + p)^2 - n^2 ] x^{p-2} + \sum_{p=0}^{\infty} a_{p} x^{p} \nonumber \\
+    a_{0} [s^2 - n^2] x^{-2} + a_1 [ (s+1)^2 - n^2 ] x^{-1} + \sum_{p=0}^{\infty} \Big\{ a_{p+2} [ (s + p + 2)^2 - n^2 ] + a_{p} \Big\} x^{p} = 0
+.\end{gather}
+The first term gives the indicial equation, and tells us that $s = \pm |n|$.
+Next, second term can only be made zero if we enforce $a_1 = 0$.
+Finally, the sum in the third term is zero if the following recurrence relation between the coefficients
+\begin{eqnarray}
+    a_{p} = - \frac{1}{[ (s+p)^2 - n^2 ]} a_{p-2}
+.\end{eqnarray}
+Note that $s = |n|$ is the regular solution since its lowest power is $x^{|n|}$.
+The recurrence relation then gives
+\begin{align}
+    a_{2p} &= -\frac{1}{[ ( |n| + 2p)^2 - n^2 ]} a_{2(p-1)} = -\frac{1}{4p(p + |n|)} a_{2(p-1)} \nonumber \\
+           &= \ldots = \frac{(-1)^{p}}{4^{p} p!} \frac{|n|!}{(|n|+k)!} a_0
+.\end{align}
+If we choose $a_0 = 1/[ 2^{|n|} |n|! ]$, then we have
+\begin{eqnarray}
+    f_{n}(x) = \Big( \frac{x}{2} \Big)^{|n|} \sum_{p=0}^{\infty} \frac{(-1)^{p}}{p! ( |n| + p )!} \Big( \frac{x}{2} \Big)^{2p}
+,\end{eqnarray}
+which is just the Bessel function of the first kind.
+
+}
+
+
+\prob{2 -- Chapter 10 \# 4}{
+
+Assuming that the eigenfunctions for the hydrogen atom to be of the form $r^{\beta} e^{-\alpha r} Y_{lm}(\Omega)$ with undetermined parameters $\alpha$ and $\beta$, solve the Schr\"{o}dinger equation.
+Are all eigenfunctions and eigenvalues obtained this way?
+
+}
+
+\sol{
+
+The ansatz for the wave-function in terms of spherical components is $\psi(r,\Omega) = r^{\beta} e^{-\alpha r} Y_{lm}(\Omega)$.
+Generally, the radial equation is
+\begin{eqnarray}
+    u''(r) + \Big[ \epsilon - v(r) - \frac{l(l+1)}{r^2}  \Big] u = 0
+,\end{eqnarray}
+where in this case $u(r) = r^{\beta + 1} e^{-\alpha r}$ and $v(r) = (2 \mu / \hbar^2)(Ze^2/r)$ (for hydrogen-like systems).
+Putting the supposed form for $u$ into the radial equation, we find
+\begin{gather}
+    \beta(\beta+1) r^{\beta - 1} + 2(-\alpha)(\beta + 1) r^{\beta} + (-\alpha)^2 r^{\beta+1} + \Big[ \epsilon - \frac{2 \mu}{\hbar^2} \frac{Z e^2}{r} - \frac{l(l+1)}{r^2} \Big] r^{\beta + 1} = 0 \nonumber \\
+    (\alpha^2 + \epsilon) - \frac{2\alpha(\beta+1) + (2\mu/\hbar^2)Ze^2}{r} + \frac{\beta(\beta+1) - l(l+1)}{r^2} = 0
+.\end{gather}
+In order to make this expression zero for all $r$, we must have the coefficients individually be zero.
+The $1/r^2$ term gives $\beta = l$\footnote{There is also the solution $\beta = -l-1$, but our solution would then blow up at $r = 0$ (since $l \geq 0$) and is therefore not accepted.}.
+Next, the $1/r$ term term gives
+\begin{eqnarray}
+    \alpha = -\frac{\mu}{\hbar^2} \frac{Ze^2}{l+1}
+,\end{eqnarray}
+and putting this into the constant $r$ term, we have
+\begin{eqnarray}
+    E = \frac{\hbar^2}{2\mu} \epsilon = -\frac{\hbar^2}{2\mu} \alpha^2 = -\frac{\hbar^2}{2\mu} \Big[ \frac{\mu Z e^2}{(l+1)\hbar^2} \Big]^2 = -\mu c^2 \frac{(Z\alpha)^2}{2n^2}
+,\end{eqnarray}
+where $n = l+1 \in \{ 1,2,\ldots \} $ and $\alpha = e^2/(\hbar c)$ is the fine-structure constant.
+It is clear that the energy spectrum is exactly reproduced in terms of $n$, but at the same time, we see that the states of the system are not reproduced.
+Another way to see this is that energy for fixed $n$ is only produced by one value of $l$ and $2l+1$ values of $m$, meaning that we have not reproduced the degeneracy of the hydrogen atom: we are missing the states $n = l, l-1,\ldots,1$.
+
+}
+
+
+\prob{3 -- Chapter 10 \# 8}{
+
+Consider a particle of mass $\mu$ under the influence of a central potential given by $V(r) = -V_0 e^{-r/a}$, where $V_0,a > 0$.
+
+(a) Change variable from $r$ to $x = e^{-r/(2a)}$ and show that the S-wave Schr\"{o}dinger equation for the reduced radial wave function $u_0(r)$ reduces to the Bessel equation,
+\begin{eqnarray}
+    \chi''(\xi) + \frac{1}{\xi} \chi'(\xi) + \Big( 1 - \frac{\alpha^2}{\xi^2} \Big) \chi(\xi) = 0
+.\end{eqnarray}
+
+(b) What boundary conditions must be imposed on $u_0(x)$ as function of $x$?
+Show how these can be used to determine the energy levels.
+
+(c) What is the lower limit of $V_0$ for which at least a bound state exists?
+
+}
+
+\sol{
+
+(a) The S-wave radial equation reads
+\begin{eqnarray}
+    u_0''(r) + \Big[ \epsilon - \frac{2\mu}{\hbar^2} V(r) \Big] u_0(r) = 0
+,\end{eqnarray}
+where $\epsilon = 2mE/\hbar^2$.
+Let us make the change of variables suggested $x = e^{-r/2a}$, which makes
+\begin{align}
+    \dv{r} &= \dv{x}{r} \dv{x} = -\frac{1}{2a} x \dv{x} \\
+    \dv[2]{r} &= \frac{1}{4a^2} x \dv{x} x \dv{x} = \frac{1}{4a^2} \Big( x^2 \dv[2]{x} + \dv{x} \Big)
+.\end{align}
+Thus, the radial equation above becomes
+\begin{eqnarray}
+    \frac{x^2}{4a^2} u_0''(x) + \frac{x}{4a^2} u_0'(x) + ( v_0 x^2 - |\epsilon|) u_0(x) = 0
+,\end{eqnarray}
+where $v_0 = 2mV_0/\hbar^2$ and we have written $\epsilon = -|\epsilon|$ since we only care about bound states here.
+We can rewrite this a bit to present more clearly an equation equivalent to that of Bessel:
+\begin{eqnarray}
+    u_0''(x) + \frac{1}{x} u_0'(x) + 4a^2 \Big( v_0 - \frac{|\epsilon|}{x^2} \Big) u(x) = 0
+.\end{eqnarray}
+Finally, we can bring it into the form in the problem statement by making the substitution $\xi = 4a^2 v_0 x$:
+\begin{eqnarray}
+    u_0''(\xi) + \frac{1}{\xi} u_0'(\xi) + \Big( 1 - \frac{\alpha^2}{\xi^2} \Big) u_0(\xi) = 0
+,\end{eqnarray}
+where we $\alpha = 2a\sqrt{|\epsilon|}$.
+
+(b) Note that as usual we must have $u_0 \rightarrow 0$ as $r \rightarrow 0,\infty$ for bound states.
+Since we are dealing with Bessel's equation, we can immediately write down the solution
+\begin{eqnarray}
+    u_0(\xi) = A J_{\alpha}(\xi) + B J_{-\alpha}(\xi)
+,\end{eqnarray}
+where $J_{\pm \alpha}$ are Bessel's functions of the first kind.
+Note, though, that the boundary conditions force $B=0$ since we must have a regular solution at $r \rightarrow \infty$ (i.e. $\xi = 0$) and $J_{-\alpha} \sim \xi^{-\alpha}$ as $\xi \rightarrow 0$.
+Thus, let us write $u_0 = J_{\alpha}(\xi)$\footnote{Either absorbing the normalization into the Bessel functions, which does not change whether they satisfy the differential equation, or altogether dropping it for now since the constant is irrelevant for determining the energy levels.}.
+Finally, we can determine the energy levels by imposing that $u = 0$ at $r = 0$, which gives
+\begin{eqnarray}
+    J_{2a\sqrt{\epsilon}}(2a\sqrt{v_0}) = 0
+.\end{eqnarray}
+This equation tells us that for given $a$ and $v_0$, we can scan energies $\epsilon$ such that the Bessel function $J_{2a\sqrt{|\epsilon|}}$ has a zero at $2a\sqrt{v_0}$.
+
+(c) It should be noted that condition above on the energies may not yield any solutions for $\epsilon$\footnote{Similarly the solution may not be unique -- there may be more than one if there exists a solution in the first place).}.
+This will be the case if $v_0$ is too small.
+If $v_0$ is small, then $\epsilon$ will be close to zero, meaning that the minimum possible $v_0$ for bound states satisfies
+\begin{eqnarray}
+    J_0(2a\sqrt{v_0}) = 0
+.\end{eqnarray}
+The solution with smallest magnitude is $x_{00} = 2.4048$, and hence
+\begin{eqnarray}
+    V_{0,{\rm min}} = \frac{\hbar^2 x_{00}^2}{8\mu a^2}
+.\end{eqnarray}
+
+
+}
+
+
+\prob{4 -- Chapter 10 \# 11}{
+
+First review problem 10.2 and the corresponding solution J.2
+Then consider the isotropic two-dimensional harmonic oscillator potential.
+
+(a) After introducing the adimensional variable
+\begin{eqnarray}
+    x = \sqrt{\frac{m\omega}{\hbar}} \rho
+\end{eqnarray}
+show that the radial eqution reads
+\begin{eqnarray}
+    \Big[ \pdv[2]{x} + \frac{1}{x} \pdv{x} - \frac{n^2}{x^2} - x^2 + \epsilon \Big] f_{\epsilon n}(x) = 0, \quad \epsilon = \frac{E}{\hbar \omega / 2}
+.\end{eqnarray}
+Introduce the auxiliary function $g_{\epsilon n}(x)$ defined as
+\begin{eqnarray}
+    f_{\epsilon n}(x) = x^{|n|} e^{-x^2/2} g_{\epsilon n}(x)
+\end{eqnarray}
+and show that it satisfies the following differential equation
+\begin{eqnarray}
+    x g_{\epsilon n}'' + (b - 2x^2) g_{\epsilon n}' + ax g_{\epsilon n} = 0
+,\end{eqnarray}
+where $a = \epsilon - 2(|n| + 1)$ and $b = 2|n|+1$.
+
+(b) Posit the following power series solution for $g_{\epsilon n}(x)$
+\begin{eqnarray}
+    g(x) = x^{s} \sum_{q=0}^{\infty} c_{q} x^{q}
+,\end{eqnarray}
+with $c_0 \ne 0$, where subscripts $\epsilon n$ from both $g$ and the coefficients $c_{q}$ have been dropped for brevity.
+Assume that the series must terminate (that is, $g(x)$ is a polynomial) for the solution to be acceptable.
+Show that this happens if
+\begin{eqnarray}
+    \epsilon - 2(|n| + 1) = 2p ~{\rm or}~E_{m} = \hbar \omega(m+1) ~{\rm with}~ m = p + |n|
+,\end{eqnarray}
+where $p$ is even and $|n| = 0,1,2,\ldots$.
+Determine the degeneracy of the energy eigenvalues of $E_{m}$.
+
+(c) Justify the assumption above, that is, show that if the series does not terminate, then $g(x)$ behaves asymptotically as $x^2 e^{x^2}$, and hance $f(x) \sim x^{|n|+2}e^{x^2/2}$.
+
+}
+
+\sol{
+
+(a) The isotropic two-dimensional harmonic oscillator has potential $V = m \omega^2 (x^2 + y^2)/2 = m\omega^2 \rho^2/2$.
+In the first problem, we derived the radial equation that a separable $\psi$ must satisfy:
+\begin{eqnarray}
+    \Bigg[ \dv[2]{\rho} + \frac{1}{\rho} \dv{\rho} - \frac{n^2}{\rho^2} - \frac{m^2 \omega^2}{\hbar^2} \rho^2 + \epsilon \Bigg] f(\rho) = 0
+.\end{eqnarray}
+Let us not make the change of variables prescribed in the problem statement:
+\begin{eqnarray}
+    x = \sqrt{\frac{m\omega}{\hbar}} \rho \Rightarrow \dv{\rho} = \dv{x}{\rho} \dv{x} = \sqrt{\frac{m\omega}{\hbar}} \dv{x}
+.\end{eqnarray}
+Thus, the radial equation transforms as
+\begin{eqnarray}
+    \Bigg[ \dv[2]{x} + \frac{1}{x} \dv{x} - \frac{n^2}{x^2} - x^2 + \tilde{\epsilon} \Bigg]f(x) = 0
+,\end{eqnarray}
+where $\tilde{\epsilon} = (\hbar/m\omega) \epsilon = E/(\hbar \omega/2) = E/E_0$.
+
+Next, let us introduce the auxiliary function $f(x) = x^{|n|} e^{-x^2/2} g(x)$.
+We then have
+\begin{align}
+    f'(x) &= |n|x^{|n|-1} e^{-x^2/2}g(x) - x^{|n|+1} e^{-x^2/2} g(x) + x^{|n|} e^{-x^2/2} g'(x) \nonumber \\
+          &= x^{|n|} e^{-x^2/2} \Big( \frac{|n|}{x} g - xg + g' \Big) \\
+    f''(x) &= x^{|n|} e^{-x^2/2} \Big[ \Big( \frac{n^2}{x^2} - \frac{|n|}{x^2} + x^2 - 2|n| - 1 \Big) g + 2 \Big( \frac{|n|}{x} - x \Big) g' + g'' \Big]
+.\end{align}
+If we put this into the radial equation for $f$ in terms of $x$, we arive at the following equation for $g$
+\begin{eqnarray}
+    x g'' + ( b - 2x^2 ) g' + a x g = 0
+,\end{eqnarray}
+where we have defined $b = 2|n| + 1$ and $a = \tilde{\epsilon} - 2(|n| + 1)$.
+
+(b) As we have done previously, let us proceed towards a solution using Frobenius' method and write $g$ as a power series expansion
+\begin{eqnarray}
+    g(x) = x^{s} \sum_{q=0}^{\infty} c_{q} x^{q}
+,\end{eqnarray}
+where by assumption $c_{0} \ne 0$.
+Substituting this into the differential equation above
+\begin{gather}
+    \sum_{q=0}^{\infty} c_{q} (s + q) [ s + q + b - 1 ] x^{q-1} + \sum_{q=0}^{\infty} c_{q}[ a - 2(s+q) ] x^{q+1} = 0 \nonumber \\
+    c_0 s(s + b - 1) x^{-1} + c_1 (s + 1)(s+b) + \sum_{q=0}^{\infty} \{ c_{q+2} (s + q + 2)(s + q + b + 1) + c_{q} [ a - 2(s+q) ] \} x^{q+1}
+.\end{gather}
+The indicial equation gives $s = 0$ or $s = 1 - b$.
+We know that $b \geq 1$.
+If $b = 1$, then the root $s = 0$ is redundant, and there is not an issue.
+If, however, $b > 1$, we violate the boundary condition at $\rho = 0$, so the only valid solution occurs for $s = 0$.
+Since the second term must be zero, we have $c_1 = 0$, and finally, the coefficient inside the sum yields the recurrence relation
+\begin{eqnarray}
+    c_{q+2} = \frac{2q - a}{(q+2)(q+b+1)}
+.\end{eqnarray}
+
+(c) We will get ahead of ourselves now and motivate why the series must terminate at finite order.
+The conventional analysis is as follows.
+Notice that for sufficiently large powers of $q$
+\begin{eqnarray}
+    c_{2(q+1)} = \frac{4q - a}{4(q+1)(q + |n| + 1)} c_{2q} \rightarrow \frac{1}{q} c_{2q} 
+.\end{eqnarray}
+Thus, if we separate the series at index $p$ (assuming that $2p$ is large enough such that the limit in the previous approximation is true), we have
+\begin{align}
+    g(x) &= \sum_{q=0}^{p-1} c_{2q} x^{2q} + \sum_{q=p}^{\infty} c_{2q} x^{2q} \nonumber \\
+         &= \sum_{q=0}^{p-1} c_{2q} x^{2q} + c_{2p} x^{2p} \sum_{q=p}^{\infty} \frac{c_{2q}}{c_{2p}} x^{2(q-p)}
+.\end{align}
+Let us now analyze the second sum.
+We can recursively apply the rule $c_{2q} = \frac{1}{q-1} c_{2(q-1)}$ until $q-1 = p$.
+Doing so, we find
+\begin{eqnarray}
+    \frac{c_{2q}}{c_{2p}} = \frac{1}{(q-1)(q-2)\ldots(p)} = \frac{(p-1)!}{(q-1)!}
+.\end{eqnarray}
+Putting this into the sum
+\begin{align}
+    \sum_{q=p}^{\infty} \frac{c_{2q}}{c_{2p}} x^{2(q-p)} &= (p-1)! \sum_{q=p}^{\infty} \frac{1}{q!} x^{2(q-p)} \nonumber \\
+                                                         &= (p-1)! \sum_{q=p-1}^{\infty} \frac{1}{(q-1)!} x^{2(q-p+1)} = \frac{(p-1)!}{x^{2(p-1)}} \sum_{q=p-1}^{\infty} \frac{x^{2q}}{q!} \nonumber \\
+                                                         &= \frac{(p-1)!}{x^{2(p-1)}} \Bigg[ e^{x^2} - \sum_{q=0}^{p-2} \frac{x^{2q}}{q!} \Bigg]
+.\end{align}
+If we consider the dominant behavior as $x \rightarrow \infty$, we have
+\begin{eqnarray}
+    g \sim x^2 e^{x^2}
+,\end{eqnarray}
+and therefore
+\begin{eqnarray}
+    f \sim x^{|n|+2} e^{x^2/2}
+,\end{eqnarray}
+which blows up as $x \rightarrow \infty$ and is therefore forbidden.
+
+(b -- round 2) We now return to finish solving for the energies of this system.
+In part (c), we found that if $g$ is not a polynomial (i.e. a finite order power series), then we have no solution.
+We thus impose that there exists some even, non-negative integer $p$ such that
+\begin{eqnarray}
+    a = \tilde{\epsilon} - 2(|n|+1) = 2p \Rightarrow E = 2E_0(p + |n| + 1)
+.\end{eqnarray}
+If we define $m = p + |n|$, then we have the energies as
+\begin{eqnarray}
+    E_{m} = \hbar \omega (m + 1)
+\end{eqnarray}
+as expected.
+
+We also can determine the degeneracy of a given energy level $m$.
+To make the argument more straightforward, let us write $m = 2p + |n|$ such that for fixed $m$ the range of $p$ is $0,1,\ldots,\lfloor m/2 \rfloor$.
+If $m = 2k$ (and is therefore even), then $|n| = 2(k - p)$.
+For each nonzero $|n|$, either $\pm n$ give the same $m$ value, while for $|n| = 0$, only $n = 0$ gives the same $m$.
+Thus, the degeneracy $g_{m} = 2k + 1 = m + 1$.
+Similarly, for odd $m = 2k + 1$, $n = 0$ never appears, so the degeneracy $g_{m} = 2(k+1) = m + 1$.
+In both cases, we arrive at $g_{m} = m + 1$, which is also as expected from the solution in cartesian coordinates.
+
+
+}
+
+
+
+
+\end{document}

@@ -1,0 +1,284 @@
+\def\duedate{\today}
+\def\HWnum{12}
+\input{../preamble.tex}
+
+\begin{document}
+
+\prob{1 -- Chapter 11 \# 3}{
+
+The state $\ket{\psi}$ is in the subspace spanned by the eigenstates of $\hat{\mathbf{J}}^2$ having eigenvalue $2\hbar^2$.
+Suppose $\ket{\psi}$ is also a normalized eigenstate of $\vu*{n} \cdot \hat{\mathbf{J}}$ with eigenvalue $+\hbar$; here, $\vu*{n}$ is the unit vector with components $(\sin{\theta}\cos{\phi},\sin{\theta}\sin{\phi},\cos{\theta})$.
+Obtain $\ket{\psi}$ as a linear combination of the eigenstates $\ket{m}$ of $\hat{J}_{z}$ with $m = 0, \pm 1$.
+
+}
+
+\sol{
+
+We can write
+\begin{eqnarray}
+    \ket{\psi} = \sum_{m = -1}^{1} c_{m} \ket{m}
+\end{eqnarray}
+since $j = 1$ and hence the range of the sum is limited to $m=-1,0,1$ since $m$ can only take on values between $-j$ and $j$ separated by one unit.
+From the definition of the dot product, we can write
+\begin{eqnarray}
+    \vu*{n} \vdot \va*{J} = \sin{\theta} \cos{\phi} J_1 + \sin{\theta} \sin{\phi} J_2 + \cos{\theta} J_3
+.\end{eqnarray}
+We can use the fact that $\ket{\psi}$ is an eigenvector of $\vu*{n} \cdot \va*{J}$ to write
+\begin{eqnarray}    
+    (\vu*{n} \vdot \va*{J}) \ket{\psi} = \hbar \ket{\psi} \Rightarrow \sum_{m=-1}^{1} c_{m} \Big[ \sin{\theta} \cos{\phi} J_1 \ket{m} + \sin{\theta} \sin{\phi} J_2 \ket{m} + \hbar ( m \cos{\theta} - 1 ) \ket{m} \Big] = 0
+.\end{eqnarray}
+At this point, we need to know the action of $J_1$ and $J_2$ on an eigenstate of $J_3$.
+Recall the raising and lowering operators $J_{\pm} = J_1 \pm i J_2$ with $J_{+} \ket{m} = \hbar \sqrt{j(j+1) - m(m+1)} \ket{m+1}$ and $J_{-} \ket{m} = \hbar \sqrt{j(j+1) - m(m-1)} \ket{m - 1}$.
+Solving for the Cartesian operators in terms of the raising and lowering operators, we have
+\begin{eqnarray}
+\begin{aligned}
+    J_1 &= \frac{1}{2} \Big( J_{+} + J_{-} \Big) \\
+    J_2 &= \frac{1}{2i} \Big( J_{+} - J_{-} \Big)
+.\end{aligned}
+\end{eqnarray}
+Thus,
+\begin{eqnarray}
+    \cos{\phi} J_1 + \sin{\phi} J_2 = \frac{1}{2} \Big( e^{-i\phi} J_{+} + e^{i\phi} J_{-} \Big)
+.\end{eqnarray}
+Putting this into the sum above, we have
+\begin{eqnarray}
+    \sum_{m=-1}^{1} c_{m} \Big[ \frac{1}{2} e^{-i\phi} \sqrt{2 - m(m+1)} \ket{m+1} + \frac{1}{2} e^{i\phi} \sqrt{2 - m(m-1)} \ket{m-1} + (m \cos{\theta} - 1) \ket{m} \Big] = 0
+.\end{eqnarray}
+We can expand this in full glory, which gives:
+\begin{eqnarray}
+\begin{aligned}
+    &\phantom{+} c_{-1} \Big[ \frac{1}{\sqrt{2}} e^{-i\phi} \ket{0} - (1 + \cos{\theta}) \ket{-1}  \Big] \\
+    &+ c_{0} \Big[ \frac{1}{\sqrt{2}} e^{-i\phi} \ket{1} + \frac{1}{\sqrt{2}} e^{i\phi} \ket{-1} - \ket{0}  \Big] \\
+    &+ c_1 \Big[ \frac{1}{\sqrt{2}} e^{i\phi} \ket{0} + (\cos{\theta} - 1) \ket{1} \Big] = 0
+.\end{aligned}
+\end{eqnarray}
+Grouping terms and equating the coefficients in front of the eigenstates of $J_3$ to zero, we find
+\begin{gather}
+    -(1 + \cos{\theta}) c_{-1} + \frac{1}{\sqrt{2}} e^{i\phi} c_0 = 0 \\
+    \frac{1}{\sqrt{2}} e^{-i\phi} c_{-1} - c_0 + \frac{1}{\sqrt{2}} e^{i\phi} c_1 = 0 \\
+    \frac{1}{\sqrt{2}} e^{-i\phi} c_{0} + (\cos{\theta} - 1) c_{1} = 0
+.\end{gather}
+Notice that we have three equations and three unknowns here.
+Per usual, though, they are redundant (i.e. linearly dependent).
+Let us choose our undeterimined coefficient to be $c_0$, giving
+\begin{eqnarray}
+    \ket{\psi} = -c_0 \Big[ \frac{e^{i\phi}}{\sqrt{2}(1 + \cos{\theta})} \ket{-1} + \ket{0} + \frac{e^{-i\phi}}{\sqrt{2}(1 - \cos{\theta})} \ket{1} \Big]
+.\end{eqnarray}
+Finally, we fix $c_0$ via normalization:
+\begin{eqnarray}
+    |c_0|^2 \Big[ \frac{1}{2(1 + \cos{\theta})^2} + 1 + \frac{1}{2(1 - \cos{\theta})^2} \Big] = |c_0|^2 \frac{1 + \cos^2{\theta} + 2 \sin^{4}{\theta}}{\sin^{4}{\theta}} = 1
+.\end{eqnarray}
+Thus,
+\begin{eqnarray}
+    \eqbox{ \ket{\psi} = \frac{1}{\sqrt{1 + \cos^2{\theta} + 2 \sin^{4}{\theta}}} \Big[ \frac{1 - \cos{\theta}}{\sqrt{2}} e^{i\phi} \ket{-1} + \sin^2{\theta} \ket{0} + \frac{1 + \cos{\theta}}{\sqrt{2}} e^{-i\phi} \ket{1} \Big] }
+.\end{eqnarray}
+
+Notice that the result above is consistent with the following sanity check.
+If $\vu*{n} = \vu*{z}$, then $\vu*{n} \vdot \va*{J} = J_3$ and $\ket{\psi} = \ket{1}$, and the above formula yields this result as needed (with an irrelevant phase factor that we can simply toss away in this special case).
+
+
+}
+
+
+\prob{2 -- Chapter 11 \# 4}{
+
+The eigenstates of the orbital angular momentum satisfy the eigenvalue equations
+\begin{eqnarray}
+    \hat{\mathbf{L}}^2 \ket{\psi_{lm}} = l (l+1) \hbar^2 \ket{\psi_{lm}},\quad \hat{L}_{z} \ket{\psi_{lm}} = m \hbar \ket{\psi_{lm}}
+,\end{eqnarray}
+where $l = 0,1,2,\ldots$ and $m = -l,\ldots,l$.
+In the r-representation, the corresponding wave functions are the spherical harmonics,
+\begin{eqnarray}
+    Y_{lm}(\theta,\phi) = \bra{\va*{r}}\ket{\psi_{lm}}
+.\end{eqnarray}
+
+\vspace{1em}
+
+(a) Using the expression of $L_{z}$ as a differential operator, solve the differential equation implied by the (second) eigenvalue equation above to show that the $\phi$ dependence of $Y_{lm}(\theta,\phi)$ is proportional to $e^{im\phi}$.
+
+(b) Using the condition $L_{+} \ket{\psi_{ll}} = 0$ and the fact that $Y_{ll}(\theta,\phi) = F_{l}(\theta) e^{i l \phi}$, show that
+\begin{eqnarray}
+    Y_{l,l}(\theta,\phi) = c_{l} \sin^{l}{\theta} e^{il\phi}
+,\end{eqnarray}
+where $c_{l}$ is a normalization factor.
+
+(c) Assume that the orbital angular momentum could also take on half-integer values, say $l = 1/2$.
+Construct the ``spherical harmonic $Y_{1/2,-1/2}(\theta,\phi)''$ by (i) applying the lowering operator $L_{-}$ to $Y_{1/2,1/2}(\theta,\phi) \propto \sin^{1/2}{\theta} e^{i\phi/2}$ and (ii) by solving the differential equation resulting from $L_{-} Y_{1/2,-1/2}(\theta,\phi) = 0$.
+Show that the two procedures are problematic and yield contradictory results.
+Thus, half-integer values cannot occur for the orbital angular momentum operator.
+
+}
+
+\sol{
+
+(a) The eigenvalue equation for the $z$-component of the orbital angular momentum has the form
+\begin{eqnarray}
+    L_{z} f(\phi) = - i \hbar \pdv{f(\phi)}{\phi} = \hbar m f(\phi)
+\end{eqnarray}
+in coordinate space, which has the solution we all know and love:
+\begin{eqnarray}
+    f(\phi) \propto e^{i m \phi}
+.\end{eqnarray}
+Note that the spherical harmonics are factorized into azimuthal and polar functions as $Y_{lm}(\theta,\phi) = c_{lm} P(\theta) f(\phi)$, where $c_{lm}$ is a normalizing constant.
+
+(b) For fixed $l$, we can construct the spherical harmonics using the properties of the raising and lowering operators, which take the form
+\begin{align}
+    L_{\pm} &= \hbar e^{\pm i \phi} \Big[ \pm \pdv{\theta} + i \cot{\theta} \pdv{\phi} \Big]
+.\end{align}
+If we apply $L_{+}$ on $Y_{ll}$, we get zero:
+\begin{eqnarray}
+    \hbar e^{i \phi} \Big( \pdv{\theta} + i \cot{\theta} \pdv{\phi} \Big) P(\theta) e^{i l \phi} = \hbar e^{i(l+1)\phi} \Big( \dv{P(\theta)}{\theta} - l \cot{\theta} P(\theta) \Big) = 0
+.\end{eqnarray}
+We thus have a first-order separable differential equation for $\theta$, which has solution
+\begin{eqnarray}
+    P(\theta) \propto \sin^{l}{\theta}
+,\end{eqnarray}
+meaning that
+\begin{eqnarray}
+    Y_{ll}(\theta,\phi) = c_{l} \sin^{l}{\theta} e^{i l \phi}
+.\end{eqnarray}
+
+(c) Suppose that $l = 1/2$, that is that $l$ can take on half-integer values.
+Then
+\begin{eqnarray}
+    Y_{1/2,1/2} = c_{l} \sin^{1/2}{\theta} e^{i\phi/2}
+.\end{eqnarray}
+Thus,
+\begin{eqnarray}
+\begin{aligned}
+    Y_{1/2,-1/2} &\propto e^{-i\phi} \Big( -\pdv{\theta} + i \cot{\theta} \pdv{\phi} \Big) \sqrt{ \sin{\theta} } e^{i\phi/2} \\
+                 &= e^{-i\phi/2} \Big( -\frac{1}{2} \cot{\theta} \sqrt{\sin{\theta}} - \frac{1}{2} \cot{\theta} \sqrt{\sin{\theta}}  \Big) \\
+                 &= - \cot{\theta} \sqrt{\sin{\theta}} e^{-i\phi/2}
+.\end{aligned}
+\end{eqnarray}
+
+Next, let's find the form of $Y_{1/2,-1/2}$ from $L_{-} Y_{1/2,-1/2} = 0$:
+\begin{eqnarray}
+    -\dv{P}{\theta} + \frac{1}{2} \cot{\theta} P = 0
+.\end{eqnarray}
+Thus we find from this that
+\begin{eqnarray}
+    Y_{1/2,-1/2} \propto \sqrt{\sin{\theta}} e^{-i\phi/2}
+,\end{eqnarray}
+which contradicts our findings from the method above, meaning that in fact $l$ cannot be $1/2$.
+
+}
+
+
+\prob{1 -- Chapter 11 \# 6}{
+
+Let $a_r$ and $a_{r}^{\dagger}$ with $r = 1,2$ be the annihilation and creation operators of a two-dimensional harmonic oscillator, satisfying
+\begin{eqnarray}
+    [a_{r},a_{s}] = [a_{r}^{\dagger},a_{s}^{\dagger}] = 0, \quad [a_{r},a_{s}^{\dagger}] = \delta_{rs}
+.\end{eqnarray}
+We define
+\begin{eqnarray}
+    S = \frac{1}{2} \Big( a_1^{\dagger} a_1 + a_2^{\dagger} a_2 \Big)
+,\end{eqnarray}
+and
+\begin{eqnarray}
+    \hat{J}_1 = \frac{1}{2} \Big( a_2^{\dagger}a_1 + a_1^{\dagger} a_2 \Big), \quad \hat{J}_{2} = \frac{i}{2} \Big( a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big), \quad \hat{J}_3 = \frac{1}{2} \Big( a_1^{\dagger} a_1 - a_2^{\dagger} a_2 \Big)
+,\end{eqnarray}
+and the $\hat{J}_{i}$ may be considered as the Cartesian components of a certain vector operator.
+
+\vspace{1em}
+
+(a) Show that the components of $\va*{J}$ as defined above satisfy the commutation relations characteristic of an angular momentum up to factors of $\hbar$, that is,
+\begin{eqnarray}
+    [\hat{J}_{i},\hat{J}_{j}] = i \epsilon_{ijk} \hat{J}_{k}
+\end{eqnarray}
+and that
+\begin{eqnarray}
+    \va*{J}^2 = S (S + \id)
+.\end{eqnarray}
+
+(b) Hereafter $\va*{J}$ will be considered to be the angular momentum of the system.
+We denote the eigenvalues of $\va*{J}^2$ and $J_3$ by $j(j+1)$ and $m$, respectively.
+Show that $\va*{J}^2$ and $J_3$ form a complete set of commuting observables, and that $j$ may take all integral or half-integral values $\geq 0$.
+
+(c) Show that the states
+\begin{eqnarray}
+    \frac{1}{\sqrt{(j+m)!(j-m)!}} (a_1^{\dagger})^{j+m} (a_2^{\dagger})^{j-m} \ket{0,0}
+\end{eqnarray}
+form a basis of common eigenstates of $\va*{J}^2$ and $J_3$.
+
+}
+
+\sol{
+
+(a) We will determine the commutation relations via brute force:
+\begin{gather}
+\begin{aligned} 
+    [J_1,J_2] &= \frac{i}{4} \Big[ \Big( a_2^{\dagger} a_1 + a_1^{\dagger} a_2 \Big) \Big( a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big) - \Big( a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big) \Big( a_2^{\dagger} a_1 + a_1^{\dagger} a_2 \Big) \Big] \\
+                &= \frac{i}{2} \Big[ a_1^{\dagger} a_1 a_2 a_2^{\dagger} - a_2^{\dagger} a_2 a_1 a_1^{\dagger} \Big] \\
+                &= \frac{i}{2} \Big[ a_1^{\dagger} a_1 - a_2^{\dagger} a_2   \Big] = i J_3
+\end{aligned}
+\\
+\begin{aligned}
+    [J_2,J_3] &= \frac{i}{4} \Big[ \Big( a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big) \Big( a_1^{\dagger} a_1 - a_2^{\dagger} a_2 \Big) - \Big( a_1^{\dagger} a_1 - a_2^{\dagger} a_2 \Big) \Big( a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big) \Big] \\
+              &= \frac{i}{2} \Big[ a_2^{\dagger} a_1 + a_1^{\dagger} a_2 + (a_2^{\dagger} a_2 a_2^{\dagger} - a_2^{\dagger} a_2^{\dagger} a_2) a_1 \Big] = i J_1
+\end{aligned}
+\\
+\begin{aligned}
+    [J_3,J_1] &= \frac{1}{4} \Big[ \Big( a_1^{\dagger} a_1 - a_2^{\dagger} a_2 \Big) \Big( a_2^{\dagger} a_1 + a_1^{\dagger}a_2 \Big) - \Big( a_2^{\dagger} a_1 + a_1^{\dagger} a_2 \Big) \Big( a_1^{\dagger} a_1 - a_2^{\dagger} a_2 \Big) \Big] \\
+              &= \frac{1}{2} \Big[ a_1^{\dagger} a_2 - a_2^{\dagger} a_1 \Big] = i \frac{i}{2} \Big[ a_2^{\dagger} a_1 - a_1^{\dagger} a_2 \Big] = i J_2
+.\end{aligned}
+\end{gather}
+Finally, we bake in the antisymmetric nature of the commutation relations, we can write generically $[J_{i},J_{j}] = i \epsilon_{ijk} J_{k}$.
+
+Next, we find
+\begin{eqnarray}
+\begin{aligned}
+    \va*{J}^2 &= J_1^2 + J_2^2 + J_3^2 \\
+              &= \frac{1}{4} \Big[ a_1 a_1 a_2^{\dagger} a_2^{\dagger} + a_1^{\dagger} a_1^{\dagger} a_2 a_2 + a_1 a_1^{\dagger} a_2^{\dagger} a_2 + a_1^{\dagger} a_1 a_2 a_2^{\dagger} \\
+              &\phantom{\frac{1}{4}\Big[} - a_1 a_1 a_2^{\dagger} a_2^{\dagger} - a_1^{\dagger} a_1^{\dagger} a_2 a_2 + a_1 a_1^{\dagger} a_2^{\dagger} a_2 + a_1^{\dagger} a_1 a_2 a_2^{\dagger} \\
+              &\phantom{\frac{1}{4} \Big[} + a_1^{\dagger} a_1 a_1^{\dagger} a_1 + a_2^{\dagger} a_2 a_2^{\dagger} a_2 - 2 a_1^{\dagger} a_1 a_2^{\dagger} a_2 \Big] \\
+              &= \frac{1}{4} \Big[ 2 a_1 a_1^{\dagger} a_2^{\dagger} a_2 + 2 a_1^{\dagger} a_1 a_2 a_2^{\dagger} + a_1^{\dagger} a_1 a_1^{\dagger} a_1 + a_2^{\dagger} a_2 a_2^{\dagger} a_2 - 2a_1^{\dagger} a_1 a_2^{\dagger} a_2 \Big] \\
+              &= \frac{1}{4} \Big[ 2a_2^{\dagger}a_2 + 2 a_1^{\dagger} a_1 a_2^{\dagger} a_2 + 2 a_1^{\dagger} a_1 + (a_1^{\dagger} a_1)^2 + (a_2^{\dagger} a_2)^2 \Big] \\
+              &= \Big[ S + S^2 \Big] = S (S + \id)
+.\end{aligned}
+\end{eqnarray}
+
+(b) Let us now consider $\va*{J}$ to be the angular momentum of the system, denoting the eigenvalue of $J_3$ by $m$, $S$ by $j$ and therefore $\va*{J}^2$ by $j(j+1)$.
+It is clear that $\va*{J}^2$ and $J_3$ form a set of commuting observables (since they obey the fundamental commutation relations of angular momentum operators sans a factor $\hbar$, which is irrelevant for the commutator $[\va*{J}^2,J_3]$).
+Thus, we can find a common orthonormal eigenbasis of $\va*{J}^2$ and $J_3$.
+The next question is whether any state of this two-dimensional harmonic oscillator can be expanded in the common eigenbasis of $\va*{J}^2$ and $J_3$, or equivalently, if
+\begin{eqnarray}
+    \sum_{j,m} \ket{j,m} \bra{j,m} \stackrel{?}{=} \id
+.\end{eqnarray}
+
+We know that the eigenstates of the Hamiltonians for particles 1 and 2, $H_1$ and $H_2$ respectively, form a complete set of commuting observables, or equivalently, the number operators $N_1$ and $N_2$ form a complete set of commuting observables since the eigenstates of $N_1$ and $H_1$ and also $N_2$ and $H_2$ are the same, respectively.
+Thus,
+\begin{eqnarray}
+    \sum_{n_1,n_2} \ket{n_1,n_2} \bra{n_1,n_2} = \id
+.\end{eqnarray}
+Now, observe that the eigenstates $\ket{n_1,n_2}$ are also eigenstates of $\va*{J}^2$ and $J_3$:
+\begin{eqnarray}
+\begin{aligned}
+    \va*{J}^2\ket{n_1,n_2} &= S(S + 1) \ket{n_1,n_2} = \frac{1}{2}(n_1 + n_2) \Big[ \frac{1}{2}(n_1 + n_2) + 1 \Big] \ket{n_1,n_2} \\
+    J_3 \ket{n_1,n_2} &= \frac{1}{2} (n_1 - n_2) \ket{ n_1,n_2}
+.\end{aligned}
+\end{eqnarray}
+That is, $\ket{n_1,n_2}$ corresponds to $j = (n_1+n_2)/2$ and $m = (n_1-n_2)/2$.
+Hence, $j$ can take on any half-integer or integral value, and $m$ can range from $-j$ to $j$ in integer steps, and thus the completeness statement for the states $\ket{n_1,n_2}$ is also a completeness statement for $\ket{j,m}$.
+
+(c) From our work in part (b), we found $n_1 = j+m$ and $n_2 = j-m$.
+We know that
+\begin{eqnarray}
+    \ket{n_1,n_2} = \frac{1}{\sqrt{n_1! n_2!}} (a_1^{\dagger})^{n_1} (a_2^{\dagger})^{n_2} \ket{0,0}
+,\end{eqnarray}
+so
+\begin{eqnarray}
+    \ket{n_1,n_2} = \frac{1}{\sqrt{(j+m)!(j-m)!}} (a_1^{\dagger})^{j+m} (a_2^{\dagger})^{j-m} \ket{0,0}
+.\end{eqnarray}
+These states forms a basis of common eigenstates of $\va*{J}^2$ and $J_3$ since any combination of $n_1$ and $n_2$ specifies a corresponding unique combination of $j$ and $m$.
+
+}
+
+
+%\prob{4 -- Chapter 11 \# 12 (\textit{optional})}{}
+
+%\sol{}
+
+
+\end{document}
