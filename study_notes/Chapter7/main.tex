@@ -1,0 +1,108 @@
+\chapter{Physical Interpretation}
+
+Now that we have a mathematical framework to work in for quantum mechanics, we need to discuss how to use it to do real-world physics.
+For this, we establish a few postulates with which we interpret the mathematical framework and connect it to phenomenology.
+
+First, the state of a system at fixed time $t_0$ is represented by a ket belonging to the state space $\mathcal{S}$, a Hilbert space.
+This implies the superposition principle: a linear vector of state vectors is a state vector.
+
+Second, measurable physical quantities (observables) are represented by hermitian operators acting in $\mathcal{S}$.
+If $\hat{A}$ is an observable, then there exists a basis of eigenstates of $\hat{A}$ in $\mathcal{S}$.
+
+Third, the only possible result of a measurement of an observable $\hat{A}$ is one of its eigenvalues.
+If the spectrum of $\hat{A}$ is discrete, the results obtained by measuring $\hat{A}$ are quantized.
+
+Fourth, when the observable $\hat{A}$ is measured on a system in state $\ket{\psi}$, the probability of obtaining the discrete eigenvalue $a_{i}$ is
+\begin{eqnarray}
+    p(a_{i}) = \sum_{j=1}^{g_{i}} | \bra{\phi_{i}^{(j)}} \ket{\psi} |^2
+,\end{eqnarray}
+where we assume that $|| \psi || = 1$, $\ket{\phi_{i}^{(j)}}$ are the normalized eigenstates of $\hat{A}$ with eigenvalue $a_{i}$ with degeneracy $g_{i}$.
+This probability can also be expressed as the expectation value in the state $\ket{\psi}$ of the projector on the subspace spanned by the eigenstates $\ket{\phi_{i}^{(j)}}$ belonging to the eigenvalue $a_{i}$:
+\begin{eqnarray}
+    p(a_{i}) = \sum_{j=1}^{g_{i}} \bra{\psi} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}} \ket{\psi} = \bra{\psi} \sum_{j=1}^{g_{i}} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}} \ket{\psi} = \bra{\psi} \hat{P}_{i} \ket{\psi}
+.\end{eqnarray}
+Clearly then, the probabilty of measuring an element from the spectrum of $\hat{A}$ is unity:
+\begin{eqnarray}
+    \sum_{i} p(a_{i}) = \bra{\psi} \sum_{i} \hat{P}_{i} \ket{\psi} = \bra{\psi} \id \ket{\psi} = 1
+.\end{eqnarray}
+One point should be noted.
+When a given $a_{i}$ is degenerate, there is an infinite number of possible choices for the set of eigenstates with eigenvalue $a_{i}$.
+That is, there are an infinite number of bases in the subspace of $\mathcal{S}$ corresponding to the eigenvalue $a_{i}$.
+The probability $p(a_{i})$, however, certainly does not depend on this choice of basis.
+This claim can be proven as follows.
+Consider two distinct bases $\{ \ket{\phi_{i}^{(j)}} \}$ and $\{ \ket{\chi_{i}^{(j)}} \}$ which span the subspace of vectors in $\mathcal{S}$ corresponding to eigenvalue $a_{i}$ of $\hat{A}$.
+We know from the previous chapter that there exists a unitary operator which transforms between these bases:
+\begin{eqnarray}
+    \ket{\phi_{i}^{(j)}} = \sum_{n=1}^{g_{i}} S^{\dagger}_{nj} \ket{\chi_{i}^{(n)}}, \quad \bra{\phi_{i}^{(j)}} = \sum_{n=1}^{g_{i}} S_{jn} \bra{\chi_{i}^{(n)}}
+.\end{eqnarray}
+Thus, the projector onto the subspace of interest in the $\phi$-basis 
+\begin{align}
+    \sum_{j=1}^{g_{i}} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}} &= \sum_{j,l,m=1}^{g_{i}} S^{\dagger}_{lj}S_{jm} \ket{\chi_{i}^{(l)}}\bra{\chi_{i}^{(m)}} \nonumber \\
+    &= \sum_{l,m=1}^{g_{i}} \delta_{lm} \ket{\chi_{i}^{(l)}} \bra{\chi_{i}^{(m)}} = \sum_{m=1}^{g_{i}} \ket{\chi_{i}^{(m)}} \bra{\chi_{i}^{(m)}}
+\end{align}
+is equal to the projector onto the subspace of interest in the $\chi$-basis.
+
+If the observable $\hat{A}$ has a continuous spectrum, then we have probability densities $p(\alpha)$, where the probabilty to measure the eigenvalue in an interval centered on $\alpha$ of width $\dd{\alpha}]$ is 
+\begin{align}
+    p(\alpha) \dd{\alpha} = \bra{\psi} \hat{P}_{\alpha} \ket{\psi} \dd{\alpha} = \Bigg[ \sum_{j=1}^{g_{\alpha}} \Big| \bra{\phi_{\alpha}^{(j)}} \ket{\psi} \Big|^2 \Bigg] \dd{\alpha}
+.\end{align}
+We can therefore integrate over this probability density $p(\alpha)$ to obtain the probability of measuring $\alpha$ within some interval.
+
+The expectation value of an observable is given in the usual way as
+\begin{align}
+    \expval{\hat{A}} &= \sum_{i} a_{i} p(a_{i}) = \sum_{i,j} a_{i} \bra{\psi} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}} \ket{\psi} \nonumber \\
+    &= \bra{\psi} \hat{A} \Bigg[ \sum_{i,j} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}} \Bigg] \ket{\psi} = \bra{\psi} \hat{A} \ket{\psi}
+.\end{align}
+
+Fifth, upon measurement of $\hat{A}$, the system collapses to the subspace spanned by the eigenvalue measured.
+That is, if $a_{i}$ is measured, then the normalized state of the system is
+\begin{eqnarray}
+    \ket{\psi'} = \frac{\hat{P}_{i} \ket{\psi}}{\sqrt{\bra{\psi} \hat{P}_{i} \ket{\psi}}}
+,\end{eqnarray}
+where as usual
+\begin{eqnarray}
+    \hat{P}_{i} = \sum_{j=1}^{g_{i}} \ket{\phi_{i}^{(j)}} \bra{\phi_{i}^{(j)}}
+\end{eqnarray}
+if $\hat{A}$ has a discrete spectrum
+If $\hat{A}$ has a continuous spectrum, its measurement on a system yields $\alpha_0 \pm \Delta \alpha$ with probability
+\begin{eqnarray}
+    \int_{\alpha_0 - \Delta \alpha/2}^{\alpha_0 + \Delta \alpha/2} \dd{\alpha} \sum_{j=1}^{g_{\alpha}} \Big| \bra{\phi_{\alpha}^{(j)}}\ket{\psi} \Big|^2
+,\end{eqnarray}
+and right after the measurement, the system will be in state
+\begin{eqnarray}
+    \ket{\psi'} = \frac{\hat{P}_{\Delta \alpha}(\alpha_0) \ket{\psi}}{\bra{\psi} \hat{P}_{\Delta \alpha}(\alpha_0) \ket{\psi}}
+,\end{eqnarray}
+where
+\begin{eqnarray}
+    P_{\Delta \alpha}(\alpha_0) = \int_{\alpha_0 - \Delta \alpha/2}^{\alpha_0 + \Delta \alpha / 2} \dd{\alpha} \sum_{j=1}^{g_{\alpha}} \ket{\phi_{\alpha}^{(j)}} \bra{\phi_{\alpha}^{(j)}}
+.\end{eqnarray}
+
+Finally, the time evolution of the state vector $\ket{\psi(t)}$ is governed by the Schr\"{o}dinger equation
+\begin{eqnarray}
+    i\hbar \dv{\ket{\psi}}{t} = \hat{H}(t) \ket{\psi(t)}
+,\end{eqnarray}
+where $\hat{H}$ is the Hamiltonian of the system and is the observable corresponding to the total energy of the system.
+Notice that the evolution of the state of a system is entirely deterministic.
+Knowing the result of the state at some time $t_0$, we can determine the system's state at some arbitrary future time $t$ by evolving it according to the S.E.
+
+
+\section{Time evolution operator}
+
+We can define a unitary operator $\hat{U}(t,t_0)$ such that given a state $\ket{\psi(t_0)}$ at some initial time $t_0$, its action produces the state $\ket{\psi(t)}$ at time $t > t_0$ via
+\begin{eqnarray}
+    \ket{\psi(t)} = \hat{U}(t,t_0) \ket{\psi(t_0)}
+.\end{eqnarray}
+Here now is why the time evolution operator is unitary.
+The normalization of the state must be independent of time
+\begin{eqnarray}
+    \bra{\psi(t)} \ket{\psi(t)} = \bra{\psi(t_0)} \hat{U}^{\dagger}(t,t_0) \hat{U}(t,t_0) \ket{\psi(t_0)} = \bra{\psi(t_0)} \ket{\psi(t_0)}
+.\end{eqnarray}
+Thus, $\hat{U}^{\dagger}(t,t_0) \hat{U}(t,t_0) = \id$.
+
+
+
+
+
+
+
+
